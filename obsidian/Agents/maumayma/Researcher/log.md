@@ -8,6 +8,55 @@ Append-only. Latest at top.
 
 ---
 
+## 2026-05-28 — /research batch: Kuznetsov B(2,5) Cayley-table line (3 papers + concept hub + synthesis)
+
+**Source:** 3 local PDFs in `~/Downloads/` — filenames misleadingly transliterated as `ketnesov_*`; actual author is Kuznetsov A.A. (Кузнецов) of the Krasnoyarsk school.
+
+**PDF extraction tooling:** none of `pdftotext`, `mutool`, `nuextract-cli`, `defuddle` (CLI) were installed; the built-in Read tool returns only file size for PDFs. Wrote a throwaway `uv run` script `Agents/maumayma/Researcher/scratch/extract_pdf.py` (pypdf, ~10 lines) per Researcher discipline "Throwaway scripts only" rule.
+
+**New notes (5):**
+
+- `Research/Group theory/Burnside groups/B25/kuznetsov-shlepkin-2009.md` — paper 2 (foundational of the B(2,5) pair); Trudy IMM 15(2), 125–132. Introduces Algorithm I (row-collision Cayley-table closure) on free Burnside groups; computes $K_{27}(2,5)$ on a PC; |P_27(2,5)| = 92,228,348 exact. tags: burnside, b25, restricted-burnside, word-problem, cayley-table-closure, finite-group-enumeration, computer-algebra; project: b25.
+- `Research/Group theory/kuznetsov-tarasov-shlepkin-2009.md` — paper 1 (the general algorithm); Vestnik NSU 9(2), 47–54. Generalization of Algorithm I to arbitrary finitely-presented periodic groups. Placed at Group theory/ domain level (not B(2,5)-specific). tags: cayley-table-closure, word-problem, finitely-presented-groups, periodic-groups, coset-enumeration, finite-group-enumeration; no #project/* (substance test: borderline).
+- `Research/Group theory/Burnside groups/B25/kuznetsov-shlepkin-2010.md` — paper 3 (B(2,5)/B_0(2,5) divergence extension); Trudy IMM 16(2), 133–138. Associativity-test variant of Algorithm I + finite/infinite dichotomy theorems + cluster-scale K_35(2,5) (~104h on 125 nodes) + Theorem 3 (coincidence up to length 29) + Theorem 4 (973 candidate-divergence relations at lengths 30–35; failure of any one would prove B(2,5) infinite). tags as paper 2 + project: b25.
+- `Concepts/cayley-table-closure-algorithm.md` — concept hub (introduces "Kuznetsov's Algorithm I"); appears_in: all 3 Kuznetsov papers; introduced_in: kuznetsov-shlepkin-2009.
+- `Research/Group theory/Burnside groups/B25/_synthesis-kuznetsov-b25-algorithmic-line.md` — synthesis; project: b25. Recommends 4 concrete Mixer / Experimenter-B25 actions (|P_s(2,5)| baseline verification, direct test of the 2 length-30 candidate relations, pre-register a Kuznetsov-Algorithm-I Mixer Agent, attempt to obtain the full 973-relation list).
+
+**Taxonomy registration:**
+
+- Added `#topic/cayley-table-closure` to `_meta/tags.md` Axis 4 list. Substance test passes (3 papers in this batch + concept hub).
+
+**Bidirectional updates (3 papers):**
+
+- `havas-wall-wamsley-1974.md`: added 3 new `cited_by:` entries (kuznetsov-shlepkin-2009/2010, _synthesis-kuznetsov-b25-algorithmic-line) + matching Related material bullet.
+- `kourovka-11.48-kostrikin-1990.md`: same 3 added.
+- `b25-finiteness-11.48-kostrikin.md`: same 3 added (was previously empty `cited_by: []`); Related material section updated.
+
+**MOC update:**
+
+- `_moc-burnside.md`: added new "Cayley-table-closure attack (Kuznetsov line, Russian, 2009–2010)" section after the existing "Mixer attack" section. 4 new wikilinks (all 3 papers + synthesis).
+
+**Project framing on output:** added explicit "Mixer / B(2,5) project framing" sections to papers 2 and 3 + the synthesis, per user instruction (Q3 confirmed papers are Mixer/B(2,5) relevant). Paper 1 (general algorithm) stays descriptive; no project framing.
+
+**Translation discipline:** all 3 papers are Russian-language. Abstracts translated to English with `[trans.]` markers. Quotes translated and tagged. `language: ru` recorded in frontmatter. Original Russian not preserved in vault per doctrine.
+
+**Verification checks per paper note:** all 5 new notes include Related material sections with ≥3 substantive wikilinks (parent overview + MOC + siblings/concepts/papers) per Phase 9 cross-linking discipline. Notation: all `[[...,...]]` patterns (e.g. commutator brackets in `[[kuznetsov-shlepkin-2010]]`) use backticks per F8.2 paper-summary-template rule — verified by inspection.
+
+**Filename discipline:** filenames are `kuznetsov-shlepkin-2009.md`, `kuznetsov-tarasov-shlepkin-2009.md`, `kuznetsov-shlepkin-2010.md` (correct transliteration; user's local `ketnesov_*.pdf` filenames not propagated to vault). Per user confirmation on Q1.
+
+**Open items / suggested next actions (for Experimenter-B25 / Lead):**
+
+1. Verify `|P_s(2,5)|` baseline counts $s = 1, \ldots, 27$ from kuznetsov-shlepkin-2009 §3 Table 2 against current B(2,5) enumeration pipelines.
+2. Direct test of the 2 length-30 candidate-divergence relations from kuznetsov-shlepkin-2010 Theorem 4 through KBMAG + Rust bidirectional — highest-leverage single experiment.
+3. Pre-register a Kuznetsov-Algorithm-I Mixer Agent for B(2,5) attack (element-enumeration witness stream complementing KB rule-derivation).
+4. Attempt to obtain the full 973-relation list (paper reproduces only excerpts).
+
+**Open citation-count gap:** none of the 3 papers' citation counts could be located via standard channels at write time — typical for 2009–2010 Russian-language Trudy/Vestnik papers; recorded as `citation_count: null` in all 3 frontmatters with note in `quality_notes:`. Not flagged as blocker.
+
+**No restructuring of existing notes.** Only additions + bidirectional sweep.
+
+---
+
 ## 2026-05-28 — Phase 11: Pre-commit audit drift fixes (6 items)
 
 **#2** experiment.md: added `user/<handle>`, `topic/<one+>`, `project/<subproject>` to tags example

@@ -27,7 +27,11 @@ Notes:
 
 ## When to create a new sub-topic dir
 
-Only when a topic has accumulated **3+ papers** that naturally co-locate. Single-paper sub-dirs are clutter — leave the paper at the domain level until the cluster forms.
+Only when a topic has accumulated **3+ papers** that naturally co-locate. Single-paper sub-dirs are clutter — leave the paper in the **closest matching existing subdir** until the cluster forms.
+
+**"Closest matching subdir" — NOT "domain root."** If a paper is about Burnside groups B(2,5) and the `Research/Group theory/Burnside groups/B25/` subdir already exists with 5+ papers, the new paper goes **there**, not at `Research/Group theory/` root. Use the topic tags as the primary signal for placement: if the paper carries `#topic/burnside` and `#topic/b25`, and `Burnside groups/B25/` exists, that's the right home.
+
+Only place a paper at a domain root (e.g. `Research/Group theory/`) if it genuinely spans the entire domain and doesn't fit any sub-topic — extremely rare. When in doubt, **ask the invoker** which subdir is right. Don't default to domain root.
 
 When you do create a sub-topic dir, add a brief `_README.md` explaining what belongs there (3-5 lines).
 

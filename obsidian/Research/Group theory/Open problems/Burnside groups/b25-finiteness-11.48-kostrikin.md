@@ -20,7 +20,10 @@ cites:
   - "[[kourovka-2022]]"
   - "[[havas-wall-wamsley-1974]]"
   - "[[algo-mixing-burnside-slides]]"
-cited_by: []
+cited_by:
+  - "[[kuznetsov-shlepkin-2009]]"
+  - "[[kuznetsov-shlepkin-2010]]"
+  - "[[_synthesis-kuznetsov-b25-algorithmic-line]]"
 quality_notes: "This note frames Problem 11.48 from a Mixer-attack angle. For the mathematical content of the problem, see [[kourovka-11.48-kostrikin-1990]]. The old score/3 (high Mixer relevance) is migrated to relevance: 1 per F4.2 decisions."
 author: maumayma
 tags:
@@ -111,4 +114,4 @@ This is the **primary Mixer target** — the reason the project exists. Every ar
 - Replicates: (analogous to B(4,3) which proved the architecture)
 - Concepts introduced/used: (F4.4 will populate via `key_concepts:`)
 - Cites (in vault): [[kourovka-11.48-kostrikin-1990]], [[kourovka-2022]], [[havas-wall-wamsley-1974]], [[algo-mixing-burnside-slides]]
-- Cited by (in vault): (linked from experiment notes, but no direct Research/ citations currently)
+- Cited by (in vault): [[kuznetsov-shlepkin-2009]], [[kuznetsov-shlepkin-2010]], [[_synthesis-kuznetsov-b25-algorithmic-line]] (Mixer-attack framing references both Kuznetsov papers as alternative-algorithm witnesses; the synthesis routes recommendations to this open-problem note)

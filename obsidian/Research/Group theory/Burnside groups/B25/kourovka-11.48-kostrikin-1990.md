@@ -21,6 +21,9 @@ cited_by:
   - "[[b25-finiteness-11.48-kostrikin]]"
   - "[[b-exponent-5-adian-4.2b]]"
   - "[[algo-mixing-burnside-slides]]"
+  - "[[kuznetsov-shlepkin-2009]]"
+  - "[[kuznetsov-shlepkin-2010]]"
+  - "[[_synthesis-kuznetsov-b25-algorithmic-line]]"
 quality_notes: "This note covers the mathematical unpacking of Kourovka 11.48 in detail; for the Mixer-attack rationale, see [[b25-finiteness-11.48-kostrikin]]. The two notes are complementary: this one is mathematical, that one is strategic."
 author: maumayma
 tags:
@@ -116,4 +119,4 @@ The practical connection: if KB completing a confluent system for B(2,5) would p
 - Replicates: (none)
 - Concepts introduced/used: (F4.4 will populate via `key_concepts:`)
 - Cites (in vault): [[havas-wall-wamsley-1974]] (the restricted group result), [[kourovka-2022]] (source of Problem 11.48)
-- Cited by (in vault): [[b25-finiteness-11.48-kostrikin]], [[b-exponent-5-adian-4.2b]], [[algo-mixing-burnside-slides]]
+- Cited by (in vault): [[b25-finiteness-11.48-kostrikin]], [[b-exponent-5-adian-4.2b]], [[algo-mixing-burnside-slides]], [[kuznetsov-shlepkin-2009]], [[kuznetsov-shlepkin-2010]], [[_synthesis-kuznetsov-b25-algorithmic-line]]

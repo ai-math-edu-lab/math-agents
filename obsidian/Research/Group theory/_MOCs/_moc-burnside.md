@@ -44,6 +44,20 @@ tags:
 
 ---
 
+## Cayley-table-closure attack (Kuznetsov line, Russian, 2009–2010)
+
+A third algorithmic family for B(2,5): Cayley-table closure on a length-truncated minimal-word set. Distinct from KB completion and coset enumeration; provides a clean finite/infinite dichotomy and a list of 973 candidate-divergence relations at lengths 30–35 in $B_0(2,5)$ whose failure in $B(2,5)$ would prove infiniteness.
+
+- [[kuznetsov-shlepkin-2009]] — Introduces Algorithm I (row-collision-based Cayley-table closure) on free Burnside groups. Computes $K_{27}(2,5)$ on a personal computer; $|P_{27}(2,5)| = 92{,}228{,}348$ exact minimal-word count, $|C_{27}| = 3{,}995$ relations. Proves $B(2,5)$ and $B_0(2,5)$ have identical minimal-word relations up to length 27.
+
+- [[kuznetsov-tarasov-shlepkin-2009]] — Generalizes Algorithm I to arbitrary finitely-presented periodic groups. Useful for the algorithm's standalone statement; positions it against coset enumeration as a complementary technique.
+
+- [[kuznetsov-shlepkin-2010]] — Refines detection (associativity-test variant); cluster-scale computation of $K_{35}(2,5)$ (~104 hours, 125 nodes, $|P_{35}| \approx 5^{14}$, $|C_{35}| = 104{,}409$). Theorem 3: $B(2,5) \sim B_0(2,5)$ coincide on minimal-word relations up to length 29. **Theorem 4: produces 973 explicit candidate-divergence relations at lengths 30–35; failure of any one in $B(2,5)$ would resolve Problem 11.48 in the negative (B(2,5) infinite).**
+
+- [[_synthesis-kuznetsov-b25-algorithmic-line]] — Synthesis of the three Kuznetsov papers. Frames the Mixer / B(2,5) verification opportunities: $|P_s(2,5)|$ baseline check, direct test of the 2 length-30 candidate relations, pre-registration of a Kuznetsov-Algorithm-I Mixer Agent for multi-witness cross-checking.
+
+---
+
 ## Background / project context
 
 - [[problems-people]] — Internal project document listing algorithms and implementers for the B(2,5) effort; early Mixer architectural constraints (API boundary, memory limits, serialization).

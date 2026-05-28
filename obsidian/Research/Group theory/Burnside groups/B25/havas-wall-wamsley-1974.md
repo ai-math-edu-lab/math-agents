@@ -26,6 +26,9 @@ cited_by:
   - "[[b25-finiteness-11.48-kostrikin]]"
   - "[[b-exponent-5-adian-4.2b]]"
   - "[[algo-mixing-burnside-slides]]"
+  - "[[kuznetsov-shlepkin-2009]]"
+  - "[[kuznetsov-shlepkin-2010]]"
+  - "[[_synthesis-kuznetsov-b25-algorithmic-line]]"
 quality_notes: "Foundational — cited by every subsequent B(2,5) computation in this vault. Two independent methods (Lie algebra and nilpotent quotient) converge on the same result; the generator numbering 1–34 from this paper is the source of the comm_X_Y naming convention used throughout all B(2,5) experiments."
 author: maumayma
 tags:
@@ -143,4 +146,4 @@ For KB experiments: the relators derived from this presentation's commutator tab
 - Replicates: (none)
 - Concepts introduced/used: (F4.4 will populate via `key_concepts:`)
 - Cites (upstream, outside vault): Kostrikin (1959), Sanov (1952), Wamsley p-quotient algorithm
-- Cited by (in this vault): [[havas-newman-1980]], [[havas-robertson]], [[kourovka-11.48-kostrikin-1990]], [[kourovka-2022]], [[problems-people]], [[b25-finiteness-11.48-kostrikin]], [[b-exponent-5-adian-4.2b]]
+- Cited by (in this vault): [[havas-newman-1980]], [[havas-robertson]], [[kourovka-11.48-kostrikin-1990]], [[kourovka-2022]], [[problems-people]], [[b25-finiteness-11.48-kostrikin]], [[b-exponent-5-adian-4.2b]], [[kuznetsov-shlepkin-2009]], [[kuznetsov-shlepkin-2010]], [[_synthesis-kuznetsov-b25-algorithmic-line]]

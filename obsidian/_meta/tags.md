@@ -80,6 +80,7 @@ Initial seed (will grow as papers arrive):
 - `#topic/kbmag` — KBMAG-specific work
 - `#topic/proof-search` — search-based theorem proving (any methodology)
 - `#topic/coset-enumeration` — Todd-Coxeter and variants
+- `#topic/cayley-table-closure` — Kuznetsov's algorithm family computing $K_s(m,n) = (P_s, A_s, T_s, C_s)$ by iterative Cayley-table closure: build the minimal-word set $P_s$ length-by-length, detect new relations from row collisions in $T_s$, derive a finiteness/infiniteness criterion from the fixed point $K_s = K_{s+1}$. Distinct from Knuth-Bendix and coset enumeration.
 
 Grow the list organically. Don't pre-register topics that don't exist yet.
 

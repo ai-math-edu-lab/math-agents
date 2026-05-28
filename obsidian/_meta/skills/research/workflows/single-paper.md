@@ -51,21 +51,42 @@ Use when the invoker hands one paper URL or ID and wants a structured summary in
     - Verify uniqueness: `grep -r "<proposed-stem>" <vault>/Research/ --include="*.md" -l`. If there's a conflict, add more specificity (e.g. `havas-1980-computers-burnside.md`).
     - See `_meta/naming-conventions.md` for the full rule set.
 
-13. **Write the note.**
-    - Path: `Research/<domain>/<topic-path>/<paper-id>.md` (e.g. `Research/Group theory/Burnside groups/B25/havas-newman-1980.md`)
+13. **Determine the correct directory path BEFORE writing.** This is a structural-placement check — a paper's filename + content alone don't tell Obsidian where it belongs; the directory does. Get this wrong and the paper is hard to find later.
+
+    **The placement rule**: `Research/<Domain>/<Topic subdir>/<deeper subdir if applicable>/<paper-id>.md`
+
+    - **`<Domain>`** matches the paper's `#domain/*` tag, mapped to the directory naming convention. Current dirs (see `_meta/research-folder-convention.md`):
+      - `#domain/group-theory` → `Research/Group theory/`
+      - `#domain/ai` → `Research/AI in Math/`
+      - `#domain/cs` → `Research/Algorithm Cooperation/` (CS papers about algorithm cooperation) — for other CS papers, ask the invoker before creating a new subdir
+      - `#domain/methodology` → choose carefully; usually `Research/<relevant-domain>/` if the methodology is domain-specific, or flag to invoker if it's cross-cutting
+    - **`<Topic subdir>`** matches the most-specific applicable subdir under the domain. For Group theory specifically:
+      - Papers about **Burnside groups (any exponent)** go in `Research/Group theory/Burnside groups/<exponent>/`. E.g. B(2,5) papers go in `Research/Group theory/Burnside groups/B25/`. B(2,3), B(4,3), B(5,3) papers go in their own respective subdirs (create if missing, ask invoker if uncertain).
+      - Papers about **Word Problem techniques or theory** go in `Research/Group theory/Word Problem/` or `Research/Group theory/Word Problem/techniques/`.
+      - Papers about **general group theory foundations** (subgroups, presentations, group orders) go under `Research/Group theory/General/<area>/`.
+      - Papers about **open problems** go under `Research/Group theory/Open problems/<area>/` (e.g. `Open problems/Burnside groups/`, `Open problems/Free groups/`).
+      - Papers about **tooling** (GAP, KBMAG, etc.) go under `Research/Group theory/Tools/<tool-name>/`.
+    - **NEVER put a paper at `Research/<Domain>/` root** unless it genuinely spans all sub-topics within that domain (rare — almost always there's a more specific subdir). If you find yourself wanting to do this, **stop and ask the invoker** which subdir is right.
+
+    **Concrete check before writing**: state the proposed path back to yourself in this format: "About to write `<proposed-path>`. Topic tags say this paper engages with `[topic-list]`. Does the path's deepest subdir match the most-specific topic? Are there sibling papers in that subdir with similar topic profiles?" Use `ls` on the proposed dir to see siblings. If the siblings have wildly different topics, the path is probably wrong.
+
+    **If unsure**: don't write to disk yet. Ask the invoker: "Based on the paper's topics `[X, Y, Z]`, I'm considering `<proposed-path>` — is that right, or should it go under a different subdir?"
+
+14. **Write the note.**
+    - Path: the one verified in step 13 (e.g. `Research/Group theory/Burnside groups/B25/havas-newman-1980.md`).
     - Use the [[paper-summary]] template verbatim — body sections in order: Abstract, TL;DR, Problem, Approach, Key result, Assumptions, Limitations / scope, Replication evidence, Why this paper matters, Quotes, Open questions surfaced, Related material in vault.
 
-14. **Apply 6-axis tags.**
+15. **Apply 6-axis tags.**
     - Mandatory: `#agent/research`, `#user/<invoker-handle>`, `#domain/<one>`, `#topic/<one>` × N, `paper`, `#status/draft`.
     - Optional: `#project/<name>` if scoped to a named project.
 
-15. **Update any concept hubs.** For each concept linked, add the current paper to the hub's `appears_in: []` frontmatter.
+16. **Update any concept hubs.** For each concept linked, add the current paper to the hub's `appears_in: []` frontmatter.
 
-16. **Verify outgoing wikilinks before saving.** The note must have at least 3 outgoing wikilinks in its "Related material in vault" section (drawn from frontmatter `extends` / `contradicts` / `replicates` / `cites` / `cited_by` / `key_concepts` plus any manually-added context). A paper with zero outgoing links is orphan-on-creation and not ready to save — go back and identify what it actually connects to in the vault. If genuinely zero connections exist (no concept hubs, no cited papers in vault, no related work), the paper is likely the first of a new sub-topic; flag to the invoker before saving and ensure at least a parent overview / domain landing-page link is present.
+17. **Verify outgoing wikilinks before saving.** The note must have at least 3 outgoing wikilinks in its "Related material in vault" section (drawn from frontmatter `extends` / `contradicts` / `replicates` / `cites` / `cited_by` / `key_concepts` plus any manually-added context). A paper with zero outgoing links is orphan-on-creation and not ready to save — go back and identify what it actually connects to in the vault. If genuinely zero connections exist (no concept hubs, no cited papers in vault, no related work), the paper is likely the first of a new sub-topic; flag to the invoker before saving and ensure at least a parent overview / domain landing-page link is present.
 
     **Also verify no `[[<placeholder>]]` syntax leaked into the body** from copying template text. Grep the note for `\[\[<` — if any matches, wrap each in backticks ( `` `[[<placeholder>]]` `` ). Bare `[[<...>]]` is parsed as a real wikilink by Obsidian and creates phantom orphan nodes in the graph view (see [[paper-summary]] § Notation conventions and the convention files for the rule).
 
-17. **Report back.** Tell the invoker:
+18. **Report back.** Tell the invoker:
     - Path to the new note
     - Topic tags applied
     - Concept hubs created or updated
