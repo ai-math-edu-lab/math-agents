@@ -44,9 +44,24 @@ Append-only. Latest at top.
 
 **Vault status: ready to commit and push to `github.com/ai-math-edu-lab/math-agents`.** All Phase 11 drift cleared. Positive findings from F11.1 audit (placeholder backticks vault-wide, peer-set consistency across 6 agent prompts + README roster, per-user path discipline, Phase 8/9/10 doctrine integration) preserved.
 
-Standing by for Maria's commit/push. After commit lands, next likely work: drafting CLAUDE.md + .claude/commands/setup.md + repo README pointing at the real remote.
+**INITIAL COMMIT + PUSH LANDED (2026-05-28):**
 
-No commit (vault not under git per the standing convention — the repo at `github.com/ai-math-edu-lab/math-agents` is the destination; Maria handles the initial commit + push manually).
+- **Branch**: `main`
+- **SHA**: `66bfcfa` (`66bfcfae737de5116c5be65a1bd276a6c81057f1`)
+- **Remote**: `https://github.com/ai-math-edu-lab/math-agents.git`
+- **Upstream**: `origin/main`
+- **Files**: 172 (16,702 insertions)
+- **Commit message**: `chore: initial commit of Math vault doctrine + content`
+
+**Commit ritual notes:**
+- Maria authorized `git add .` (first-time bulk; gitignore is the gate).
+- Preconditions verified before bulk-add: `git init -b main` done; `.gitignore` matches `.obsidian/workspace.json`; `.obsidian/graph.json` NOT ignored (per Maria's spec); remote `origin` configured at the github.com/ai-math-edu-lab/math-agents URL.
+- Staged file breakdown: Research 54, Agents 33, Architecture 28, _meta 21, Experiments 13, Concepts 8, _templates 7, .obsidian 4, People 2, README.md, .gitignore. No `.trash/` or `.DS_Store` leaked. No `.obsidian/workspace.json` leaked.
+- Initial `git push -u origin main` REJECTED — remote had been initialized with 2 noise commits (a README create and a `obsidian/Readme.md` delete, netting to empty tree). No common ancestor with our local `main`.
+- Maria explicitly authorized force-push (force-push to `main` is in the per-action authorization list per [[lead]] doctrine; her earlier "push" approval did not extend to `--force`).
+- `git push --force -u origin main` succeeded. Remote tip now matches local SHA `66bfcfa`. Upstream tracking set.
+
+**Vault now live on GitHub.** Next directive from Maria: draft `CLAUDE.md` + `.claude/commands/setup.md` + repo-root `README.md` against the real repo at `github.com/ai-math-edu-lab/math-agents`. The remote URL + default branch (`main`) confirmed to her in the same turn.
 
 No commit (vault not under git per the standing convention).
 
