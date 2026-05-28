@@ -8,6 +8,46 @@ Append-only. Latest at top.
 
 ---
 
+## 2026-05-28 — Second commit + push: onboarding files + /research smoke-test deliverables + doctrine fix
+
+**Between Lead's two commits**, Maria did a local restructure (commit `0c2e0da Restructure`) — moved the entire vault contents into an `obsidian/` subdirectory of the repo. Repo root now hosts colleague-facing onboarding files (CLAUDE.md, README.md, .claude/, .gitignore) while the actual vault lives at `obsidian/`. The structure makes the repo an open-source-friendly layout (root README welcomes contributors; obsidian/ is the vault they clone or symlink into Obsidian).
+
+Maria then ran the /setup ritual + /research skill as a smoke test. Findings:
+
+- **Bug surfaced**: /research placed `kuznetsov-tarasov-shlepkin-2009.md` at `Research/Group theory/` root instead of `Research/Group theory/Burnside groups/B25/` where it belongs. Maria moved it manually. Root cause: `research-folder-convention.md` § "When to create a new sub-topic dir" said papers go at domain level until 3+ co-locate, which Researcher (single-paper workflow) interpreted as "domain root by default" — but the intent is "closest matching subdir."
+- **Doctrine fix**: amended `research-folder-convention.md` to say "closest matching subdir, not domain root"; added explicit step 13 to `_meta/skills/research/workflows/single-paper.md` for structural-placement check before writing (verify path matches topic tags, check siblings, ask invoker when unsure); renumbered subsequent steps 14-18.
+
+**Smoke-test research deliverables (Researcher, all in obsidian/):**
+
+- 3 Kuznetsov-Shlepkin papers on the B(2,5) algorithmic line (2009/2010 + Tarasov 2009)
+- `_synthesis-kuznetsov-b25-algorithmic-line.md` — cross-paper synthesis
+- `Concepts/cayley-table-closure-algorithm.md` — new concept hub extracted from the three papers
+- Bidirectional `cited_by` updates to 3 existing B25 papers (havas-wall-wamsley-1974, kourovka-11.48-kostrikin-1990, b25-finiteness-11.48-kostrikin)
+- `_moc-burnside.md` updated with new entries
+- `Researcher/log.md` updated
+- `Researcher/scratch/extract_pdf.py` — PDF extraction tool, kept for future use
+- `_meta/tags.md` — one new `#topic/*` registration
+- `obsidian/.obsidian/graph.json` — Maria's graph view settings tweaks
+
+**Commit ritual (Lead, post-Maria restructure):**
+
+- Maria authorized `git add -A` (she had reviewed all changes locally; equivalent to `git add .` for the staging step).
+- 19 files changed, +1348 / -15 — 4 new onboarding at root (`.claude/commands/setup.md` +215, `.gitignore` +3, `CLAUDE.md` +116, `README.md` +165) + 9 modified + 6 new in `obsidian/`.
+- Sanity: no `.obsidian/workspace.json` leaked (vault gitignore); no `.trash/` or `.DS_Store`.
+- Commit message: Conventional Commits — `feat(onboarding+research): colleague onboarding files + first /research batch + structural-placement doctrine fix`.
+- **SHA**: `56a0d18` (`56a0d183b3d59bf0afd4572236b12cd1a15596ee`).
+- `git push origin main` → fast-forward, no force needed (already 2 ahead of remote at `66bfcfa`; pushed `0c2e0da` + `56a0d18` together).
+- Local `main` and `origin/main` now both at `56a0d18`.
+
+**Repo state on GitHub:**
+
+- Branch: `main`
+- 3 commits: `56a0d18` → `0c2e0da Restructure` → `66bfcfa chore: initial commit…`
+- Onboarding files at root; vault at `obsidian/`.
+- Structural-placement doctrine fix prevents the smoke-test bug from recurring in future /research runs.
+
+---
+
 ## 2026-05-28 — Phase 11 — pre-commit doctrine consistency audit + 4 Lead fixes
 
 **F11.1 (Lead, read-only audit)**: read-only pass across canonical doctrine files (tags.md, naming-conventions, both convention files, all 7 templates, all 6 agent prompts, SKILL + 4 workflows, README, INSTALL, 4 .base files). Report at `[[2026-05-28-pre-commit-audit]]`. Verdict: 11 minor drift items + 1 clarification needed. No contradictions. Vault internally coherent at the macro level; drift is concentrated in stale template tag examples + deprecated domain enums + one typo.

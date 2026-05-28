@@ -24,6 +24,7 @@ cites:
   - "[[kuznetsov-shlepkin-2009]]"
 cited_by:
   - "[[_synthesis-kuznetsov-b25-algorithmic-line]]"
+  - "[[kuznetsov-2020]]"
 quality_notes: "Russian-language paper. The generalization is genuine but not surprising — it follows the natural template 'take the n-aperiodicity restriction out of A_1, allow C_1 to be the input relations.' The worked example is the symmetric group S_3, which is too small to stress the algorithm. Useful as the standalone statement of Algorithm I for arbitrary finitely-presented periodic groups, independent of the Burnside-specific machinery in the parallel 2009 paper."
 author: maumayma
 tags:

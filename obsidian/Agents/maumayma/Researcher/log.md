@@ -8,6 +8,53 @@ Append-only. Latest at top.
 
 ---
 
+## 2026-05-28 — R2 batch ingest: Kuznetsov mathnet.ru bulk (17 papers)
+
+**Source:** https://www.mathnet.ru/php/person.phtml?option_lang=eng&personid=36514
+
+**Summary:** R1 inventory → R2 ingest of 14 clear-INCLUDE + 3 promoted borderlines = 17 papers total. 3 already-in-vault (skip). 6 out-of-scope (skip). 2 borderlines dropped (#4 Boolean 2-groups, #16 conference duplicate).
+
+**New notes (17):**
+
+*B25/ subdir (14 papers):*
+- `kuznetsov-2019.md` — growth functions, Cayley graph diameters, quotient groups B_k
+- `kuznetsov-2020.md` — confluent irreducible rewriting systems for finite groups; applied to exponent-5
+- `kuznetsov-kuznetsova-2025.md` — supercomputer computation of center of B₀(2,5)
+- `kuznetsov-kuznetsova-2021.md` — minimum word length for noncyclic abelian subgroups in B₀(2,5) (length 16)
+- `kuznetsov-safonov-2018.md` — Cayley graph geometry of inversion-automorphism centralizer (|C|=5^16)
+- `kuznetsov-kuznetsova-2018.md` — resource-efficient growth function algorithm; diameters ~105 (2-gen) and ~69 (4-gen) for B₀(2,5)
+- `kuznetsov-kuznetsova-2017.md` — Cayley graph diameter of permutation-automorphism centralizer (|C|=5^17, D=33)
+- `kuznetsov-2016.md` — growth function algorithm for B_k, k=15,16,17
+- `kuznetsov-karchevsky-2016.md` — conference companion to above
+- `kuznetsov-kuznetsova-2013.md` — fast Hall polynomial multiplication for exponent-5 groups (foundational)
+- `kuznetsova-kuznetsov-safonov-2013.md` — parallel variant of growth function algorithm
+- `kuznetsov-2011.md` — subgroup ⟨xy,yx⟩ of B₀(2,5): |G|=5^14, class 6, derived length 3
+- `kuznetsov-filippov-2010-sjim.md` — centralizer of inversion automorphism: generators, order (5^16), solvability, nilpotency
+- `kuznetsov-filippov-2010-vmj.md` — companion publication to above (shorter, Vladikavkaz journal)
+
+*Burnside groups/ (3 borderline papers, not B25-specific):*
+- `kuznetsov-safonov-2014.md` — Hall's polynomials for exponent-7 two-generator groups
+- `kuznetsov-safonov-2015.md` — Hall's polynomials for exponent-3 Burnside groups (conference note)
+- `kuznetsov-2015-cayley-exp3.md` — Hall's polynomials + Cayley graph diameters for exponent-3 groups
+
+**Structural changes:**
+- 6 new topic tags registered in `_meta/tags.md` § Axis 4: restricted-burnside, growth-functions, cayley-graphs, finite-group-enumeration, rewriting-systems, center-of-group
+- `_moc-burnside.md` extended with 4 new sections covering all 17 papers
+- Bidirectional cited_by sweep: havas-wall-wamsley-1974, kuznetsov-shlepkin-2009, kuznetsov-shlepkin-2010, kuznetsov-tarasov-shlepkin-2009, kuznetsov-kuznetsova-2013, kuznetsov-filippov-2010-sjim all updated
+- Orphan count: 0 new orphans (pre-existing isolated note: _meta/skills/research/INSTALL.md, not related to batch)
+
+**Quality notes:** all 17 papers are abstract-only (mathnet.ru paywall / Russian journal limited access). 14 Russian-source papers have [trans.] on abstracts. Citation counts null throughout (Semantic Scholar rate-limited; papers not in English-language indexes). All notes carry quality_notes: source-text-incomplete-only-abstract-available.
+
+**R3 (completed same session):**
+- Synthesis: `Research/Group theory/Burnside groups/B25/_synthesis-kuznetsov-b25-publications.md` — 20 papers, supersedes + complements _synthesis-kuznetsov-b25-algorithmic-line.md
+- Concept hub: `Concepts/growth-functions-burnside.md` — appears_in 8 papers
+- Concept hub: `Concepts/cayley-graphs-of-burnside-groups.md` — appears_in 6 papers; distinct from cayley-table-closure-algorithm (graph vs. table)
+- Old synthesis: added "partially superseded" notice with forward link to new synthesis (retained as algorithm deep-dive)
+- Orphan script: added INSTALL.md exclusion pattern (housekeeping, naming-conventions Rule 2)
+- Final orphan count: 0 (169 notes scanned)
+
+---
+
 ## 2026-05-28 — /research batch: Kuznetsov B(2,5) Cayley-table line (3 papers + concept hub + synthesis)
 
 **Source:** 3 local PDFs in `~/Downloads/` — filenames misleadingly transliterated as `ketnesov_*`; actual author is Kuznetsov A.A. (Кузнецов) of the Krasnoyarsk school.

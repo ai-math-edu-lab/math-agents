@@ -26,6 +26,9 @@ cites:
   - "[[kourovka-11.48-kostrikin-1990]]"
 cited_by:
   - "[[_synthesis-kuznetsov-b25-algorithmic-line]]"
+  - "[[kuznetsov-2019]]"
+  - "[[kuznetsov-kuznetsova-2025]]"
+  - "[[kuznetsov-2011]]"
 quality_notes: "Russian-language paper. Headline empirical contribution: 125-node MATLAB cluster computation of K_35(2,5) at ~104 hours; |C_35(2,5)| = 104,409 and |P_35(2,5)| ≈ 5^14. Theorems 3 and 4 are the operationally important results: coincidence of B(2,5) and B_0(2,5) on minimal words up to length 29 is proved, and a table of explicit candidate-divergence relations at lengths 30–35 is provided — failure of any one of these in B(2,5) implies B(2,5) is infinite. The new theoretical content in §1 (replacing the row-collision detection with associativity-test detection) is a real algorithmic refinement and worth understanding in its own right."
 author: maumayma
 tags:

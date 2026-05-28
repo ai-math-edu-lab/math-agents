@@ -56,6 +56,36 @@ A third algorithmic family for B(2,5): Cayley-table closure on a length-truncate
 
 - [[_synthesis-kuznetsov-b25-algorithmic-line]] — Synthesis of the three Kuznetsov papers. Frames the Mixer / B(2,5) verification opportunities: $|P_s(2,5)|$ baseline check, direct test of the 2 length-30 candidate relations, pre-registration of a Kuznetsov-Algorithm-I Mixer Agent for multi-witness cross-checking.
 
+### Kuznetsov — growth functions, Cayley graph diameters, and rewriting systems (2013–2025)
+
+Later papers in the Kuznetsov line (mostly 3-page conference notes in Prikl. Diskr. Mat. Suppl.), advancing computational work on $B_0(2,5)$ quotients and subgroups.
+
+- [[kuznetsov-2019]] — Computes Cayley graph diameters $D_{A_4}(B_k)$ for the 34 lower central quotients of $B_0(2,5)$; proposes and verifies (for $k \le 19$) the hypothesis that the diameter equals that of a half-sized normal subgroup. Growth-function angle; unproven hypothesis.
+
+- [[kuznetsov-2020]] — Presents an algorithm computing a confluent irreducible rewriting system for any finite group given a generating set; applies to exponent-5 two-generator groups via Hall polynomial multiplication. Directly relevant to understanding what a successful Mixer B(2,5) run must produce.
+
+- [[kuznetsov-kuznetsova-2025]] — Supercomputer computation of the explicit center of $B_0(2,5)$: central elements as minimal-length words over the symmetric generating set. Central elements are cross-ordering consistency anchors for the Mixer pipeline.
+
+### Kuznetsov — subgroup structure (2010–2021)
+
+- [[kuznetsov-filippov-2010-sjim]] — Foundational structural result: centralizer of the inversion automorphism $\varphi: a_i \mapsto a_i^{-1}$ of $B_0(2,5)$; computes generators, order ($5^{16}$), solvability length, nilpotency length.
+- [[kuznetsov-filippov-2010-vmj]] — Shorter companion to the above; same result including lower and upper central series. Different venue (Vladikavkaz Math. J.).
+- [[kuznetsov-2011]] — Structure of $G = \langle xy, yx \rangle \le B_0(2,5)$: order $5^{14}$, nilpotency class 6, derived length 3. Proves $G$ is the largest 2-generated exponent-5 group of nilpotency class 6.
+- [[kuznetsov-kuznetsova-2021]] — Computes the minimum word length (16) for noncyclic abelian subgroups in $B_0(2,5)$; finds an abelian subgroup of order 25.
+
+### Kuznetsov — Cayley graph geometry of centralizers (2017–2018)
+
+- [[kuznetsov-kuznetsova-2017]] — Cayley graph of centralizer of a permutation-type order-2 automorphism ($|C| = 5^{17}$): diameter $D_X(C) = 33$, average diameter $\approx 26.1$.
+- [[kuznetsov-safonov-2018]] — Cayley graphs of centralizer of the inversion automorphism ($|C| = 5^{16}$): growth functions, diameters, average diameters computed for multiple generating sets.
+
+### Cross-exponent Hall polynomial work (2014–2015, borderline inclusions)
+
+Included for methodology cross-validation: the Hall polynomial multiplication technique used throughout the B(2,5) computational line also works for exponents 3 and 7.
+
+- [[kuznetsov-safonov-2014]] — Hall's polynomials for two-generator exponent-7 groups ($k \le 4$). Same method as [[kuznetsov-kuznetsova-2013]] applied to exponent 7.
+- [[kuznetsov-safonov-2015]] — Hall's polynomials for exponent-3 Burnside groups ($k \le 4$), conference note. Companion to [[kuznetsov-2015-cayley-exp3]].
+- [[kuznetsov-2015-cayley-exp3]] — Full paper: Hall polynomials + Cayley graph diameters for exponent-3 Burnside groups ($k \le 4$). Cayley graphs beat hypercubes in graph-theoretic properties.
+
 ---
 
 ## Background / project context

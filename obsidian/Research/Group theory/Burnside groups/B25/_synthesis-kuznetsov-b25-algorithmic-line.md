@@ -28,6 +28,8 @@ project: b25
 
 # Synthesis — The Kuznetsov line on B(2,5): Cayley-table closure as a third algorithmic family
 
+> **Status: partially superseded.** This 3-paper synthesis (2009–2010) focuses on the Cayley-table-closure algorithm specifically. The broader 20-paper synthesis is now at [[_synthesis-kuznetsov-b25-publications]]. This note is retained as the authoritative deep-dive on the algorithm mechanics and the $|P_s(2,5)|$ baseline data — read it alongside the new synthesis, not instead of it.
+
 > **Synthesis note.** Three papers from the Krasnoyarsk school (Kuznetsov, Tarasov, Shlepkin; 2009–2010) develop a Cayley-table-closure algorithm for word-problem computation in finitely-presented periodic groups, and apply it to push the comparison of $B(2,5)$ with the restricted $B_0(2,5)$ from length-27 coincidence (2009) to length-29 coincidence + length-30–35 candidate divergence relations (2010). This synthesis is the cross-paper picture, with explicit framing for the Mixer attack on Problem 11.48.
 
 ## The question

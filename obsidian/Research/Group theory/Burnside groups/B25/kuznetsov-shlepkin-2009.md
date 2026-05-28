@@ -25,6 +25,12 @@ cites:
 cited_by:
   - "[[kuznetsov-shlepkin-2010]]"
   - "[[_synthesis-kuznetsov-b25-algorithmic-line]]"
+  - "[[kuznetsov-2019]]"
+  - "[[kuznetsov-2020]]"
+  - "[[kuznetsov-kuznetsova-2025]]"
+  - "[[kuznetsov-2011]]"
+  - "[[kuznetsov-filippov-2010-sjim]]"
+  - "[[kuznetsov-filippov-2010-vmj]]"
 quality_notes: "Russian-language paper from the Krasnoyarsk school (Krasnoyarsk State Agrarian University). The algorithm described here is a custom computational scheme distinct from KB completion and from coset enumeration, with a clean finiteness criterion (K_s = K_{s+1}). The {0, 1, 2, ... 27}-table of |C_27(2,5)| and |P_27(2,5)| is the verifiable contribution; citation count not located as of write time."
 author: maumayma
 tags:
