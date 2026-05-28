@@ -1,0 +1,56 @@
+filters:
+  and:
+    - file.folder.startsWith("Concepts")
+    - file.ext == "md"
+formulas:
+  status_icon: if(status == "validated", "✅", if(status == "draft", "📝", if(status == "review", "👀", if(status == "superseded", "♻️", "❓"))))
+properties:
+  status:
+    displayName: Status
+  domain:
+    displayName: Domain
+  project:
+    displayName: Project
+  author:
+    displayName: Author
+views:
+  - type: table
+    name: All concepts — latest first
+    order:
+      - file.name
+      - formula.status_icon
+      - domain
+      - project
+      - author
+      - file.mtime
+  - type: table
+    name: By domain
+    groupBy:
+      property: domain
+      direction: ASC
+    order:
+      - file.name
+      - formula.status_icon
+      - project
+      - author
+  - type: table
+    name: By author
+    groupBy:
+      property: author
+      direction: ASC
+    order:
+      - file.name
+      - domain
+      - project
+      - formula.status_icon
+  - type: table
+    name: Drafts — needs review
+    filters:
+      or:
+        - status == "draft"
+        - status == "review"
+    order:
+      - file.name
+      - domain
+      - author
+      - file.mtime

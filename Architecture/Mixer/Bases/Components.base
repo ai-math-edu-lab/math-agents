@@ -1,0 +1,69 @@
+filters:
+  and:
+    - file.folder.startsWith("Architecture/Mixer/Components")
+    - file.ext == "md"
+formulas:
+  hot_path_icon: if(hot_path, "🔥", "")
+  invariant_count: if(invariants, invariants.length, 0)
+  api_count: if(public_api, public_api.length, 0)
+  status_icon: if(status == "production", "🟢", if(status == "paper", "🟡", if(status == "deprecated", "⚫", "⚪")))
+properties:
+  domain:
+    displayName: Domain
+  status:
+    displayName: Status
+  hot_path:
+    displayName: Hot
+  location:
+    displayName: Location
+  author:
+    displayName: Author
+  formula.hot_path_icon:
+    displayName: 🔥
+  formula.invariant_count:
+    displayName: Invariants
+  formula.api_count:
+    displayName: API surface
+views:
+  - type: table
+    name: All components — alphabetical
+    order:
+      - file.name
+      - formula.status_icon
+      - domain
+      - formula.hot_path_icon
+      - formula.invariant_count
+      - formula.api_count
+      - author
+  - type: table
+    name: By domain
+    groupBy:
+      property: domain
+      direction: ASC
+    order:
+      - file.name
+      - domain
+      - formula.status_icon
+      - formula.hot_path_icon
+      - formula.invariant_count
+  - type: table
+    name: Hot path only
+    filters:
+      and:
+        - hot_path == true
+    order:
+      - file.name
+      - domain
+      - formula.invariant_count
+      - location
+  - type: table
+    name: Needs attention (draft / deprecated)
+    filters:
+      or:
+        - status == "deprecated"
+        - status == "draft"
+    order:
+      - file.name
+      - status
+      - domain
+      - file.mtime

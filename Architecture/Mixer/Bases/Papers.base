@@ -1,0 +1,122 @@
+filters:
+  and:
+    - file.folder.startsWith("Research")
+    - file.ext == "md"
+    - file.hasTag("paper")
+formulas:
+  status_icon: if(status == "validated", "✅ synth.", if(status == "draft", "📖 unread", if(status == "rejected", "❌ rejected", "📝")))
+  topic_tags: file.tags.filter(value.startsWith("#topic/"))
+properties:
+  status:
+    displayName: Status
+  domain:
+    displayName: Domain
+  project:
+    displayName: Project (optional)
+  language:
+    displayName: Lang
+  methodology_type:
+    displayName: Type
+  year:
+    displayName: Year
+  authors:
+    displayName: Authors
+  author:
+    displayName: Owned by
+  citation_count:
+    displayName: Cites
+views:
+  - type: table
+    name: All papers — latest first
+    order:
+      - file.name
+      - formula.status_icon
+      - domain
+      - language
+      - methodology_type
+      - project
+      - year
+      - authors
+      - author
+    limit: 100
+  - type: table
+    name: By topic
+    groupBy:
+      property: formula.topic_tags
+      direction: ASC
+    order:
+      - file.name
+      - formula.status_icon
+      - domain
+      - language
+      - year
+      - author
+  - type: table
+    name: By domain
+    groupBy:
+      property: domain
+      direction: ASC
+    order:
+      - file.name
+      - formula.status_icon
+      - language
+      - year
+      - authors
+  - type: table
+    name: By project (project-scoped papers only)
+    filters:
+      and:
+        - project
+    groupBy:
+      property: project
+      direction: ASC
+    order:
+      - file.name
+      - domain
+      - formula.status_icon
+      - year
+  - type: table
+    name: By language
+    groupBy:
+      property: language
+      direction: ASC
+    order:
+      - file.name
+      - formula.status_icon
+      - domain
+      - year
+  - type: table
+    name: Non-English papers (translation review)
+    filters:
+      and:
+        - language != "en"
+    order:
+      - file.name
+      - language
+      - formula.status_icon
+      - domain
+      - year
+      - author
+  - type: table
+    name: "Unread (status: draft)"
+    filters:
+      and:
+        - status == "draft"
+    order:
+      - file.name
+      - domain
+      - language
+      - year
+      - author
+      - file.mtime
+  - type: table
+    name: "Synthesized (status: validated)"
+    filters:
+      and:
+        - status == "validated"
+    order:
+      - file.name
+      - domain
+      - language
+      - project
+      - year

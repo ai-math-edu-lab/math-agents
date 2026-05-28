@@ -1,0 +1,86 @@
+{
+  "collapse-filter": true,
+  "search": "-path:_meta -path:_templates -path:Agents/maumayma/Lead/scratch  ",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "tag:#paper  ",
+      "color": {
+        "a": 1,
+        "rgb": 5526240
+      }
+    },
+    {
+      "query": "tag:#concept  ",
+      "color": {
+        "a": 1,
+        "rgb": 6938706
+      }
+    },
+    {
+      "query": "tag:#experiment",
+      "color": {
+        "a": 1,
+        "rgb": 14785315
+      }
+    },
+    {
+      "query": "tag:#methodology OR tag:#results OR tag:#data",
+      "color": {
+        "a": 1,
+        "rgb": 13688914
+      }
+    },
+    {
+      "query": "tag:#review OR tag:#proof",
+      "color": {
+        "a": 1,
+        "rgb": 15351082
+      }
+    },
+    {
+      "query": "path:\"Research/Group theory/_MOCs\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 12789986
+      }
+    },
+    {
+      "query": "path:Concepts  ",
+      "color": {
+        "a": 1,
+        "rgb": 4764008
+      }
+    },
+    {
+      "query": "path:_meta  ",
+      "color": {
+        "a": 1,
+        "rgb": 6710886
+      }
+    },
+    {
+      "query": "path:Agents",
+      "color": {
+        "a": 1,
+        "rgb": 4210752
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.518713248970312,
+  "repelStrength": 10,
+  "linkStrength": 1,
+  "linkDistance": 250,
+  "scale": 0.7953781952735054,
+  "close": true
+}

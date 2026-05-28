@@ -1,0 +1,162 @@
+filters:
+  and:
+    - file.folder.startsWith("Experiments")
+    - file.ext == "md"
+formulas:
+  status_icon: if(status == "validated", "✅", if(status == "rejected", "❌", if(status == "inconclusive", "❓", if(status == "pending", "⏳", if(status == "proven", "🏆", if(status == "replicated", "🔁", if(status == "conjectured", "💭", if(status == "disproven", "🛑", "📝"))))))))
+properties:
+  status:
+    displayName: Status
+  hypothesis:
+    displayName: Hypothesis
+  experiment_type:
+    displayName: Type
+  instance:
+    displayName: Instance
+  domain:
+    displayName: Domain
+  project:
+    displayName: Project
+  author:
+    displayName: Author
+views:
+  - type: table
+    name: Latest
+    order:
+      - file.name
+      - formula.status_icon
+      - status
+      - project
+      - instance
+      - experiment_type
+      - author
+      - file.mtime
+    limit: 50
+  - type: table
+    name: By experiment-type
+    groupBy:
+      property: experiment_type
+      direction: ASC
+    order:
+      - file.name
+      - formula.status_icon
+      - status
+      - instance
+      - project
+      - hypothesis
+      - file.mtime
+  - type: table
+    name: By project
+    filters:
+      and:
+        - file.hasTag("experiment")
+    groupBy:
+      property: project
+      direction: ASC
+    order:
+      - file.name
+      - formula.status_icon
+      - instance
+      - experiment_type
+      - hypothesis
+  - type: table
+    name: By instance
+    filters:
+      and:
+        - file.hasTag("experiment")
+    groupBy:
+      property: instance
+      direction: ASC
+    order:
+      - file.name
+      - experiment_type
+      - formula.status_icon
+      - hypothesis
+  - type: table
+    name: Methodology inventory
+    filters:
+      and:
+        - file.hasTag("methodology")
+    order:
+      - file.name
+      - experiment_type
+      - instance
+      - project
+      - formula.status_icon
+      - author
+      - file.mtime
+  - type: table
+    name: Results inventory
+    filters:
+      and:
+        - file.hasTag("results")
+    order:
+      - file.name
+      - experiment_type
+      - instance
+      - project
+      - formula.status_icon
+      - author
+      - file.mtime
+  - type: table
+    name: Data inventory
+    filters:
+      and:
+        - file.hasTag("data")
+    order:
+      - file.name
+      - experiment_type
+      - instance
+      - project
+      - author
+      - file.mtime
+  - type: table
+    name: Validated — promotable
+    filters:
+      and:
+        - file.hasTag("experiment")
+        - or:
+            - status == "validated"
+            - status == "proven"
+            - status == "replicated"
+    order:
+      - file.name
+      - project
+      - instance
+      - hypothesis
+      - author
+  - type: table
+    name: Rejected / disproven — lessons
+    filters:
+      and:
+        - file.hasTag("experiment")
+        - or:
+            - status == "rejected"
+            - status == "disproven"
+    order:
+      - file.name
+      - project
+      - hypothesis
+      - file.mtime
+  - type: table
+    name: Inconclusive — need more
+    filters:
+      and:
+        - file.hasTag("experiment")
+        - status == "inconclusive"
+    order:
+      - file.name
+      - project
+      - hypothesis
+      - file.mtime
+  - type: table
+    name: Pending Validator
+    filters:
+      and:
+        - file.hasTag("experiment")
+        - status == "conjectured"
+    order:
+      - file.name
+      - project
+      - hypothesis
+      - author

@@ -1,0 +1,81 @@
+# Workflow — Single Paper
+
+Use when the invoker hands one paper URL or ID and wants a structured summary in the vault.
+
+## Steps
+
+1. **Confirm the source.** Echo back the URL or arxiv ID. If ambiguous (e.g. "the recent Buchberger paper"), ask which one.
+
+2. **Check for prior coverage.** Grep the vault: `grep -r "<arxiv-id>" /Users/maumayma/Documents/Obsidian/Math/Research/` and `grep -r "<paper-title-keywords>" /Users/maumayma/Documents/Obsidian/Math/Research/`. If a note already exists, ask whether to update or skip.
+
+3. **Identify the invoking user's handle.** Check frontmatter of recent vault notes for `#user/<handle>` tags belonging to the invoker. If unclear, ask. If the handle isn't yet registered in `_meta/tags.md`, register it now.
+
+4. **Fetch the paper.**
+   - First try `defuddle <url>`.
+   - If defuddle returns nothing useful (image-only PDF, login wall, etc.), try `WebFetch`.
+   - If both fail, ask the invoker for an alternative source.
+
+5. **Read the paper.** Extract content per the [[paper-summary]] structure.
+
+6. **Look up citation count.** Use Semantic Scholar / Google Scholar / arXiv stats. Best-effort; record with `citation_count_date`.
+
+7. **Identify domain.**
+   - Match against registered values in `_meta/tags.md`: `group-theory`, `ai`, `cs`, `methodology`.
+   - If the paper doesn't fit any current domain, register a new one in `_meta/tags.md` first (don't invent a domain on-the-fly).
+
+8. **Identify topics.**
+   - Substance test: every `#topic/*` tag must answer yes to "would a colleague searching for this topic want this paper to surface?"
+   - 4-10 typical, no upper bound, but never aspirational.
+   - Reuse existing topic tags before inventing new ones — check Obsidian's tag pane or grep existing notes.
+
+9. **Identify concepts.**
+   - List the concepts the paper introduces or relies on.
+   - For each concept: check if `Concepts/<concept-name>.md` exists.
+     - If yes: add a wikilink to the paper's `key_concepts` frontmatter.
+     - If no: only create the stub if the concept appears in 2+ papers (current paper + at least one prior). Don't create singleton hubs.
+
+10. **Identify connections.**
+    - Grep the vault for papers that the current paper cites, is cited by, extends, contradicts, or replicates.
+    - Populate `cites`, `cited_by`, `extends`, `contradicts`, `replicates` frontmatter with wikilinks.
+    - For `cited_by`: also update the cited paper's note (bidirectional).
+
+11. **Translate if non-English.**
+    - Translate the abstract to English in the body, append `[trans.]`.
+    - Translate quotes; mark each with `[trans.]`.
+    - Record source language in `language:` frontmatter.
+    - Do NOT preserve original-language text in the vault. Reader who needs the original follows `url:`.
+
+12. **Choose a unique filename first.**
+    - Filename must uniquely identify the paper across the vault without folder context. Pattern: `<first-author>-<year>.md` or `<first-author>-<coauthor>-<year>.md` or `<arxiv-id>.md`.
+    - Never use generic names alone: `paper.md`, `note.md`, `summary.md`. Always qualify with author/year or a descriptive topic slug.
+    - Verify uniqueness: `grep -r "<proposed-stem>" <vault>/Research/ --include="*.md" -l`. If there's a conflict, add more specificity (e.g. `havas-1980-computers-burnside.md`).
+    - See `_meta/naming-conventions.md` for the full rule set.
+
+13. **Write the note.**
+    - Path: `Research/<domain>/<topic-path>/<paper-id>.md` (e.g. `Research/Group theory/Burnside groups/B25/havas-newman-1980.md`)
+    - Use the [[paper-summary]] template verbatim — body sections in order: Abstract, TL;DR, Problem, Approach, Key result, Assumptions, Limitations / scope, Replication evidence, Why this paper matters, Quotes, Open questions surfaced, Related material in vault.
+
+14. **Apply 6-axis tags.**
+    - Mandatory: `#agent/research`, `#user/<invoker-handle>`, `#domain/<one>`, `#topic/<one>` × N, `paper`, `#status/draft`.
+    - Optional: `#project/<name>` if scoped to a named project.
+
+15. **Update any concept hubs.** For each concept linked, add the current paper to the hub's `appears_in: []` frontmatter.
+
+16. **Verify outgoing wikilinks before saving.** The note must have at least 3 outgoing wikilinks in its "Related material in vault" section (drawn from frontmatter `extends` / `contradicts` / `replicates` / `cites` / `cited_by` / `key_concepts` plus any manually-added context). A paper with zero outgoing links is orphan-on-creation and not ready to save — go back and identify what it actually connects to in the vault. If genuinely zero connections exist (no concept hubs, no cited papers in vault, no related work), the paper is likely the first of a new sub-topic; flag to the invoker before saving and ensure at least a parent overview / domain landing-page link is present.
+
+    **Also verify no `[[<placeholder>]]` syntax leaked into the body** from copying template text. Grep the note for `\[\[<` — if any matches, wrap each in backticks ( `` `[[<placeholder>]]` `` ). Bare `[[<...>]]` is parsed as a real wikilink by Obsidian and creates phantom orphan nodes in the graph view (see [[paper-summary]] § Notation conventions and the convention files for the rule).
+
+17. **Report back.** Tell the invoker:
+    - Path to the new note
+    - Topic tags applied
+    - Concept hubs created or updated
+    - Open questions surfaced
+    - Any blockers
+
+## Common errors to avoid
+
+- **Inventing relevance.** No "applies to <project>" sections unless the invoker provided a project-context brief.
+- **Inventing quality verdicts.** `quality_notes` empty is fine; only fill it when you have something specific to say.
+- **Paraphrasing the abstract.** Abstract is verbatim copy (or verbatim translation). The TL;DR is your distillation, not the abstract.
+- **Tag-stuffing.** Every `#topic/*` must pass the substance test.
+- **Singleton concept hubs.** Don't create `Concepts/<X>.md` for concepts that only appear in one paper.
