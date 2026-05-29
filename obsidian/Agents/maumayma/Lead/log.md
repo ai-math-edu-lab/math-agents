@@ -8,6 +8,47 @@ Append-only. Latest at top.
 
 ---
 
+## 2026-05-28 — Third commit + push: Kuznetsov 20-year B(2,5) program bulk-ingest
+
+**Maria's directive**: bulk-ingest Alexander Kuznetsov's B(2,5)-related publications from math-net.ru (`https://www.mathnet.ru/php/person.phtml?option_lang=eng&personid=36514`).
+
+**Routed to Researcher** via brief `[[2026-05-28-brief-kuznetsov-batch-ingest]]` with R1/R2/R3 phasing. Three Lead gates between phases.
+
+**R1 — inventory** (Researcher): 28 papers classified. 14 clear INCLUDE, 5 INCLUDE-borderline, 3 already-in-vault, 6 out-of-scope. Lead K3-reviewed inventory cleanly; surfaced 5 borderlines to Maria with recommendations. Maria's calls: drop #4 (Boolean 2-group rep) + #16 (duplicate conf abstract); include #13, #14, #15 (Hall polynomials + Cayley graphs cross-exponent). Final batch = 17 papers.
+
+**R2 — ingest** (Researcher): 17 papers across two passes (3-first checkpoint + 14-completion).
+- Mid-batch K3 (after first 3) caught a doctrine miss: 6 new topic tags were introduced inline without registration in `_meta/tags.md` § Axis 4. Lead issued NEEDS-WORK on the registration step. Researcher registered all 6 with substantive descriptions (`restricted-burnside`, `growth-functions`, `cayley-graphs`, `finite-group-enumeration`, `rewriting-systems`, `center-of-group`) before continuing — doctrine-grade work.
+- End-of-R2 K3 MERGE'd. All 17 papers: ≥3 outgoing wikilinks, Russian→English `[trans.]` translation, abstract-only `quality_notes` flag, bidirectional `cited_by` sweep on 7 existing notes, step-13 structural-placement check honored (14 papers in `B25/` subdir, 3 borderlines at `Burnside groups/` parent per the 3+-paper sub-topic threshold).
+- Three substance flags reviewed and accepted: automorphism-centralizer discrepancy 5^17 vs 5^16 (different automorphisms, not contradictory; quality_notes annotation in both papers); exp-3/7 placement at parent (correct per threshold); pdm397 wrong-paper fetch self-caught + corrected.
+
+**R3 — sweep** (Researcher):
+- New synthesis `_synthesis-kuznetsov-b25-publications.md` covers all 20 papers (17 new + 3 existing in B25/). 9 settled results, 5 open questions, 5 prioritized Mixer experiments documented. Old 3-paper `_synthesis-kuznetsov-b25-algorithmic-line.md` superseded with forward link, retained as Cayley-table-closure deep-dive.
+- 2 new concept hubs: `Concepts/growth-functions-burnside.md` (`appears_in:` 8 papers), `Concepts/cayley-graphs-of-burnside-groups.md` (`appears_in:` 6 papers, explicit body distinction from existing `cayley-table-closure-algorithm` hub: graph-as-object vs algorithm).
+- `find-graph-orphans.py` extended with INSTALL.md exclusion pattern per `[[naming-conventions]]` Rule 2 housekeeping exemption.
+- Final orphan count: **0** (169 notes scanned).
+
+**Brief-writing feedback memory saved**: `feedback_explicit_go_gates.md` — Maria flagged that Researcher started R2 on the safe-pool of clear INCLUDEs before Lead's explicit green-light landed. No harm this round (caught at K3, safe pool only, borderlines properly gated), but future multi-stage briefs must say "WAIT for explicit GO" between stages instead of relying on implicit-after-report inference. Indexed in `MEMORY.md` under "Brief-Writing Discipline (Lead)".
+
+**Commit ritual (Lead, post-Maria-authorization):**
+
+- First commit attempt had a command-ordering bug — `commit` ran before `add` (empty staging area → failed with "no changes added"). Reversed: `add -A` then `commit`. Second attempt landed cleanly.
+- 33 files changed, +2365 / -1 — 22 new notes (17 papers + 1 synthesis + 2 concept hubs + 2 scratch briefs) + 11 modified (Researcher scope: 9 R2/R3 work + 1 Researcher log; Maria's graph.json; Lead's log). Sanity: no surprises (gitignore held, no `.trash/` or `.DS_Store`).
+- Commit message: `feat(research): bulk-ingest Kuznetsov's 20-year B(2,5) program (17 papers + synthesis + 2 concept hubs)`.
+- **SHA**: `ab6cdbe` (`ab6cdbeb207c576b0c670940ec57307132cf8b8b`).
+- `git push origin main` → fast-forward (no force needed; was 1 ahead of remote). Local + remote both at `ab6cdbe`.
+
+**Repo state on GitHub:**
+
+- Branch: `main`. 4 commits:
+  - `ab6cdbe` Kuznetsov bulk-ingest
+  - `56a0d18` onboarding + first /research smoke test + doctrine fix
+  - `0c2e0da` Restructure (vault into `obsidian/`)
+  - `66bfcfa` initial commit
+
+**Mixer-actionable**: see Recommendation section of the new synthesis for the 5 prioritized experiments derived from this body of work (length-30 candidate-divergence test, center cross-ordering test, growth-function calibration, kuznetsov-2020 rule-count consult, subgroup benchmark).
+
+---
+
 ## 2026-05-28 — Second commit + push: onboarding files + /research smoke-test deliverables + doctrine fix
 
 **Between Lead's two commits**, Maria did a local restructure (commit `0c2e0da Restructure`) — moved the entire vault contents into an `obsidian/` subdirectory of the repo. Repo root now hosts colleague-facing onboarding files (CLAUDE.md, README.md, .claude/, .gitignore) while the actual vault lives at `obsidian/`. The structure makes the repo an open-source-friendly layout (root README welcomes contributors; obsidian/ is the vault they clone or symlink into Obsidian).
