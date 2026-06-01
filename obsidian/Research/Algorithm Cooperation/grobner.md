@@ -9,7 +9,7 @@ venue: "Preprint / draft (dated October 12, 2025)"
 url: ""
 source_path: "docs/papers/grobner.pdf"
 language: en
-domain: cs
+domain: group-theory
 methodology_type: empirical
 relevance: 2
 key_concepts:
@@ -27,12 +27,12 @@ cited_by:
   - "[[algo-mixing-burnside-slides]]"
   - "[[problems-people]]"
   - "[[kaplansky-zero-divisors]]"
-quality_notes: "Preprint draft — Section 7.5 (Burnside Problem / B(2,5)) and Example 7.9 are labeled 'TODO: Continue!'; those sections are incomplete. Alexei Myasnikov (co-author) is also the Mixer project lead ([[problems-people]]). Risk/high because the paper is incomplete and the B(2,5) application (the most relevant to this vault) is unfinished. Old deprecated tags removed: #domain/grobner → #domain/cs; #project/grobner → dropped (unregistered, no active workstream)."
+quality_notes: "Preprint draft — Section 7.5 (Burnside Problem / B(2,5)) and Example 7.9 are labeled 'TODO: Continue!'; those sections are incomplete. Alexei Myasnikov (co-author) is also the Mixer project lead ([[problems-people]]). Risk/high because the paper is incomplete and the B(2,5) application (the most relevant to this vault) is unfinished. Old deprecated tags removed: #domain/grobner → #domain/cs; #project/grobner → dropped (unregistered, no active workstream). Re-classified from #domain/cs to #domain/group-theory in Phase 12 — methodology is Gröbner-basis machinery but the paper's contribution is to a group-theory problem (Burnside / B(2,5)). Per research-folder-convention § Domain naming and [[tags]] § Axis 3 (methodology vs. contribution disambiguation, added same turn)."
 author: maumayma
 tags:
   - agent/research
   - user/maumayma
-  - domain/cs
+  - domain/group-theory
   - topic/word-problem
   - topic/grobner-basis
   - topic/knuth-bendix

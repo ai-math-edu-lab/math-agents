@@ -61,6 +61,8 @@ Currently registered:
 
 When a paper spans two domains (e.g. AI applied to group theory), pick the **primary** one — the field whose methodology the paper contributes to — and link to the other via wikilink. Don't double-tag domains.
 
+**Methodology vs. contribution disambiguation.** When a paper's methodology and contribution point at different domains (e.g. Gröbner-basis methodology applied to a group-theory problem like Burnside / B(2,5)), the domain tag follows the **contribution**, not the methodology. The methodology is captured as a topic tag (e.g. `#topic/grobner-basis`). Rationale: a paper that solves a group-theory question using algebraic-tool X belongs to group theory; the tool is discoverable via the topic axis without polluting the domain axis. Refines the F4.2 default that routed `#domain/grobner → #domain/cs` — the default was correct for tool-papers in the cs subtree but wrong for tool-applied-to-other-domain papers like `[[grobner]]`.
+
 ## Axis 4 — `#topic/*` (fine-grained subjects, multi-tag)
 
 This is the **connection-graph axis.** Topics are what the paper actually engages with — concrete subjects, named techniques, specific problems. Topics enable cross-domain retrieval ("all papers on `#topic/proof-search` regardless of `#domain/*`") and graph clustering.

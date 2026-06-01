@@ -9,7 +9,7 @@ Use when the invoker asks a topic-level question without specific URLs ("researc
 1. **Restate the question in one sentence.** Ambiguous → ask the invoker to clarify before any web searches.
 
 2. **Check the vault for prior coverage.**
-   - `grep -r "<topic-keywords>" /Users/maumayma/Documents/Obsidian/Math/Research/`
+   - `grep -r "<topic-keywords>" Obsidian/Math/Research/`
    - List any existing notes on the topic. Often the answer is "already covered" or "covered partially — here's what's missing."
 
 3. **Propose 3-7 candidate sources** to the invoker.

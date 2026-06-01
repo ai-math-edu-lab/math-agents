@@ -7,6 +7,7 @@ url: https://www.nature.com/articles/s41586-021-03229-4
 url_translated:
 language: en
 methodology_type: empirical
+domain: ai
 citation_count: null
 citation_count_date:
 key_concepts: []

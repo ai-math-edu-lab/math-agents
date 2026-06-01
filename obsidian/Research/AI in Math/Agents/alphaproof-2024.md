@@ -7,6 +7,7 @@ url: https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/
 url_translated:
 language: en
 methodology_type: empirical
+domain: ai
 citation_count: null
 citation_count_date:
 key_concepts: []

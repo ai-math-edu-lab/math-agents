@@ -6,7 +6,7 @@ Use when the invoker hands one paper URL or ID and wants a structured summary in
 
 1. **Confirm the source.** Echo back the URL or arxiv ID. If ambiguous (e.g. "the recent Buchberger paper"), ask which one.
 
-2. **Check for prior coverage.** Grep the vault: `grep -r "<arxiv-id>" /Users/maumayma/Documents/Obsidian/Math/Research/` and `grep -r "<paper-title-keywords>" /Users/maumayma/Documents/Obsidian/Math/Research/`. If a note already exists, ask whether to update or skip.
+2. **Check for prior coverage.** Grep the vault: `grep -r "<arxiv-id>" Obsidian/Math/Research/` and `grep -r "<paper-title-keywords>" Obsidian/Math/Research/`. If a note already exists, ask whether to update or skip.
 
 3. **Identify the invoking user's handle.** Check frontmatter of recent vault notes for `#user/<handle>` tags belonging to the invoker. If unclear, ask. If the handle isn't yet registered in `_meta/tags.md`, register it now.
 

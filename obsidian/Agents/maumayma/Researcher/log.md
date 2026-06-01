@@ -8,6 +8,19 @@ Append-only. Latest at top.
 
 ---
 
+## 2026-05-31 — Phase 12 cleanup: F12.1 + F12.2
+
+**F12.1** — Backfilled `domain: ai` frontmatter property on all 20 AI-in-Math paper notes (Agents/ ×9, RL/ ×5, ML/ ×6). Property was present as `#domain/ai` tag but missing as a Bases-queryable frontmatter key. Verified: `grep -rn '^domain:' 'Research/AI in Math/' | wc -l` = 20.
+
+**F12.2** — Re-classified `Research/Algorithm Cooperation/grobner.md`:
+- Before: `domain: cs` + `#domain/cs`
+- After: `domain: group-theory` + `#domain/group-theory`
+- `#topic/grobner-basis` preserved for discoverability
+- `quality_notes` extended with re-classification rationale per [[tags]] § Axis 3 (methodology vs. contribution disambiguation — Lead doctrine edit, same turn)
+- Directory (`Research/Algorithm Cooperation/`) unchanged — captures the Mixer-applications angle, separate from domain tag.
+
+---
+
 ## 2026-05-28 — R2 batch ingest: Kuznetsov mathnet.ru bulk (17 papers)
 
 **Source:** https://www.mathnet.ru/php/person.phtml?option_lang=eng&personid=36514
