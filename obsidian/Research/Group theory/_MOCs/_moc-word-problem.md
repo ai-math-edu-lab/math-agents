@@ -26,6 +26,15 @@ tags:
 
 ## Algorithmic techniques
 
+### Foundational papers
+
+- [[Research/Group theory/Word Problem/knuth-bendix-1970]] — Knuth & Bendix (1970): the original KB completion paper; critical-pair generation as search. Start here for the KB paradigm.
+- [[Research/Group theory/Word Problem/todd-coxeter-1936]] — Todd & Coxeter (1936): the original coset enumeration paper; coincidence detection as the dual to KB critical pairs.
+- [[Research/Group theory/Word Problem/epstein-et-al-1992-word-processing]] — Epstein et al. (1992) "Word Processing in Groups": automatic groups and the KBMAG theory. KB terminates ↔ group is automatic; quadratic-time word problem.
+- [[Research/Group theory/Word Problem/dershowitz-jouannaud-1990]] — Dershowitz & Jouannaud (1990): rewriting theory survey including stagnation and divergence characterization.
+
+### Technique concept notes
+
 - [[Research/Group theory/Word Problem/techniques/knuth-bendix]] — Knuth-Bendix completion as a word-problem algorithm: when it terminates, it gives a canonical decision procedure. See [[_moc-knuth-bendix]] for full depth.
 
 - [[Research/Group theory/Word Problem/techniques/dehn-function]] — The Dehn function as a complexity measure; Dehn's algorithm for hyperbolic groups (linear time); the connection between linear Dehn function and hyperbolicity.

@@ -22,6 +22,10 @@ tags:
 
 - [[Research/Group theory/Word Problem/techniques/knuth-bendix]] — Foundational technique note: what KB completion is, how termination and confluence interact, the critical-pair algorithm, ordering choices (shortlex vs. RPO vs. wtlex), and what termination/divergence mean for the word problem. The conceptual starting point.
 
+- [[Research/Group theory/Word Problem/knuth-bendix-1970]] — Knuth & Bendix (1970): the original paper. Defines critical-pair generation as the search operation; proves semi-decidability; shows termination iff a complete rewriting system exists. Every subsequent KB system descends from this.
+
+- [[Research/Group theory/Word Problem/dershowitz-jouannaud-1990]] — Dershowitz & Jouannaud (1990): comprehensive survey of rewriting theory including stagnation modes, divergence characterization, and ordering strategies. The standard reference for understanding when and why KB fails. Cross-link: [[Concepts/kb-mixing-stagnation]].
+
 ---
 
 ## Practical tools

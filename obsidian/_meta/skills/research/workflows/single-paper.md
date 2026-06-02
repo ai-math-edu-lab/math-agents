@@ -76,9 +76,10 @@ Use when the invoker hands one paper URL or ID and wants a structured summary in
     - Path: the one verified in step 13 (e.g. `Research/Group theory/Burnside groups/B25/havas-newman-1980.md`).
     - Use the [[paper-summary]] template verbatim — body sections in order: Abstract, TL;DR, Problem, Approach, Key result, Assumptions, Limitations / scope, Replication evidence, Why this paper matters, Quotes, Open questions surfaced, Related material in vault.
 
-15. **Apply 6-axis tags.**
-    - Mandatory: `#agent/research`, `#user/<invoker-handle>`, `#domain/<one>`, `#topic/<one>` × N, `paper`, `#status/draft`.
-    - Optional: `#project/<name>` if scoped to a named project.
+15. **Apply 6-axis tags + mirror domain/status to frontmatter properties.**
+    - Mandatory tags: `#agent/research`, `#user/<invoker-handle>`, `#domain/<one>`, `#topic/<one>` × N, `paper`, `#status/draft`.
+    - Optional tag: `#project/<name>` if scoped to a named project.
+    - **Mandatory frontmatter properties** (alongside the tags — Bases queries the property layer, not the tag layer): `domain: <one>` (must mirror the `#domain/*` tag) and `status: draft` (must mirror the `#status/*` tag). **Without these properties, the note shows up under "None" in Bases "By domain" / "By status" views even when the tags are correct.** F12.1/F12.2 backfill caught this bug across 20 AI-in-Math papers; refined doctrine in [[naming-conventions]] § Properties not just tags.
 
 16. **Update any concept hubs.** For each concept linked, add the current paper to the hub's `appears_in: []` frontmatter.
 

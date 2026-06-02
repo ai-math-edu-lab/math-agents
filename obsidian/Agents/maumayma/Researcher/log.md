@@ -8,6 +8,25 @@ Append-only. Latest at top.
 
 ---
 
+## 2026-06-01 — H1: MOC population pass
+
+**H1.a**: Created `Research/Algorithm Cooperation/_MOCs/_moc-algorithm-cooperation.md` — covers portfolio/CEGAR/ManySAT/IDA*/CDCL papers from A2 + existing Mixer concept hubs. ⚡ flags on 4 notes with Mixer-shaped relevance.
+
+**H1.b**: Created `Research/_moc-index.md` — top-level index of all 6 MOCs. Grouped: 4 Group Theory + 1 AI in Math + 1 Algorithm Cooperation.
+
+**H1.c** — Reciprocation sweep (counts of links added / rejected per substance test):
+| MOC | New entries added | Rejected (aspirational) |
+|---|---|---|
+| _moc-knuth-bendix | 2 (knuth-bendix-1970, dershowitz-jouannaud-1990) | 0 |
+| _moc-word-problem | 4 (knuth-bendix-1970, todd-coxeter-1936, epstein-et-al-1992-word-processing, dershowitz-jouannaud-1990) | 0 |
+| _moc-presentations-and-orders | 1 (todd-coxeter-1936) | 0 |
+| _moc-ai-in-math | 1 (1811.06128 Bengio survey) | 0 |
+| _moc-burnside | 0 (already comprehensive from Kuznetsov batch) | — |
+
+Orphan count after H1: 0 (209 notes scanned).
+
+---
+
 ## 2026-05-31 — Phase 12 cleanup: F12.1 + F12.2
 
 **F12.1** — Backfilled `domain: ai` frontmatter property on all 20 AI-in-Math paper notes (Agents/ ×9, RL/ ×5, ML/ ×6). Property was present as `#domain/ai` tag but missing as a Bases-queryable frontmatter key. Verified: `grep -rn '^domain:' 'Research/AI in Math/' | wc -l` = 20.

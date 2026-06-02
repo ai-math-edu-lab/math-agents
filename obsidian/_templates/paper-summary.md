@@ -6,6 +6,8 @@ venue: <arxiv | journal name | thesis | textbook | preprint>
 url: <link to canonical source>
 url_translated: <link to English translation if separate from source>
 language: <en | ru | de | zh | ...>            # source paper's language (for filtering / discovery)
+domain: <group-theory | ai | cs | methodology>  # MANDATORY property — Bases queries this. Must mirror the #domain/* tag below; tag alone is not enough.
+status: <draft | review | validated | rejected | superseded>  # MANDATORY property — Bases queries this. Must mirror the #status/* tag below.
 methodology_type: <theoretical | empirical | review | methodology | tutorial>
 citation_count: <integer>
 citation_count_date: <YYYY-MM-DD>

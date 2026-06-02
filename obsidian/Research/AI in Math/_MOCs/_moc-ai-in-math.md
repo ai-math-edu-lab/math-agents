@@ -88,6 +88,8 @@ Equation/conjecture discovery, neural heuristics inside solvers, embeddings-for-
 
 - [[ML/2306.15626]] — LeanDojo / ReProver (Yang et al. 2023, NeurIPS): embedding-based premise retrieval for Lean 4; open-source infrastructure; outperforms GPT-4 on hard generalization benchmark. ⚡ *Retrieval of relevant Lean 4 premises = analog of rule retrieval in Mixer KB. Tool for formalizing Burnside results.*
 
+- [[ML/1811.06128]] — Bengio, Lodi, Prouvost (2021, EJOR): survey of ML for combinatorial optimization — honest assessment of what ML has actually shown vs. hype. Key finding: algorithm selection is the most reliable ML-for-CO application. ⚡ *Recommends ML injection policy (algorithm selection) as the most principled next step for the Mixer.*
+
 ### Equation and conjecture discovery
 
 - [[ML/2006.11287]] — Discovering Symbolic Models (Cranmer et al. 2020, NeurIPS): GNN + symbolic regression extracts equations from neural networks; discovers new dark matter formula. ⚡ *PySR applicable to $|P_s(2,5)|$ growth function data.*

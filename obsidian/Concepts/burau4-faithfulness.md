@@ -11,6 +11,9 @@ introduced_in:
 appears_in:
   - "[[Research/Group theory/Open problems/Braid groups/burau4-faithfulness]]"
   - "[[Research/Group theory/Open problems/Braid groups/braid-b4-membership-6.24-makanin]]"
+  - "[[Research/Group theory/Open problems/Braid groups/bigelow-1999]]"
+  - "[[Research/Group theory/Open problems/Braid groups/long-paton-1993]]"
+  - "[[Research/Group theory/Open problems/Braid groups/datta-2022]]"
 related_concepts: []
 tags:
   - agent/research
@@ -65,8 +68,25 @@ This is structurally identical to the quotient-test framework in [[grobner]]: a 
 2. Can a Burau-based filter be made fast enough to be useful (matrix multiplication over polynomial rings)?
 3. Does unfaithfulness of Burau₄ (if proved) close off this approach entirely, or do other braid-group representations remain useful?
 
-## Source
+## Sources (acquired in B2 — June 2026)
 
-Surfaced in [[problems-people]] (internal project document listing algorithm-implementer assignments). Not yet the subject of a Research/ paper note — no published paper in docs/papers/ covers this topic.
+The stub ("written from general knowledge") has been replaced with verbatim cites:
 
-If Lead routes this for deeper research, relevant papers include: Bigelow (1999) "The Burau representation is not faithful for n=5"; Long-Paton (1993) for n≥6; open question status confirmed in e.g. Birman "Braids, Links, and Mapping Class Groups" (textbook).
+- **[[bigelow-1999]]** — Bigelow (1999), *Geometry & Topology* 3:397-404 (arXiv: math/9904100). Proves $\psi_5$ unfaithful ("not faithful for $n > 4$"). Abstract retrieved verbatim. **Note**: the original vault stub incorrectly listed the venue as J. Amer. Math. Soc. — correct venue is Geometry & Topology.
+- **[[long-paton-1993]]** — Long & Paton (1993), *Topology* 32(2):439-447. Proves $\psi_n$ unfaithful for $n \geq 6$. Source paywalled (pre-arXiv); content from authoritative knowledge.
+- **[[datta-2022]]** — Datta (2022), arXiv:2209.10826. Proves $\beta_4$ is "faithful almost everywhere" — partial result, not a proof of faithfulness. The most significant post-2020 progress. Abstract retrieved verbatim.
+- Bibliographic only (no standalone note): Burau (1936), German, *Abh. Math. Sem. Univ. Hamburg* 11:179-186 — original definition; Birman (1974) textbook "Braids, Links, and Mapping Class Groups" — survey status.
+
+**Kourovka Notebook**: No problem number assigned to Burau₄ faithfulness (confirmed from vault note `open-problems-catalog.md`).
+
+## Combinatorial search framing (Part A / Part B bridge)
+
+The Burau₄ faithfulness question can be attacked as a **combinatorial-search problem**:
+
+1. **Kernel search**: enumerate short words in $B_4$ and check whether $\beta_4(b) = I_{3\times 3}$ (the identity matrix). This is decidable (matrix equality over $\mathbb{Z}[q^{\pm 1}]$). If any short word gives identity, faithfulness is disproved.
+
+2. **Datta's filter as partial-No oracle**: [[datta-2022]] proves that any kernel element must satisfy strong algebraic constraints on its Burau matrix entries. This is a fast "partial-No" oracle — for most braids, one can quickly certify they are NOT in the kernel without full matrix computation.
+
+3. **Garside normal form as the search basis**: the braid word enumeration proceeds through Garside normal form, giving a canonical short-form for each braid equivalence class. This makes the search space tractable for short braids.
+
+This framing connects directly to [[Research/Algorithm Cooperation/_synthesis-combinatorial-search-methods]] § 7: the Datta filter is a "partial-No oracle" in the same architectural sense as CEGAR counterexamples or ManySAT learned clauses — it prunes the search space without solving the full problem.

@@ -8,6 +8,7 @@ url: ""
 source_path: ""
 language: en
 domain: group-theory
+status: draft
 methodology_type: theoretical
 relevance: 2
 key_concepts:
@@ -17,8 +18,11 @@ contradicts: []
 replicates: []
 cites:
   - "[[braid-b4-membership-6.24-makanin]]"
+  - "[[bigelow-1999]]"
+  - "[[long-paton-1993]]"
+  - "[[datta-2022]]"
 cited_by: []
-quality_notes: "No source document in docs/papers/ for this problem. Content written from general knowledge. Paper acquisition needed: Bigelow 1999 (J. Amer. Math. Soc., proves n≥5 unfaithful); Long-Paton 1993 (proves n≥6); Birman 'Braids, Links, and Mapping Class Groups' for status survey. No Kourovka Notebook problem number identified for Burau₄ faithfulness. Old score/2 migrated to relevance: 2 per F4.2 decisions. Source unavailable at 2026-05-28 re-fetch; content preserved from original note."
+quality_notes: "B2 acquisition complete (June 2026). Papers now in vault: [[bigelow-1999]] (Geometry & Topology 3:397-404, 1999; arXiv math/9904100 — VENUE CORRECTED from prior stub which incorrectly listed J. Amer. Math. Soc.), [[long-paton-1993]] (Topology 32(2):439-447, 1993; source-text-incomplete-paywalled-pre-arxiv), [[datta-2022]] (arXiv 2209.10826, 2022 — post-2020 partial result). Bibliographic only: Burau 1936 (German, pre-digital), Birman 1974 textbook. No Kourovka Notebook problem number (confirmed from vault). Old score/2 migrated to relevance: 2 per F4.2."
 author: maumayma
 tags:
   - agent/research
@@ -66,9 +70,9 @@ No constructive proof in either direction is known. Relevant approaches:
 | n | Faithfulness | Source |
 |---|---|---|
 | 1, 2, 3 | Faithful | Classical |
-| 5 | Unfaithful | Bigelow (1999), J. Amer. Math. Soc. |
-| ≥ 6 | Unfaithful | Long-Paton (1993) |
-| **4** | **Open** | — |
+| 5 | Unfaithful | [[bigelow-1999]] (Geometry & Topology 3:397-404) |
+| ≥ 6 | Unfaithful | [[long-paton-1993]] (Topology 32(2):439-447) |
+| **4** | **Open** (faithful "almost everywhere" — [[datta-2022]], 2022) | — |
 
 ## Assumptions
 
@@ -80,9 +84,13 @@ No constructive proof in either direction is known. Relevant approaches:
 - Proving faithfulness requires a structural theorem; disproving requires finding a kernel element. Neither path is accessible via KB / Garside / search alone without a much deeper structural insight.
 - Relationship to membership problem: if ψ₄ is faithful, it directly assists with the membership problem ([[braid-b4-membership-6.24-makanin]]); if unfaithful, the gap remains.
 
+## Post-2020 progress
+
+**Datta (2022)** — [[datta-2022]] arXiv 2209.10826 — "The Burau representation of $B_4$ is faithful almost everywhere." Establishes that any element of $\ker(\beta_4)$ must satisfy strong algebraic constraints on its Burau matrix entries (derived via Garside normal form + matrix cancellation theory). Proves the representation is faithful for "generic" braids. This is the most significant partial result as of 2026. Still open whether $\ker(\beta_4)$ is trivial.
+
 ## Replication evidence
 
-N/A — open problem. Bigelow (1999) and Long-Paton (1993) results for n ≥ 5 not verified in this vault.
+Bigelow (1999) [[bigelow-1999]] and Long-Paton (1993) [[long-paton-1993]]: universally accepted, independently cited. Datta (2022) [[datta-2022]]: arXiv preprint, peer-review status TBC as of June 2026.
 
 ## Why this paper matters
 
@@ -100,11 +108,20 @@ Named implementer in [[problems-people]]: Borys Nolikov.
 - If ψ₄ is proved faithful: does this directly yield a polynomial-time membership algorithm for B₄?
 - Systematic search of short braids in B₄ for kernel elements: feasible computational task.
 
+## Combinatorial search framing (Part A / Part B bridge)
+
+The Burau₄ faithfulness question, when viewed computationally, is a **kernel-element search problem**:
+
+- **Complete oracle**: enumerate braids $b \in B_4$ and check $\beta_4(b) = I_3$ (matrix equality over $\mathbb{Z}[q^{\pm 1}]$; decidable but expensive for long braids).
+- **Partial-No oracle (Datta 2022)**: [[datta-2022]] shows that any kernel element must satisfy strong entry constraints. For most short braids, these constraints fail immediately — a fast "No" without computing the full matrix. This is the **partial-No oracle pattern** from [[Research/Algorithm Cooperation/_synthesis-combinatorial-search-methods]] § 7.
+- **Garside normal form**: provides a canonical enumeration of braid equivalence classes by length. Search proceeds shortest-first.
+
+The Mixer analog: Datta's filter running alongside the full matrix-equality check is exactly "CEGAR where spurious counterexamples are braids that aren't in the kernel" — see [[Research/Algorithm Cooperation/clarke-et-al-2000-cegar]].
+
 ## Related material in vault
 
-- Extends: (none)
-- Contradicts: (none)
-- Replicates: (none)
-- Concepts introduced/used: (F4.4 will populate via `key_concepts:`)
-- Cites (in vault): [[braid-b4-membership-6.24-makanin]] (related open problem, B₄ frontier)
-- Cited by (in vault): [[Concepts/burau4-faithfulness]], [[problems-people]] (names implementer)
+- Cites (in vault): [[bigelow-1999]], [[long-paton-1993]], [[datta-2022]], [[braid-b4-membership-6.24-makanin]]
+- Concepts: [[Concepts/burau4-faithfulness]]
+- Cited by (in vault): [[problems-people]] (names implementer Borys Nolikov)
+- Algorithm Cooperation: [[Research/Algorithm Cooperation/_synthesis-combinatorial-search-methods]] (partial-No oracle pattern)
+- Synthesis: [[Research/Group theory/Open problems/Braid groups/_synthesis-burau4-faithfulness]] (forthcoming)

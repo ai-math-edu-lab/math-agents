@@ -34,6 +34,8 @@ tags:
 
 - [[Research/Group theory/General/presentations-and-relations/coset-enumeration]] — Todd-Coxeter algorithm for computing [G:H] and the coset table; terminates iff [G:H] < ∞; the computational version of Lagrange's theorem. The standard approach to computing |G| for a finitely presented group.
 
+- [[Research/Group theory/Word Problem/todd-coxeter-1936]] — Todd & Coxeter (1936): the foundational paper; defines the coincidence-detection mechanism; establishes TC as the dual of KB completion (cosets vs. rules as the unit of information).
+
 ---
 
 ## The geometry

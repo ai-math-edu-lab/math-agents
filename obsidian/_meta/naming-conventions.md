@@ -107,6 +107,37 @@ Log every rename to `Agents/<user>/Researcher/log.md` with before → after.
 
 ---
 
+## Indexing philosophy — topic-MOC, not folder-MOC (decision record)
+
+This vault deliberately uses **topic-centric MOCs** (`_moc-<topic>.md` in `Research/<Domain>/_MOCs/`, per [[research-folder-convention]]), **not** the folder-area-centric pattern (`<Area>/00-Index/MOC.md`) used by sibling vaults.
+
+**Why this is correct for math and must not be "fixed" toward the folder pattern:**
+
+- A math paper legitimately belongs to **multiple topics at once** (e.g. `grobner.md` → Gröbner bases, B(2,5), word problem). Folder-bound MOCs can only express the one folder a file physically lives in; topic MOCs let the same paper be a curated landing target from several MOCs. Folders are for humans browsing; **tags + topic-MOCs are the retrieval layer** (see [[research-folder-convention]] § "Topic dirs are organizational, not the source of truth").
+- **No numeric prefixes on Research/ folders.** Math topics are not a pipeline and have no natural 1→2→3 order. Do not introduce `00-/10-/20-` directory prefixes. Ordering inside a dir is handled by the `_` prefix (Rule 4) sorting MOCs/syntheses to the top.
+
+If a future contributor arrives from a folder-MOC vault, this is the intended divergence — leave it.
+
+## Properties, not just tags (Bases-queryability)
+
+Frontmatter **properties** (`domain:`, `status:`, `topic:`) are the machine-queryable layer; `#tags` alone are not enough. Obsidian Bases groups/filters on **properties** — a note with `#domain/ai` tag but no `domain:` property shows up under "None" in a By-domain view. Every Research/ and Concepts/ note must carry `domain:` and `status:` as **properties** in addition to the corresponding tags. (This was the F12.1/F12.2 backfill.)
+
+## MOCs: mostly populated; two net-new + a reciprocation sweep (open task)
+
+As of 2026-06-01, **5 topic MOCs already exist** and their ~26 inbound `[[_moc-*]]` wikilinks resolve correctly (the Phase 9 cross-linking discipline worked — they are **not** dangling):
+
+- `Research/Group theory/_MOCs/_moc-burnside.md`
+- `Research/Group theory/_MOCs/_moc-knuth-bendix.md`
+- `Research/Group theory/_MOCs/_moc-word-problem.md`
+- `Research/Group theory/_MOCs/_moc-presentations-and-orders.md`
+- `Research/AI in Math/_MOCs/_moc-ai-in-math.md`
+
+Open work for Researcher (H1):
+1. Create `Research/Algorithm Cooperation/_MOCs/_moc-algorithm-cooperation.md` (net-new — covers the A3 papers + Mixer-thesis cluster: portfolios / ManySAT / CEGAR).
+2. Create a top-level `Research/_moc-index.md` landing page listing all MOCs — single entry point for agents.
+3. Run a **bidirectional-reciprocation sweep** on the 5 existing MOCs (confirm each note that links a MOC is reciprocated from the MOC's body, per the Phase 9 substance test).
+
 ## History
 
 - 2026-05-28: Created (Phase 7, Researcher) — driven by Maria's observation of `_overview` × 10 generic filenames causing ambiguity in Bases views.
+- 2026-06-01: Added indexing-philosophy decision record (topic-MOC vs folder-MOC), properties-not-just-tags rule, and MOC-population open task. Driven by Maria's cross-vault comparison with BOTBOTBOT.
