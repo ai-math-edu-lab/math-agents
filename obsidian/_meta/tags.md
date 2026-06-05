@@ -45,6 +45,7 @@ If a note was AI-written but human-tasked, `#agent/*` records the AI role and `#
 Register a new tag for each new contributor as they join. Every note carries exactly one `#user/*` — the human who owns or commissioned it.
 
 Registered handles:
+- `#user/ethan-k` — Ethan Kalika (see [[People/ethan-k]])
 - `#user/maumayma` — Maria Matveeva (see [[People/maumayma]])
 
 Add new colleagues here as they join. Matching `author: <handle>` frontmatter is queried by Bases for grouping/filtering.
