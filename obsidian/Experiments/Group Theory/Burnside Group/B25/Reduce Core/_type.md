@@ -39,13 +39,28 @@ Proving comm_12_9 = identity in B(2,5) is the primary B(2,5) goal. The current K
 
 Progressive: any length reduction is progress. The current record is 7,245 chars for comm_12_9 (74.7% reduction from 28,652). The ultimate goal is reducing to the empty string (proving identity).
 
+## Results
+
+**`comm_12_9: 28,652 → 7,245 chars (74.7%), 119/119 reduced`**
+
+Run `b25-reduce-core-benchmark-0001` (4-pass Rust beam, `braid_reduce` binary, `mega_ab_rules.live` ~25.7M rules, beam-width 16384, beam-secs 300/pass):
+
+![[b25-benchmark-snapshot-2026-06-09#Snapshot stats]]
+
+Full 119-row table: [[b25-benchmark-snapshot-2026-06-09#Complete 119-row results table|→ complete 119-row table]]
+
+**Provenance gap disclosure (42/119 rows)**: For 42 targets, `ui/benchmarks_data.json` holds a better all-time best from prior runs. Methodology now identified for all 42 via JSON `comment` field — Cat A (8): Python power+braid+greedy, no beam; Cat B (30): Rust beam + 7M historical rules, run directory gone from disk; Cat C (3): `reduce_benchmark_v2.py` lift-first; Cat D (1): biased 25M rules, comm_16_2 only. The Cat B run and its outputs are unrecoverable from disk. See [[b25-benchmark-snapshot-2026-06-09#Provenance gap NOT closed for 42 rows|→ 42-row gap table]].
+
+---
+
 ## Relevant scripts
 
-- `experiments/b25_reduce_core/reduce_coreless.py` — main pipeline (FIXED braid)
-- `experiments/b25_reduce_core/verify_reduction.py` — verification tool (FIXED)
-- `experiments/b25_reduce_core/benchmark_run/reduce_benchmark_v2.py` — lift-first benchmark over 119 words
-- `experiments/b25_reduce_core/benchmark_run/overnight_4pass_smallfirst.sh` — multi-pass overnight script
-- `experiments/burnside/b25_bias_bidir/scripts/` — biased KB generation + reduction
+- `experiments/b25_reduce_core/script/reduce_coreless.py` — main pipeline (FIXED braid)
+- `experiments/b25_reduce_core/script/verify_reduction.py` — verification tool (FIXED)
+- `experiments/b25_reduce_core/script/reduce_benchmark_v2.py` — lift-first benchmark over 119 words (Cat C source)
+- `experiments/b25_reduce_core/script/overnight_4pass_smallfirst.sh` — 4-pass overnight beam script (benchmark-0001 source)
+- `experiments/b25_reduce_core/script/collect_best.sh` — post-run collector; reads `benchmark_run/overnight_results/`, updates `ui/benchmarks_data.json`
+- `experiments/burnside/b25_bias_bidir/script/` — biased KB generation + reduction
 
 ## Literature
 

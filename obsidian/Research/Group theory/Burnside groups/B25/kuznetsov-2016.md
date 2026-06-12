@@ -7,6 +7,8 @@ url: https://doi.org/10.17223/20710410/33/10
 url_translated:
 language: ru
 methodology_type: methodology
+domain: group-theory
+status: draft
 citation_count: null
 citation_count_date:
 key_concepts: []

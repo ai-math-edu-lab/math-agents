@@ -9,6 +9,7 @@ url: ""
 source_path: "Downloads/ketnesov_2009 (1).pdf"
 language: ru
 domain: group-theory
+status: draft
 methodology_type: empirical
 relevance: 1
 citation_count: null

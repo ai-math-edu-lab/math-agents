@@ -7,6 +7,8 @@ url: https://doi.org/10.17516/1997-1397-2018-11-1-70-78
 url_translated:
 language: en
 methodology_type: empirical
+domain: group-theory
+status: draft
 citation_count: null
 citation_count_date:
 key_concepts: []

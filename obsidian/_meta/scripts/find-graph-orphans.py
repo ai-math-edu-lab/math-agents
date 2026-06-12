@@ -27,6 +27,7 @@ EXCLUDE_DIRS = {
 
 EXCLUDE_PATTERNS = [
     r"/Agents/.+/log\.md$",
+    r"/Agents/.+/scratch/.+\.md$",
     r"/README\.md$",
     r"/_placeholder\.md$",
     r"/INSTALL\.md$",   # skills install docs — housekeeping, exempted per naming-conventions Rule 2

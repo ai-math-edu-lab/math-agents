@@ -10,6 +10,7 @@ url: ""
 source_path: "Downloads/ketnesov_2009_general_alg (1).pdf"
 language: ru
 domain: group-theory
+status: draft
 methodology_type: theoretical
 relevance: 2
 citation_count: null

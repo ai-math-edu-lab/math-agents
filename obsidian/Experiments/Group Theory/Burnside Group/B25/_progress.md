@@ -32,6 +32,8 @@ The deeper question: can comm_12_9 be reduced to the empty word (i.e., proved eq
 | **KBMag** (RPO+shortlex mixing) | #status/inconclusive | Both agents stayed in EXPLORATION; no cascade at 30min; 3 injections (2,263 rules total). v2 (bisect) is 10x more memory-efficient and 15x faster injections. | [[KBMag/methodology/kbmag-overlap-scoring-b25-2026-05-22]] |
 | **Rust Bidirectional** (dual-RPO, beam) | #status/inconclusive | 9 surviving runs across 3 passes (2026-03-20 through 2026-03-30). Targets: comm_22_3, comm_11_1_kyr, comm_13_10, lifted comm_12_9. Best reductions: comm_22_3 4162→4156, comm_13_10 2500→2494, lifted comm_12_9 1772→544 (gen_braid only). No words proved. Code deleted from disk; configs at git bc3cba2. | [[Rust Bidirectional/methodology/rust-bidirectional-b25-2026-05-22]] |
 | **Reduce Core** (pipeline: power→braid→rules→beam) | #status/inconclusive | comm_12_9: **7,245 chars** (74.7% reduction, abelianization (0,0) ✓). Previous "3,707" result INVALIDATED (braid_reduce_fast bug). | [[Reduce Core/methodology/reduce-core-pipeline-b25-2026-05-22]] |
+| **Biased KB Agents** (kbprog biased on target patterns) | #status/inconclusive | 12 surviving rule banks (run4, run5, weq series). ALL on INVALID targets (word_3705/3707). 1.8M rules largest single bank (run4-sl-k12). Valid runs on word_7245 not yet performed. | [[Biased KB Agents/methodology/biased-kb-agents-b25-2026-06-03]] |
+| **RL Mixer** (PPO-trained word reduction agent) | #status/inconclusive | 3 trained checkpoints (comm_12_7, comm_16_2, rpo); no evaluation results preserved. | [[RL Mixer/_progress]] |
 
 ---
 
@@ -96,7 +98,9 @@ The deeper question: can comm_12_9 be reduced to the empty word (i.e., proved eq
   - Sub-claim A (input is a B(2,5) identity): VERIFIED by Havas relator byte match. Sub-claim B (chain soundness): PARTIALLY VERIFIED — abelianization (0,0) at all stages, lifted-KB rule m→m_pure evidences the expansion step. Sub-claim C (element equality): NOT VERIFIED — GAP kbmag does not complete KB on B(2,5); tooling limit reached.
   - Downstream work may proceed with `#status/conjectured` status. Do not cite as proven.
 
-Verified by [[2026-05-22-comm-12-9-7245-final]]
+- **CLAIM CLOSED (`#status/disproven` — 2026-06-02)**: `corrected/final_7245_lifted_reduced.txt` (563 chars) was a candidate for a new lift-space best. Validator confirmed: abelianization (0,0) ✓ (valid representative of [c12,c9]), but expanding back to {a,b} yields **7,249 chars** — longer than word_7245. The 563-char form achieves 5.9× notational compression in {a,b,m} but is not a genuine length reduction. The complete undocumented circuit in `corrected/` is: final_beam.txt (7,245) → lift → 3,325 → KB → 563 → expand → 7,249 → reduce → 7,245 ≡ final_beam.txt. word_7245 remains the shortest-known form. See [[2026-06-02-b25-lift-reduce-circuit]].
+
+Verified by [[2026-05-22-comm-12-9-7245-final]], [[2026-06-02-b25-lift-reduce-circuit]]
 
 ---
 

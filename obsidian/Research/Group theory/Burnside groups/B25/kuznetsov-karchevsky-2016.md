@@ -7,6 +7,8 @@ url: https://doi.org/10.17223/2226308X/9/52
 url_translated:
 language: ru
 methodology_type: empirical
+domain: group-theory
+status: draft
 citation_count: null
 citation_count_date:
 key_concepts: []

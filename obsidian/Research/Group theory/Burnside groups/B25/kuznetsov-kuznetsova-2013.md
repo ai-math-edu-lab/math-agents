@@ -7,6 +7,8 @@ url: http://mi.mathnet.ru/pdm397
 url_translated:
 language: ru
 methodology_type: methodology
+domain: group-theory
+status: draft
 citation_count: null
 citation_count_date:
 key_concepts: []
