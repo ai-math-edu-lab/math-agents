@@ -7,10 +7,10 @@ claim: "Developer's reproducibility audit table (a/b/c classifications) is sound
 claimant: Developer (overnight Phase A, [[2026-06-02-repro-audit-table]])
 verification_method: kbprog file header inspection (isConfluent, ExitCode, maxeqns), filesystem spot-checks, Group IV _RWS format sampling, Group III driver verification
 tools_used: [Python 3 file reads, head/cat on kbprog files, ls/wc -l, git ls-tree]
-author: aksimemor
+author: maumayma
 tags:
   - agent/validator
-  - user/aksimemor
+  - user/maumayma
   - domain/cs
   - project/mixer-core
   - status/replicated

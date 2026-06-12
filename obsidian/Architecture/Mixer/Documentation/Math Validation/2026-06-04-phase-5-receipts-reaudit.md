@@ -7,10 +7,10 @@ claim: "Developer's Phase 5 10-item execution + 1 STOP is structurally complete 
 claimant: Developer (Phase 5 session), Lead K3 sample
 verification_method: git check-ignore -v, ls/find, tar -tzf, grep, cat PROVENANCE, sed on kbmag_agent.py, python3 path smoke test
 tools_used: [git check-ignore, git status, ls/find, tar, grep, python3, cat, du]
-author: aksimemor
+author: maumayma
 tags:
   - agent/validator
-  - user/aksimemor
+  - user/maumayma
   - domain/cs
   - project/mixer-core
   - status/replicated

@@ -7,10 +7,10 @@ claim: "Developer's Phase 3 changes (gitignore, run-dir cleanup, kbmag_source, s
 claimant: Developer (Phase 3), Lead K3 sample
 verification_method: independent re-run of all verification commands; receipts pasted below
 tools_used: [git check-ignore -v, git ls-files, ls/find, grep, python3 pathlib, head/cat]
-author: aksimemor
+author: maumayma
 tags:
   - agent/validator
-  - user/aksimemor
+  - user/maumayma
   - domain/cs
   - project/mixer-core
   - status/replicated

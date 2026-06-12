@@ -7,10 +7,10 @@ claim: "Developer's R1 (kbmag_source/ pristine restore) + R2 (b25_full reference
 claimant: Developer (overnight Phase 2), Lead K3 sample
 verification_method: full-repo grep (stale path refs), git status + git ls-files (kbmag_source tracking), empirical project_root depth test, file content spot-checks
 tools_used: [grep, git ls-files, git diff --cached, git status, python3 pathlib, md5]
-author: aksimemor
+author: maumayma
 tags:
   - agent/validator
-  - user/aksimemor
+  - user/maumayma
   - domain/cs
   - project/mixer-core
   - status/replicated

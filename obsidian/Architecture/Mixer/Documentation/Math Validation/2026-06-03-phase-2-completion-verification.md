@@ -7,10 +7,10 @@ claim: "Developer's 12-family restructure + big-data moves + gitignore patterns 
 claimant: Developer (Phase 2 Part 2), Lead K3 sample
 verification_method: kbmag/ wrapper survey, git check-ignore sampling (15+ artifacts), cross-repo reference-rot grep, kbmag_source/ status + md5, b43_bidirectional path audit, special_mixer kbprog.log binary verification
 tools_used: [find, git check-ignore -v, grep, head/cat on kbprog.log, ls, md5]
-author: aksimemor
+author: maumayma
 tags:
   - agent/validator
-  - user/aksimemor
+  - user/maumayma
   - domain/cs
   - project/mixer-core
   - status/replicated

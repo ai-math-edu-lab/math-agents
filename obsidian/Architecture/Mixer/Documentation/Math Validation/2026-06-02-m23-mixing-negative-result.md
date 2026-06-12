@@ -7,10 +7,10 @@ claim: "All 18 M23 KB mixing strategy variants are slower than the single-agent 
 claimant: Experimenter (general) via [[2026-06-02-non-b25-forensic-inventory]] §4 M23
 verification_method: direct JSON spot-check of 5 individual result files + full-coverage Python sweep across all 18 variants + presentation/binary consistency check
 tools_used: [Python 3, json, glob; direct file reads of results_archive/*.json]
-author: aksimemor
+author: maumayma
 tags:
   - agent/validator
-  - user/aksimemor
+  - user/maumayma
   - domain/group-theory
   - project/m23
   - status/replicated

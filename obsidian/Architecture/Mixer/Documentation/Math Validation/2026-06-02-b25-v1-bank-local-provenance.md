@@ -7,10 +7,10 @@ claim: "The v1 KBMag server run rule banks (rpo/input.kbprog.live, shortlex/inpu
 claimant: B25 Forensic Inventory §1 (Experimenter-B25, 2026-06-02); disputed reading: B25 said 'partial', Maria's correction said 'local'
 verification_method: direct filesystem check + byte-count comparison against inventory claims
 tools_used: [ls -lh, stat -f%z, wc -l, git cat-file, git show HEAD]
-author: aksimemor
+author: maumayma
 tags:
   - agent/validator
-  - user/aksimemor
+  - user/maumayma
   - domain/group-theory
   - project/b25
   - status/replicated
