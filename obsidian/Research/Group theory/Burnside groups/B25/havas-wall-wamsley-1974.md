@@ -43,6 +43,7 @@ cited_by:
   - "[[kuznetsov-filippov-2010-sjim]]"
   - "[[kuznetsov-filippov-2010-vmj]]"
   - "[[_synthesis-kuznetsov-b25-algorithmic-line]]"
+  - "[[kalika-2026]]"
 quality_notes: "Foundational — cited by every subsequent B(2,5) computation in this vault. Two independent methods (Lie algebra and nilpotent quotient) converge on the same result; the generator numbering 1–34 from this paper is the source of the comm_X_Y naming convention used throughout all B(2,5) experiments."
 author: maumayma
 tags:

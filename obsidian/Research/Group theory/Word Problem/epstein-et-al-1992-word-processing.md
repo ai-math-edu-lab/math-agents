@@ -19,7 +19,11 @@ replicates: []
 cites:
   - "[[todd-coxeter-1936]]"
   - "[[knuth-bendix-1970]]"
-cited_by: []
+  - "[[epstein-holt-rees-1991]]"
+cited_by:
+  - "[[kalika-2026]]"
+  - "[[epstein-sanders-2000]]"
+  - "[[holt-1995-warwick-ags]]"
 quality_notes: "Definitive 1992 monograph on automatic groups. Not freely available; content from authoritative knowledge. This book is the primary reference for automatic group theory; virtually every subsequent paper on the computational word problem for infinite groups cites it. Holt is also the author of KBMAG, making this book the theoretical foundation of the KBMAG software used in the Mixer."
 author: maumayma
 tags:

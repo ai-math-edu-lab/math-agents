@@ -17,7 +17,8 @@ contradicts: []
 replicates: []
 cites:
   - "[[knuth-bendix-1970]]"
-cited_by: []
+cited_by:
+  - "[[hermiller-shapiro-1999]]"
 quality_notes: "Authoritative survey chapter in Handbook of TCS (1990), pre-digital era. Abstract not retrieved verbatim — paywalled book chapter; content from authoritative knowledge of this widely-used reference. Standard citation for rewriting theory in the literature. The Handbook of TCS was a landmark 1990 reference; this chapter is the canonical survey on term rewriting and remains current."
 author: maumayma
 tags:

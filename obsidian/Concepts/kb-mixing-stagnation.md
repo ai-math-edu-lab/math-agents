@@ -11,6 +11,7 @@ introduced_in:
   - "[[Research/Algorithm Cooperation/algo-mixing-burnside-slides]]"
 appears_in:
   - "[[Research/Algorithm Cooperation/algo-mixing-burnside-slides]]"
+  - "[[Research/Group theory/Burnside groups/B25/kalika-2026]]"
 related_concepts:
   - "[[mixable-api]]"
 tags:

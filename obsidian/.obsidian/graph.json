@@ -1,11 +1,11 @@
 {
   "collapse-filter": false,
-  "search": "-path:_meta -path:_templates -path:Agents/maumayma/Lead/scratch  ",
+  "search": "ethan-k",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": false,
-  "collapse-color-groups": true,
+  "collapse-color-groups": false,
   "colorGroups": [
     {
       "query": "tag:#paper  ",
@@ -81,6 +81,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.5987438279468037,
+  "scale": 0.4888722883701455,
   "close": true
 }

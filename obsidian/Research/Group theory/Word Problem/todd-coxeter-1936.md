@@ -17,6 +17,7 @@ replicates: []
 cites: []
 cited_by:
   - "[[epstein-et-al-1992-word-processing]]"
+  - "[[le-chenadec-1986]]"
 quality_notes: "Foundational 1936 paper, pre-digital era. Abstract not retrieved verbatim — paywalled historical journal; content from authoritative knowledge. The paper predates the modern notion of 'algorithm' in the computational sense, but describes a concrete enumeration procedure. The method described is now universally known as the Todd-Coxeter algorithm; modern treatments (Havas et al., Sims 1994) greatly improve efficiency without changing the core coincidence-detection mechanism."
 author: maumayma
 tags:

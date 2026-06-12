@@ -21,6 +21,7 @@ cites:
   - "[[havas-newman-1980]]"
 cited_by:
   - "[[grobner]]"
+  - "[[kreuzer-et-al-2010]]"
 quality_notes: "Survey of FPG computational methods via three worked examples. Not specific to B(2,5) — B(2,5) is mentioned only via ref [23] (havas-newman-1980). The KB section (§2.9) is the most directly relevant passage: cites Sims (1991) showing KB sometimes outperforms coset enumeration, which is the regime the Mixer exploits."
 author: maumayma
 tags:

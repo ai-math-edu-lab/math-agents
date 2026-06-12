@@ -2,9 +2,12 @@
 title: Ethan Kalika
 handle: ethan-k
 domain_focus: []
-projects: []
+projects:
+  - Biased Knuth-Bendix Algorithm Development (Ethan's Version)
 author: ethan-k
-tags: [meta, user/ethan-k]
+tags:
+  - meta
+  - user/ethan-k
 ---
 
 # Ethan Kalika — `ethan-k`
@@ -15,7 +18,7 @@ Joined: 2026-06-05. Domains of focus: TBD. Active projects: TBD.
 
 ## Key contributions in this vault
 
-_Fill in wikilinks as notes accumulate._
+- [[Research/Group theory/Burnside groups/B25/kalika-2026|kalika-2026]] — Master's thesis: biased Knuth-Bendix completion and algorithm mixing for B(2,5)
 
 ## Authorship convention reminder
 

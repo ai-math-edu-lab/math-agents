@@ -18,6 +18,11 @@ cites: []
 cited_by:
   - "[[dershowitz-jouannaud-1990]]"
   - "[[epstein-et-al-1992-word-processing]]"
+  - "[[epstein-sanders-2000]]"
+  - "[[epstein-holt-rees-1991]]"
+  - "[[gilman-1979]]"
+  - "[[hermiller-shapiro-1999]]"
+  - "[[le-chenadec-1986]]"
 quality_notes: "Foundational paper (1970 book chapter, no arXiv). Abstract text not retrieved from source — pre-digital, paywall; content summarized from authoritative knowledge. Citation count not retrievable; estimated 5000+ (one of the most cited CS/math papers). The original term 'completion procedure' was Knuth & Bendix's; the term 'Knuth-Bendix completion' was coined by others afterward. Note: The original paper works in universal algebra (equational theories), not specifically groups — the group-theory specialization was developed later by e.g. Sims and the KBMAG team."
 author: maumayma
 tags:

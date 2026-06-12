@@ -16,10 +16,13 @@ key_concepts:
   - "[[Concepts/grobner-quotient-filter]]"
   - "[[Concepts/grobner-infinitude-probe]]"
   - "[[Concepts/representation-variety]]"
-extends: []
+  - "[[Concepts/grobner-bases]]"
+extends:
+  - "[[kreuzer-et-al-2010]]"
 contradicts: []
 replicates: []
 cites:
+  - "[[kreuzer-et-al-2010]]"
   - "[[havas-robertson]]"
   - "[[kourovka-2022]]"
   - "[[problems-people]]"

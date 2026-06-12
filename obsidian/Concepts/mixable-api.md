@@ -13,6 +13,7 @@ introduced_in:
 appears_in:
   - "[[Research/Algorithm Cooperation/algo-mixing-burnside-slides]]"
   - "[[Research/Algorithm Cooperation/grobner]]"
+  - "[[Research/Group theory/Burnside groups/B25/kalika-2026]]"
 related_concepts:
   - "[[kb-mixing-stagnation]]"
 tags:
