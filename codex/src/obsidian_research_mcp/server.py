@@ -205,12 +205,12 @@ def research(request: str = "") -> str:
     doctrine = _load_doctrine(_vault().root)
     task = request.strip() or (
         "No specific request provided. Ask the user for a paper URL/ID, a list "
-        "of URLs, a literature-scan topic, or a --reconnect scope."
+        "of URLs, a literature-scan topic, a --reconnect scope, or --notes."
     )
     return (
         f"{doctrine}\n\n{'=' * 72}\n## Your task\n{'=' * 72}\n\n{task}\n\n"
         "Proceed per the matching workflow (single-paper / batch / "
-        "literature-scan / connection-pass). Use the tools: `fetch_paper`, "
+        "literature-scan / connection-pass / personal-notes). Use the tools: `fetch_paper`, "
         "`search_vault`, `list_tags`, `write_note`, `manage_frontmatter`, "
         "`manage_tags`, `lookup_citation`. Always check for prior coverage "
         "before writing, verify unique filename + correct placement, and "

@@ -23,6 +23,7 @@ If a user asks "how do I add a paper to the vault?" — the answer is `/research
 - **`/research <url>` or `/research <url1> <url2> ...`** — ingest one or many papers into the vault. Powered by the universal Researcher prompt at `obsidian/_meta/agents/researcher.md` and the workflows at `obsidian/_meta/skills/research/workflows/`.
 - **`/research` with no args** — prompt the user for a topic; do a literature scan (propose candidates, get approval, batch-ingest, write a synthesis).
 - **`/research --reconnect <topic>`** — re-link existing papers in `Research/` using current taxonomy. Researcher's restructure authority pass.
+- **`/research --notes [all|<path>]`** — tag, cross-link, and extract ideas/open questions from your own living notes in `obsidian/Notes/<handle>/{ideas,logs}/`. Never rewrites your text. Convention: `obsidian/_meta/notes-folder-convention.md`.
 - **kepano's obsidian-skills** (5 skills): `obsidian-markdown`, `obsidian-bases`, `obsidian-cli`, `json-canvas`, `defuddle`. Use as needed.
 
 ## Conventions to follow when operating on the vault
@@ -85,7 +86,7 @@ If you're operating on the vault and a change feels commit-worthy, ASK the human
     ├── _templates/      ← paper-summary, concept-note, synthesis, etc.
     ├── Agents/<handle>/ ← per-user agent home dirs
     ├── Architecture/Mixer/
-    ├── Concepts/  Experiments/  People/  Research/
+    ├── Concepts/  Experiments/  Notes/  People/  Research/
     └── .obsidian/
 ```
 
@@ -97,7 +98,7 @@ If you're operating on the vault and a change feels commit-worthy, ASK the human
 ## Where to look first
 
 - **For doctrine questions**: `obsidian/_meta/` (mission, tags, conventions, agent prompts)
-- **For templates**: `obsidian/_templates/` (paper-summary, concept-note, synthesis, experiment, code-review, component-doc, decision)
+- **For templates**: `obsidian/_templates/` (paper-summary, concept-note, synthesis, experiment, code-review, component-doc, decision, personal-note)
 - **For the `/research` skill internals**: `obsidian/_meta/skills/research/{SKILL.md,INSTALL.md,workflows/}`
 - **For the Maestri agents' role prompts**: `obsidian/_meta/agents/`
 - **For existing content**: `obsidian/Research/`, `obsidian/Concepts/`, `obsidian/Experiments/`

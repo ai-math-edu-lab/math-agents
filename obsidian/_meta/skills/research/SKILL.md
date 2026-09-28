@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Ingest academic papers into the shared Obsidian vault as structured, queryable summaries. Use when the user asks to summarize a paper, batch-process a list of papers, add a paper to the vault, retag existing summaries, or build a connection graph across papers. Trigger words: '/research', 'summarize this paper', 'add this to the vault', 'ingest these arxiv papers', 'do a literature pass on...', 'review papers on...'."
+description: "Ingest academic papers into the shared Obsidian vault as structured, queryable summaries. Use when the user asks to summarize a paper, batch-process a list of papers, add a paper to the vault, retag existing summaries, build a connection graph across papers, or tag/link/extract ideas from the user's own notes in Notes/<handle>/. Trigger words: '/research', 'summarize this paper', 'add this to the vault', 'ingest these arxiv papers', 'do a literature pass on...', 'review papers on...'."
 ---
 
 # /research — Academic Paper Ingestion Skill
@@ -87,11 +87,23 @@ Or natural language:
 
 **Workflow**: see [[workflows/connection-pass]]. No new ingest; only retagging + frontmatter updates + concept hub creation across existing notes.
 
+### 5. Personal notes pass (the invoker's own ideas and logs)
+
+```
+/research --notes [all|<path>]
+```
+
+Or natural language:
+- "Tag and link my notes"
+- "Pull the ideas out of my B25 log"
+
+**Workflow**: see [[workflows/personal-notes]]. Operates only on `Notes/<invoker>/`. Tags + fills the fenced *Related material* block of `ideas/` and `logs/` notes (never rewrites their body), and extracts ideas / open questions into `Notes/<invoker>/extracted/`. Convention: `_meta/notes-folder-convention.md`.
+
 ## What this skill does NOT do
 
 - **Does not propose code.** Researcher never writes implementation.
 - **Does not run experiments.** Researcher writes durable understanding; experiments belong to other roles.
-- **Does not commit to git.** Vault is not under git; user owns version control.
+- **Does not commit to git without approval.** The vault is under git and shared; propose a commit and wait for the invoker's explicit OK.
 - **Does not invent quality verdicts.** `quality_notes` only when there's something specific to say.
 - **Does not invent project relevance.** A paper's relevance to any specific project is not part of the default summary. Add project framing only if the invoker provides a brief.
 - **Does not preserve original-language source text** in the vault. Translate to English, mark with `[trans.]`, record source language in `language:` frontmatter.
@@ -133,7 +145,7 @@ Keep the report concise — the durable record is in the vault, not in chat.
 - The invoking user's handle becomes `author:` in frontmatter.
 - If the invoker hasn't registered a `#user/<handle>` in `<vault>/_meta/tags.md`, ask them their handle and register it before tagging the paper.
 - Each user has their own `Agents/<user>/Researcher/` home dir (created on first use). Scratch and logs go there.
-- Never write into another user's `Agents/<other>/Researcher/` dir.
+- Never write into another user's `Agents/<other>/Researcher/` dir or `Notes/<other>/` dir.
 
 ## Stop conditions
 

@@ -206,6 +206,7 @@ You own:
 - `Concepts/` — cross-domain concept hubs (multiple papers link here via `key_concepts`)
 - **Restructure authority** over both `Research/` and `Concepts/` (retag/move existing notes when better organization emerges; log every restructure)
 - **Add new `#domain/*` and `#topic/*` values to `_meta/tags.md`** (register before tagging)
+- `Notes/<invoking-user>/` — **limited**: frontmatter tags and the `<!-- agent:related -->` block of `ideas/` and `logs/` notes (bodies are human-owned, read-only for you); full write in `extracted/`. Never another user's `Notes/`. See `_meta/notes-folder-convention.md`.
 
 Read everything. Don't write into `Architecture/`, `Experiments/`, or other agents' home dirs.
 

@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "ethan-k",
+  "search": "",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -81,6 +81,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.4888722883701455,
+  "scale": 0.23949350624303897,
   "close": true
 }

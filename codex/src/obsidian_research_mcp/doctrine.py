@@ -8,7 +8,7 @@ The research-handle's *behavior* lives in the vault, not in this code:
 - `_meta/research-folder-convention.md`
 - `_templates/paper-summary.md`    — exact output structure
 - `_templates/concept-note.md`, `_templates/synthesis.md`
-- `_meta/skills/research/SKILL.md` + `workflows/*.md` — the four modes
+- `_meta/skills/research/SKILL.md` + `workflows/*.md` — the five modes
 
 Loading these at session start is what guarantees ChatGPT produces the *same*
 summaries as Claude. If the vault updates its doctrine, this server picks it up
@@ -35,6 +35,8 @@ DOCTRINE_FILES: list[tuple[str, str]] = [
     ("Workflow: batch", "_meta/skills/research/workflows/batch.md"),
     ("Workflow: literature scan", "_meta/skills/research/workflows/literature-scan.md"),
     ("Workflow: connection pass", "_meta/skills/research/workflows/connection-pass.md"),
+    ("Workflow: personal notes", "_meta/skills/research/workflows/personal-notes.md"),
+    ("Notes folder convention", "_meta/notes-folder-convention.md"),
 ]
 
 _TAGS_CAP = 12_000  # tags.md is large; cap to keep the prompt lean

@@ -45,7 +45,7 @@ Math/
 │   ├── agents/  (_common, lead, researcher, developer, experimenter, experimenter-b25, validator)
 │   └── skills/
 │       └── research/  (SKILL.md, INSTALL.md, workflows/*)  ← /research Claude Code skill
-├── _templates/  (paper-summary, concept-note, synthesis, code-review, experiment, component-doc, decision)
+├── _templates/  (paper-summary, concept-note, synthesis, code-review, experiment, component-doc, decision, personal-note)
 ├── Agents/
 │   ├── maumayma/    ← per-user subtree; each contributor gets their own
 │   │   ├── Lead/           (+ scratch/, test-output/, log.md, README.md)
@@ -66,6 +66,7 @@ Math/
 │           ├── Requirements/       ← Lead (ocr-tooling stub here)
 │           └── Math Validation/    ← Validator
 ├── Concepts/                ← Researcher (reusable concept hubs, cross-paper anchors)
+├── Notes/<handle>/          ← human-owned living notes: ideas/, logs/, extracted/ (see _meta/notes-folder-convention.md)
 ├── Research/                ← Researcher (with restructure authority)
 │   ├── Group theory/
 │   ├── Algorithm Cooperation/   ← (renamed from "Mixer Applications" — broader scope)

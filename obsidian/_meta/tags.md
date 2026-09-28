@@ -37,7 +37,7 @@ Optional but encouraged: `#project/*` (when the note belongs to a named project)
 - `#agent/exp-b25` — B(2,5) specialist Experimenter
 - `#agent/validator`
 - `#agent/math-expert` — math idea-generator / advisor (proposes mathematically-grounded ideas; NEVER certifies them — Validator alone gives math verdicts). Registered 2026-06-17.
-- `#agent/human` — written by a human directly, no AI involvement
+- `#agent/human` — written by a human directly, no AI involvement. Used for living notes in `Notes/<handle>/ideas|logs/` — human-owned; agents edit only their tags and fenced related block (see `_meta/notes-folder-convention.md`).
 
 If a note was AI-written but human-tasked, `#agent/*` records the AI role and `#user/*` records the human who owns it.
 
