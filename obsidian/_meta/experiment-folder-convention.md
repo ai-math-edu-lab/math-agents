@@ -60,7 +60,7 @@ tags: [agent/exp, user/<handle>, domain/group-theory, topic/burnside, topic/knut
 
 Inputs and artifacts the experiment consumes or produces. Subfolders/files as appropriate:
 
-- **Scripts**: location reference (link to `algo_mixing` repo path, e.g. `experiments/burnside/run.py`). **Do not copy scripts into the vault** — the source of truth is the repo. Vault links to repo paths.
+- **Scripts**: location reference (repo + path in the project's code repo, per its project profile, e.g. `<repo>:experiments/<exp>/run.py`). **Do not copy scripts into the vault** — the source of truth is the repo. Vault links to repo paths.
 - **Constants** (`constants.md`): a markdown table listing fixed parameters used across runs (problem size, alphabet, fixed seeds if any, bounded resources).
 - **Data used** (`data.md`): description of input data — where it lives (path), what it contains, summary statistics. If the data is a presentation (group theory) or a benchmark file (SAT), include or link the canonical reference.
 - **Logs**: link to log paths in the repo (`runs/<project>/<experiment>/<timestamp>/`). **Do not paste full logs into the vault.** Paste excerpts only when illustrating a specific finding.
@@ -80,7 +80,7 @@ Required: a results table with these minimum columns:
 - **Outcome**: short verdict (`completed`, `failed: rule explosion`, `proved 47/50 target words`, etc.).
 - **Wall-clock (ms)**: the script time. If multi-run, the median + range.
 - **Memory peak**: if measured.
-- **Validated by**: `kbmag_v1 standalone`, `GAP`, `proptest`, `none` (be honest).
+- **Validated by**: the independent tool/method used (name + version), or `none` (be honest).
 - **Notes**: one sentence pointing to what's interesting about this run.
 
 In addition to the table:
@@ -108,7 +108,7 @@ Each experiment type lives in its own subtree. Each subtree's `results/` contain
 ## What goes here vs in the repo
 
 - **In the vault**: methodology prose, validation arguments, results tables with verdicts, version-history narrative, links to repo paths and run timestamps.
-- **In the `algo_mixing` repo**: scripts, configs, raw output, log files. The repo is the source of truth for *what was run*; the vault is the source of truth for *what it meant*.
+- **In the project's code repo(s)** (named in the project profile): scripts, configs, raw output, log files. The repo is the source of truth for *what was run*; the vault is the source of truth for *what it meant*.
 
 Never copy raw scripts or large log files into the vault.
 
@@ -120,7 +120,7 @@ Every note in `Experiments/**` carries minimum (6-axis per [[tags]]):
 - `#user/<human-who-tasked-it>` (e.g. `#user/<handle>`)
 - `#domain/<broad-field>` (e.g. `#domain/group-theory`)
 - `#topic/<one+>` (substance test; e.g. `#topic/burnside`, `#topic/knuth-bendix`)
-- `#project/<mixer-subproject>` (e.g. `#project/b25`) — **required for experiments specifically** (experiments are intrinsically project-scoped, even though `#project/*` is optional in the general taxonomy)
+- `#project/<project>` (e.g. `#project/b25`) — **required for experiments specifically** (experiments are intrinsically project-scoped, even though `#project/*` is optional in the general taxonomy)
 - `#status/<lifecycle>` (e.g. `#status/validated`)
 
 Plus exactly **one** content-type tag matching the note's subdir role (see [[tags]] § Content type — Experiment-tree mapping):

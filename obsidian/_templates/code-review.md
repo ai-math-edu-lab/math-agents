@@ -14,13 +14,13 @@ tags: [agent/lead, user/<handle>, domain/<...>, topic/<one+>, status/<verdict>, 
 <git diff --stat>
 
 ## Data model / protocol verdict
-<sound / questionable / wrong — why. Check mixer protocol, pyo3 ABI, Python API stability.>
+<sound / questionable / wrong — why. Check the project profile's protected interfaces (protocols, ABIs, public APIs) for stability.>
 
 ## Tests verdict
 - Tests added: <yes/no — list>
 - Coverage: <complete / partial>
 - Re-run by Lead: <command, runtime, pass/fail>
-- Smoke test ran (`uv run python examples/sorting/run.py`): <yes/no>
+- Smoke test ran (the project profile's `smoke` check): <yes/no>
 
 ## Doctrine review
 - [P1] Data structure / protocol: <...>
@@ -35,7 +35,7 @@ tags: [agent/lead, user/<handle>, domain/<...>, topic/<one+>, status/<verdict>, 
 - <...>
 
 ## Userspace impact
-- Surfaces: <mixer protocol / pyo3 ABI / Python API / KBMAG format / none>
+- Surfaces: <protected interfaces touched, per project profile / dependency formats / none>
 - Breaking: <yes/no — accepted by human?>
 
 ## Scope leakage

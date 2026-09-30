@@ -1,6 +1,6 @@
 ---
 title: <component name>
-location: <repo path, e.g. mixer-core/src/scheduler/mod.rs OR experiments/burnside/>
+location: <repo>:<path>
 domain: <group-theory | ai | cs | methodology>
 hot_path: false                    # true if on mission.md's hot-paths list
 status: production                 # production | paper | deprecated | draft
@@ -11,7 +11,7 @@ invariants:
   - id: kebab-case-id
     summary: "One-sentence statement of the invariant"
     why: "What bug it prevents, what failure it encodes, or what design constraint it satisfies"
-related: [mixer-core, scheduler]   # bare names of other Components/ notes
+related: [<component-a>, <component-b>]   # bare names of other component notes
 tests:
   unit: <path or "none">
   integration: <path or "none — argued in `[[<review>]]`">

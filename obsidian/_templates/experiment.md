@@ -16,18 +16,20 @@ tags: [agent/exp, user/<handle>, domain/<...>, topic/<one+>, project/<subproject
 - Problems: <e.g. "B(4,3) with presentation X, B(5,3) with presentation Y, sorting random arrays of size N">
 - Sizes / instances: <list>
 
-### mixer Agents involved
-- <list with module path + version/commit>
+### Project profile
+- `[[project-<name>]]` — plus any extra pre-registration fields it requires (listed in its § Experiment template fields)
 
-### Scheduler config
-- Type: <threshold / periodic / composite>
-- Params: <full param dict>
+### Components / algorithms under test
+- <each implementation: repo path + version/commit/build hash>
+
+### Configuration
+- <full parameter dict; for orchestration approaches include policy/scheduler type and params>
 
 ### Termination criteria
 - <e.g. "first agent reports is_complete", "timeout 600s", "iteration count 10^6">
 
 ### Baselines (mandatory)
-- Single-algo run for each `mixer Agent` involved, same seeds, same problems.
+- <each component run alone, or the documented reference method — same seeds, same problems>
 
 ### Seeds
 - <list, n≥5 for quantitative claims>
@@ -47,15 +49,25 @@ tags: [agent/exp, user/<handle>, domain/<...>, topic/<one+>, project/<subproject
 - Cross-verification plan (for math claims): <how>
 
 ## Setup
-- Runner: `experiments/<...>/run.py`
-- Command: `<exact uv run command>`
-- Provenance triple: git SHA `<...>` + uv.lock hash `<...>` + mixer-core build hash `<...>`
+- Runner: `<repo>/experiments/<...>/run.py` (or tool / MCP service + job id)
+- Command: `<exact command, incl. timeout>`
+
+### Provenance record
+- Code SHA(s): `<repo>@<sha>` (dirty: yes/no)
+- Environment lock hash(es): `<lockfile or manifest> <hash>` for each
+- Dependencies exercised: `<dep>@<version/sha>` (+ patches applied)
+- Tool/binary versions: `<tool> <version/build hash>` for each
+- Project-specific fields: `<per profile's provenance_fields>`
+
+### Compute
+- Where: <local host / MCP service / cloud backend>
+- Resources: <CPU cores, RAM peak, GPU, wall-clock>
 
 ## Results — Baselines
 | Problem | Agent (single) | Seed | Metric | |
 |---|---|---|---|---|
 
-## Results — Mixed
+## Results — Treatment
 | Problem | Config | Seed | Metric | |
 |---|---|---|---|---|
 
@@ -67,7 +79,7 @@ tags: [agent/exp, user/<handle>, domain/<...>, topic/<one+>, project/<subproject
 - Conclusion: <...>
 
 ## Cross-verification (if applicable)
-- Method: <kbmag_v1 / hand calc / Sage>
+- Method: <independent tool from the dependency registry / hand calc>
 - Result: <matches / does not match>
 
 ## Final verdict
@@ -85,4 +97,4 @@ tags: [agent/exp, user/<handle>, domain/<...>, topic/<one+>, project/<subproject
 
 ## Output captures
 - Baseline runs: `[[<output-note>]]`
-- Mixed runs: `[[<output-note>]]`
+- Treatment runs: `[[<output-note>]]`

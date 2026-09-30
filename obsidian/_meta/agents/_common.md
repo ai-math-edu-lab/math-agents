@@ -1,14 +1,15 @@
 ---
 name: math-common
-description: Shared conventions for every agent on the Math (algo_mixing) canvas. Read first, every session.
+description: Shared conventions for every agent on the Math canvas. Architecture-neutral; project specifics come from project profiles. Read first, every session.
 ---
 
 # Common Conventions (all roles)
 
 ## Project context
 
-- **Vault root:** `/Users/maumayma/Documents/Obsidian/Math`
-- **Repo root:** `/Users/maumayma/Desktop/reps/algo_mixing`
+- **Vault root and code checkouts:** resolved from the human's own agent config (`## Math vault — local checkouts` in `~/.claude/CLAUDE.md` / `~/.codex/AGENTS.md`), per [[projects-and-dependencies-convention]] § Local checkouts. Never hardcode a machine path in a vault note.
+- **Active project:** every task brief from Lead names a **project profile** (`_meta/projects/project-<name>.md`). Read it, and the dependency notes it lists (`_meta/dependencies/`), before running or editing code. The profile supplies repos, build/test/run commands, the `runs/` layout, provenance fields, protected interfaces, hot paths and vault doc locations. No profile in the brief → ask Lead.
+- **Projects & dependencies convention:** [[projects-and-dependencies-convention]]
 - **Mission & invariants:** [[mission]]
 - **Tag taxonomy:** [[tags]]
 - **Canvas setup:** [[canvas-setup]]
@@ -41,17 +42,17 @@ Some kinds of "verification" tasks are actually experiment-shaped. Distinguishin
 
 Concrete examples for the B(2,5) program:
 - ✅ Verifying that the 7,245-char reduced word equals the 28,652-char input under the rules Experimenter-B25 documented — **verification**.
-- ✅ Running GAP's kbmag as a black-box oracle on a specific word-equality check — **verification**.
+- ✅ Running an established external tool (from the dependency registry) as a black-box oracle on a specific word-equality check — **verification**.
 - ❌ Attempting to prove a B(2,5) target word equals identity — **experiment** (this is the open research question of the entire B(2,5) program).
 - ❌ Searching for new (unknown) reductions, running beam search on a target — **experiment**.
-- ❌ Reimplementing GAP semantics in pure Python because GAP isn't installed (or believed not to be installed) — **brute-force tool substitution**, forbidden; escalate the install request instead.
+- ❌ Reimplementing an established tool's semantics yourself because it isn't installed (or is believed not to be installed) — **brute-force tool substitution**, forbidden; escalate the install request instead.
 
 If a routed task, when scoped honestly, would require solving an open research question, send it back to Lead with the boundary stated: "this is the experiment program's job, not mine."
 
 ## Terminology — "agent" is overloaded
 
-- **mixer Agent** (lowercase + qualifier) = a subprocess implementing the `mixer_core.Agent` protocol (an algorithm instance).
-- **AI agent** (default meaning) = an LLM agent on this canvas. **Six roles**: Lead, Researcher, Developer, Experimenter, Experimenter-B25, Validator.
+- **AI agent** (default meaning) = an LLM agent on this canvas. **Seven roles**: Lead, Researcher, Developer, Experimenter, Experimenter-B25, Validator, Math Expert.
+- **Algorithm process / component** = a program under test (a solver, a reducer, a search process). Some projects have their own name for it (defined in the project profile); use the project's qualified term, never bare "agent".
 
 When in doubt, qualify.
 
@@ -69,6 +70,7 @@ When messaging a peer via `maestri ask "<Name>" "..."`:
 ```
 TYPE: <REQUEST | REPORT | QUESTION | BLOCKER | VERDICT>
 TOPIC: <one line>
+PROJECT: <[[project-<name>]] — mandatory on any REQUEST that involves code, runs or experiments>
 CONTEXT: <wikilink>
 ASK: <what you need, or "FYI">
 DEADLINE: <none | needed by <event>>
@@ -103,7 +105,7 @@ See [[tags]] for the full 6-axis taxonomy. Tag minimum per note: one `#agent/*` 
 - **Your home dir is `Agents/<your-user>/<your-role>/`** where `<your-user>` is the human handle who owns this canvas session (typically `maumayma`, but the vault is multi-user — other contributors get their own `Agents/<their-handle>/` subtree). That is the *only* directory you write to in `Agents/`. **Never touch another user's `Agents/<other-user>/` subtree, and never touch another role's dir within your own user subtree** — not their `log.md`, not their scratch, nothing. If you have something for them, send via `maestri ask`; they own deciding whether to log it.
 - **Path qualification with obsidian-cli is mandatory.** When using `obsidian append/edit/create`, pass the **full vault-relative path** (e.g. `Agents/maumayma/Experimenter/log.md`), not just `log` — multiple `log.md` files exist and name-resolution will pick the wrong one. Read the result back to confirm.
 - **Researcher has restructure authority** over `Research/` and `Concepts/`: may retag/move any note in those subtrees when a better organization emerges. Must log every restructure in `Agents/<owning-user>/Researcher/log.md` with before/after. This authority is unique to Researcher. Other agents only touch their own home dirs.
-- **Validator may add tests** to the codebase (`mixer-core/tests/proptest_*.rs`, `tests/property_*.py`) and write proof sketches to `Architecture/Mixer/Documentation/Math Validation/`. Doesn't touch other Architecture areas.
+- **Validator may add tests** to the project codebase (test paths named in the project profile) and write proof sketches to the profile's `vault_docs.math_validation` folder. Doesn't touch other Architecture areas.
 - Keep your `log.md` append-only.
 - Templates in `_templates/`. Use them.
 - Wikilinks > paths.
@@ -120,10 +122,10 @@ Architecture / Components / Experiments / Research / Concepts notes serve **two 
 - **Body is the human layer.** Pure narrative — **What it is**, **Why it exists**, **How it fits**, **Critical invariants — why each one exists**, **Public surface** (plain English), **Hot path?**, **Tests**, **Related**, **Recent changes**.
 - **No `TypeName (file:line)` lists in body.** That goes in frontmatter `public_api`.
 - **Why-paragraphs mandatory for invariants.** Bare invariant statements without rationale teach nothing.
-- **Upstream code (mixer-core/CLAUDE.md, KBMAG docs) is canonical for full API surface.** Vault links to it; doesn't duplicate.
-- **`kbmag_source/` is pristine upstream — never edit/move/delete — WITH ONE EXCEPTION (Maria, 2026-06-23):** the local biased-agents patch inside `kbmag_source/standalone/lib/` (the biasing C code in `kbfns.c` — `consider_special`, `special_rws_reduce`, the injection path, k-gram machinery) is an ACCEPTED local modification, not upstream. Fixes to *that biasing patch* are allowed via branch + regression test (fail-before/pass-after) + Lead review + Maria's commit gate. Everything else under `kbmag_source/` stays bytewise pristine; `kbmag_v1/` is the editable working copy for non-biasing needs.
+- **Upstream code and docs (a repo's own `CLAUDE.md`/`README.md`, library manuals) are canonical for the full API surface.** The vault links to them and doesn't duplicate them.
+- **External dependencies are never edited in place.** Each dependency note (`_meta/dependencies/`) states its `ownership` (we-own / upstream-pristine / upstream-with-accepted-patch) and any accepted local patch. For example, [[dep-kbmag]] records the one accepted biasing patch in `kbmag_source/`. Everything a dependency note marks pristine stays bytewise pristine.
 
-Dashboards built with **Obsidian Bases** (`.base` files) in `Architecture/Mixer/Bases/`. Bases queries frontmatter for filtered/sorted views.
+Dashboards are built with **Obsidian Bases** (`.base` files) in the project's docs folder (`Architecture/<Project>/Bases/`). Bases queries frontmatter for filtered/sorted views.
 
 ### Templates following K3
 - [[component-doc]], [[experiment]], [[paper-summary]], [[concept-note]], [[synthesis]], [[decision]], [[code-review]]
@@ -149,7 +151,7 @@ Other agents respect these labels. If you find a claim tagged `#status/disproven
   commands with `rtk` (`rtk git status`, `rtk ls <path>`, `rtk grep -rn ...`) for
   60-90% fewer tokens on the same result. Check it exists once per session
   (`command -v rtk`); if missing, just run commands normally, don't block on it.
-  **Never wrap GAP/Sage/Python computation or your own scripts in `rtk`** — it's
+  **Never wrap mathematical computation (CAS sessions, solvers, your own scripts) in `rtk`** — it's
   for file/repo inspection only; mathematical output must reach you verbatim and
   complete. Known edges: `rtk find` rejects compound predicates (`-not`, `-exec`)
   and mishandles paths with spaces (e.g. `Research/Group theory/...`) — use plain
@@ -159,7 +161,7 @@ Other agents respect these labels. If you find a claim tagged `#status/disproven
 
 ## Git safety
 
-- Vault NEVER committed to git. No `git init` in `/Users/maumayma/Documents/Obsidian/`.
+- Agents never commit the vault and never run `git init` inside it (vault commits are a human decision).
 - Only Lead commits. Others never run `git commit`, `git push`, `git rebase`, `git config`.
 - Working branches: `feat/<topic>`, `fix/<topic>`, `chore/<topic>`. Never `main` directly.
 - Forbidden: `git push --force`, `git reset --hard` on shared branches, `--no-verify`, `git config --global`.
@@ -168,14 +170,15 @@ Other agents respect these labels. If you find a claim tagged `#status/disproven
 
 **MAXIMUM 4 heavy compute processes running in parallel, TOTAL, ACROSS ALL AGENTS — not per agent.**
 
-- "Heavy compute process" = any long-running solver/search/algebra process: `braid_reduce`, `kbprog`,
-  `gap`, `nq`, beam search, RL training, `cent_enum`, or any equivalent CPU-bound run.
+- "Heavy compute process" = any long-running solver/search/algebra/training process: every name in the
+  active project profile's and its dependency notes' `heavy_processes` lists, plus any search, training or
+  equivalent CPU-, RAM- or GPU-bound run not listed there.
 - The cap is **4 in total, shared across the whole canvas** — Lead, every Experimenter, Developer,
   Validator combined. Not 4 each. If 4 are already running anywhere, you may NOT start a 5th — wait,
   or coordinate via Lead to free a slot.
-- **Before launching any heavy process, CHECK first:** `pgrep -fl 'braid_reduce|kbprog|gap|nq|cent_enum'`
-  (and any other heavy binary) to count what is ALREADY running across all agents. If the count is ≥ 4,
-  do not launch. This is mandatory — the canvas has overrun to 20+ parallel `braid_reduce` at once
+- **Before launching any heavy process, CHECK first:** `pgrep -fl '<heavy_processes joined with |>'`
+  (plus any other heavy binary) to count what is ALREADY running across all agents. If the count is ≥ 4,
+  do not launch. This is mandatory — the canvas has overrun to 20+ parallel heavy processes at once
   (2026-06-26), saturating the machine. That must never recur.
 - **Never spawn a batch of parallel runs.** Scoring/sweeping many items (e.g. reducing N fragments,
   beam-reducing K centralizer elements) must be done **sequentially within a single process**, or in a
@@ -188,31 +191,31 @@ Other agents respect these labels. If you find a claim tagged `#status/disproven
 
 ## Test discipline (mandatory)
 
-- New algorithm / mixer Agent → tests showing it runs end-to-end on a small problem.
+- New algorithm / component → tests showing it runs end-to-end on a small problem.
 - Bug fix → regression test that fails before / passes after.
-- mixer-core Rust changes → `cargo test -p mixer-core` + a Python smoke test (`uv run python examples/sorting/run.py` minimum).
-- New scheduler / transform → unit test + an experiment showing the expected behavior.
+- Any change → the active project profile's `test` command + `smoke` check, plus the rows of its **Test matrix** that apply.
+- New orchestration / policy component (scheduler, transform, search heuristic, …) → unit test + an experiment showing the expected behavior.
 - **Math layer changes** → Validator owns testing this layer. Developer ships behavior tests; Validator ships property/cross-verification tests.
 - "Not testable" must be argued explicitly to Lead.
 
 ## Reproducibility (specific to experiments)
 
-- Every experiment run produces output in **`runs/<project>/<experiment>/<timestamp>/`** (project-scoped to avoid clobber between Experimenters). **Never delete `runs/`** without explicit human approval.
-- Provenance triple = (git SHA, `uv.lock` hash, mixer-core build hash). Record in every experiment note.
+- Every experiment run produces output in the profile's `runs_dir` — by default **`runs/<project>/<experiment>/<timestamp>/`** in the project's code repo (project-scoped to avoid clobber between Experimenters). **Never delete `runs/`** without explicit human approval.
+- **Provenance record** = code SHA of each of our repos involved + environment lock hash(es) + version/SHA of every dependency exercised (with local patches) + tool/binary versions + where it ran. The project profile's `provenance_fields` may add more (e.g. the mixer-core build hash). Full definition: [[projects-and-dependencies-convention]] § Provenance record. Record it in every experiment note.
 - Random seeds: log them. If an experiment isn't deterministic, document the noise floor.
-- **Persist expensive corpus-independent artifacts.** Any costly artifact whose computation does NOT depend on the specific corpus/query — BFS/Cayley distance tables, `EpimorphismPGroup`/PcGroup builds, confluent rule banks, FSA tables — MUST be saved to `runs/<project>/<experiment>/<timestamp>/` with its provenance triple, so later runs (fresh-corpus re-tests, compound features, follow-ups) reuse it as a cheap lookup instead of recomputing. Rationale: a ~62-min `Q5 = B₀/γ₆` BFS (9.77M states) was discarded and would have been needlessly re-run just for a fresh-corpus validation (2026-06-29). Corpus-independent ≠ throwaway.
+- **Persist expensive corpus-independent artifacts.** Any costly artifact whose computation does NOT depend on the specific corpus/query — BFS/Cayley distance tables, `EpimorphismPGroup`/PcGroup builds, confluent rule banks, FSA tables — MUST be saved to `runs/<project>/<experiment>/<timestamp>/` with its provenance record, so later runs (fresh-corpus re-tests, compound features, follow-ups) reuse it as a cheap lookup instead of recomputing. Rationale: a ~62-min `Q5 = B₀/γ₆` BFS (9.77M states) was discarded and would have been needlessly re-run just for a fresh-corpus validation (2026-06-29). Corpus-independent ≠ throwaway.
 
 ## Done = verifiable
 
 - Claims of "faster", "converges", "scales" → numbers, not adjectives.
-- Cross-verification when claiming a math result: GAP/Sage for group theory (GAP is the canonical tool; kbmag is a GAP package and also the name of standalone `kbprog` binaries in this repo — `kbmag_v1/` and `kbmag_source/` are both in active use for different code paths, see canvas-setup), property tests, hand proofs. **Validator owns this layer.**
+- Cross-verification when claiming a math result: an independent established tool chosen from the dependency registry by its `capabilities` (see [[validator]] § Choosing oracles), property tests, hand proofs. **Validator owns this layer.**
 - Unknown? Ask via Lead. Don't invent.
 
 ## Stop conditions
 
 Escalate to Lead (Lead escalates to the human as needed) when:
 
-- About to modify the mixer protocol (JSON-lines schema, pyo3 ABI) → escalate immediately, breaking change.
+- About to change any **protected interface** listed in the active project profile (e.g. a protocol, ABI, public API or on-disk format) → escalate immediately, breaking change.
 - About to add a dependency → human gate, no exceptions.
 - Tests fail unexpectedly for >20 min.
 - An experiment produces a result that contradicts a published theorem → triple-check, then surface to Validator first, then Lead.

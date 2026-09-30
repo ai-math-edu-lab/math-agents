@@ -4,7 +4,7 @@ This file is auto-loaded by Claude Code in any session inside this repo. It tell
 
 ## What this is
 
-This repo contains the **Math** Obsidian vault — a shared multi-user, multi-domain research wiki for the algorithmic-mixing research circle and adjacent fields (group theory, AI, CS, methodology). The vault lives at `obsidian/`. The repo root holds colleague-onboarding files only.
+This repo contains the **Math** Obsidian vault — a shared multi-user, multi-domain research wiki for a computational-mathematics research circle and adjacent fields (group theory, AI, CS, methodology). The vault lives at `obsidian/`. The repo root holds colleague-onboarding files only.
 
 ## Vault location
 
@@ -85,7 +85,7 @@ If you're operating on the vault and a change feels commit-worthy, ASK the human
     ├── _meta/           ← doctrine: taxonomy, agent prompts, conventions, /research skill
     ├── _templates/      ← paper-summary, concept-note, synthesis, etc.
     ├── Agents/<handle>/ ← per-user agent home dirs
-    ├── Architecture/Mixer/
+    ├── Architecture/<Project>/  ← code docs per codebase (currently Mixer/)
     ├── Concepts/  Experiments/  Notes/  People/  Research/
     └── .obsidian/
 ```
@@ -93,12 +93,13 @@ If you're operating on the vault and a change feels commit-worthy, ASK the human
 ## Two ways to use this repo
 
 1. **`/research` skill** (most contributors): just ingest papers. Setup once, then `/research <url>` per paper. The skill handles everything.
-2. **Maestri canvas with 6 persistent agents** (Maria + Mixer codebase work): a heavier workflow for implementation, experiments, math validation, code review, and the commit ritual. Documented at `obsidian/_meta/canvas-setup.md`. You probably don't need this.
+2. **Maestri canvas with 7 persistent agents** (project work): a heavier workflow for implementation, experiments, math validation, code review, and the commit ritual. Roles are tool- and architecture-neutral; per-project repos, tools and commands live in `obsidian/_meta/projects/` and external code/tools in `obsidian/_meta/dependencies/`. Documented at `obsidian/_meta/canvas-setup.md`. You probably don't need this.
 
 ## Where to look first
 
 - **For doctrine questions**: `obsidian/_meta/` (mission, tags, conventions, agent prompts)
-- **For templates**: `obsidian/_templates/` (paper-summary, concept-note, synthesis, experiment, code-review, component-doc, decision, personal-note)
+- **For templates**: `obsidian/_templates/` (paper-summary, concept-note, synthesis, experiment, code-review, component-doc, decision, personal-note, project-profile, dependency-note)
+- **For project profiles and the dependency registry** (repos, commands, provenance, protected interfaces): `obsidian/_meta/projects/`, `obsidian/_meta/dependencies/`, convention at `obsidian/_meta/projects-and-dependencies-convention.md`
 - **For the `/research` skill internals**: `obsidian/_meta/skills/research/{SKILL.md,INSTALL.md,workflows/}`
 - **For the Maestri agents' role prompts**: `obsidian/_meta/agents/`
 - **For existing content**: `obsidian/Research/`, `obsidian/Concepts/`, `obsidian/Experiments/`

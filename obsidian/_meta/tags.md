@@ -191,13 +191,13 @@ Most paper notes won't have a project tag. Add `#project/*` only when the note i
 **Multi-project tagging — allowed with soft cap of 2.** A note may carry more than one `#project/*` tag when it genuinely contributes to multiple named workstreams (substance test applies — every project tag must answer "would I want this note to surface when querying that project?"). Soft cap is 2; if you find yourself adding a third, you're probably topic-tagging — use `#topic/*` instead.
 
 Currently registered:
-- `#project/mixer-core` — general framework engineering (not specific to any one math problem)
+- `#project/mixer-core` — Mixer framework engineering (not specific to any one math problem). Profile: [[project-mixer-core]]
 - `#project/b25` — B(2,5), the flagship hard problem
 - `#project/b43` — B(4,3)
 - `#project/b53` — B(5,3)
 - `#project/b29` — B(2,9) finiteness program. Registered 2026-08-11 on Maria's stage-2 GO (active deliverables: pq-tower experiment + runs/b29/, stage-1 synthesis, W1/W2 workstreams). Stage-1 notes predating registration carry `#topic/b29` only; new project-scoped notes carry both.
 
-Add new `#project/*` tags as new projects start. Discuss in `_meta/canvas-setup.md` before adding to keep them stable.
+Add new `#project/*` tags as new projects start. Each registered project should have a **project profile** at `_meta/projects/project-<name>.md` (repos, commands, provenance fields, protected interfaces), per [[projects-and-dependencies-convention]]. Discuss in `_meta/canvas-setup.md` before adding to keep them stable.
 
 ---
 
@@ -241,11 +241,11 @@ The experiment as a whole is identified by the umbrella `#experiment` tag on the
 
 ### Paper-evaluation frontmatter (optional, on `#paper` notes)
 
-- `relevance: 1|2|3` — Researcher's judgement of relevance to the active algo_mixing program. 1 = high (paper directly informs current experiments / methodology), 2 = medium, 3 = low. **Optional** — omit if unscored. Justification goes in `quality_notes:` body field (or expanded in the body's "Why this paper matters" section). Scoring rubric source: the originating synthesis note (e.g. `Research/Group theory/Open problems/_overview.md` for the open-problems batch). Queryable from Bases for ranking / filtering.
+- `relevance: 1|2|3` — Researcher's judgement of relevance to the active research program. 1 = high (paper directly informs current experiments / methodology), 2 = medium, 3 = low. **Optional** — omit if unscored. Justification goes in `quality_notes:` body field (or expanded in the body's "Why this paper matters" section). Scoring rubric source: the originating synthesis note (e.g. `Research/Group theory/Open problems/_overview.md` for the open-problems batch). Queryable from Bases for ranking / filtering.
 
 ### Risk markers
 
-- `#risk/high` — touches Mixer protocol, Rust ABI, on-disk format, or a math claim that other work depends on
+- `#risk/high` — touches a protected interface (protocol, ABI, public API — see the project profile), an on-disk format, or a math claim that other work depends on
 - `#risk/breaking` — proposes a userspace break
 - `#risk/unknown` — author unsure of blast radius
 

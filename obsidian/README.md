@@ -4,13 +4,14 @@ tags: [meta]
 
 # Math vault — Multi-domain research wiki
 
-A shared knowledge base for the algorithmic-mixing research circle and adjacent research areas. Multi-user and multi-domain — currently centred on group theory (especially B(2,5)), with AI, CS, and methodology papers added by contributors. The `/research` skill ingests papers across any field; the Maestri-canvas agent team handles project-specific implementation, experiments, and math validation for the `algo_mixing` codebase.
+A shared knowledge base for a computational-mathematics research circle and adjacent research areas. Multi-user and multi-domain — currently centred on group theory (especially B(2,5)), with AI, CS, and methodology papers added by contributors. The `/research` skill ingests papers across any field; the Maestri-canvas agent team handles implementation, experiments, and math validation for whatever projects are active. The agents are tool- and architecture-neutral: each project's repos, tools and commands live in its profile (`_meta/projects/`), and external code and tools in the dependency registry (`_meta/dependencies/`).
 
 ## Start here
 
-- [[mission]] — what we're building, three-layer research program, terminology, engineering invariants
+- [[mission]] — what we're building, research program and active projects, terminology, engineering invariants
+- [[projects-and-dependencies-convention]] — project profiles, dependency registry, provenance, tool neutrality
 - [[tags]] — 6-axis tag taxonomy (multi-domain, multi-user, multi-topic, optional project)
-- [[canvas-setup]] — how to assemble the Maestri canvas (6 persistent agents + on-demand)
+- [[canvas-setup]] — how to assemble the Maestri canvas (7 persistent agents + on-demand)
 - [[experiment-folder-convention]] — how experiments are organized on disk
 - [[ocr-tooling|OCR tooling stub]] — `nuextract-cli` for image-only PDFs (not yet implemented)
 - `_meta/skills/research/INSTALL.md` — install the `/research` Claude Code skill for paper ingestion
@@ -18,18 +19,21 @@ A shared knowledge base for the algorithmic-mixing research circle and adjacent 
 ## Two ways to use this vault
 
 - **`/research` slash command in any Claude Code session.** Ingest one or many papers into the vault. Field-agnostic. No project ties by default. Powers the multi-user paper graph. See `_meta/skills/research/SKILL.md` + `_meta/skills/research/INSTALL.md`.
-- **Maestri canvas with 6 persistent agents.** For the algo_mixing project: implementation, experiments, math validation, code review, commit ritual. See [[canvas-setup]].
+- **Maestri canvas with 7 persistent agents.** For project work: implementation, experiments, math validation, code review, commit ritual. See [[canvas-setup]].
 
-## Agent roster (6 roles, Maestri canvas)
+## Agent roster (7 roles, Maestri canvas)
+
+Vault folders marked *(per profile)* come from the active project profile's `vault_docs`.
 
 | Role | Prompt | Owns in vault |
 |---|---|---|
-| [[lead]] | `_meta/agents/lead.md` | `Agents/<user>/Lead/`, `Architecture/Mixer/Documentation/Code Review/`, Overview, ADRs |
+| [[lead]] | `_meta/agents/lead.md` | `Agents/<user>/Lead/`, code reviews / overviews / ADRs *(per profile)*, `_meta/projects/`, `_meta/dependencies/` |
 | [[researcher]] | `_meta/agents/researcher.md` | `Agents/<user>/Researcher/`, `Research/`, `Concepts/` + **restructure authority** over both. Also powers the `/research` skill (universal, field-agnostic). |
-| [[developer]] | `_meta/agents/developer.md` | `Agents/<user>/Developer/`, `Architecture/Mixer/Components/` |
-| [[experimenter]] | `_meta/agents/experimenter.md` | `Agents/<user>/Experimenter/`, `Experiments/**` (except B25), `Architecture/Mixer/Pipelines/` |
+| [[developer]] | `_meta/agents/developer.md` | `Agents/<user>/Developer/`, component docs *(per profile)* |
+| [[experimenter]] | `_meta/agents/experimenter.md` | `Agents/<user>/Experimenter/`, `Experiments/**` (except B25) |
 | [[experimenter-b25]] | `_meta/agents/experimenter-b25.md` | `Agents/<user>/Experimenter-B25/`, `Experiments/Group Theory/Burnside Group/B25/**` (exclusive) |
-| [[validator]] | `_meta/agents/validator.md` | `Agents/<user>/Validator/`, `Architecture/Mixer/Documentation/Math Validation/`; **math verdicts override all peers** |
+| [[validator]] | `_meta/agents/validator.md` | `Agents/<user>/Validator/`, math-validation notes *(per profile)*; **math verdicts override all peers** |
+| [[math-expert]] | `_meta/agents/math-expert.md` | `Agents/<user>/MathExpert/`; proposes ideas, never certifies |
 | Shared | `_meta/agents/_common.md` | Read by all |
 
 ## Vault structure
@@ -47,18 +51,20 @@ Math/
 │       └── research/  (SKILL.md, INSTALL.md, workflows/*)  ← /research Claude Code skill
 ├── _templates/  (paper-summary, concept-note, synthesis, code-review, experiment, component-doc, decision, personal-note)
 ├── Agents/
+│   ├── agents/  projects/  dependencies/  skills/  scripts/
+├── Agents/
 │   ├── maumayma/    ← per-user subtree; each contributor gets their own
 │   │   ├── Lead/           (+ scratch/, test-output/, log.md, README.md)
 │   │   ├── Researcher/     (+ scratch/, log.md, README.md)
 │   │   ├── Developer/      (+ scratch/, test-output/, log.md, README.md)
 │   │   ├── Experimenter/   (+ scratch/, output/, log.md, README.md)
 │   │   ├── Experimenter-B25/ (+ scratch/, output/, log.md, README.md)
-│   │   └── Validator/      (+ scratch/, log.md, README.md)
+│   │   ├── Validator/      (+ scratch/, log.md, README.md)
+│   │   └── MathExpert/
 │   └── <colleague-handle>/  ← added when a colleague starts using Maestri canvas
-├── Architecture/
-│   └── Mixer/
-│       ├── Components/      ← Developer (KBMag, Rust Mixer subtrees)
-│       ├── Pipelines/       ← Experimenter
+├── Architecture/            ← code docs, one subtree per project/codebase (vault_docs in each profile)
+│   └── Mixer/               ← docs for the algo-mixer codebase (project-mixer-core, project-b25)
+│       ├── Components/      ← Developer (KBMag, Mixer Core subtrees)
 │       ├── Bases/           ← .base dashboards (Components, Experiments, Concepts, Papers)
 │       └── Documentation/
 │           ├── Code Review/        ← Lead
@@ -85,7 +91,7 @@ Math/
 ## How to use this vault
 
 - **Browse** by directory or follow wikilinks from [[mission]].
-- **Open a Base dashboard** at `Architecture/Mixer/Bases/` for filtered views:
+- **Open a Base dashboard** (currently at `Architecture/Mixer/Bases/`) for filtered views:
   - `Components.base` — all components, by domain / hot / status
   - `Experiments.base` — all experiments, by project / status / instance, Validator verdicts
   - `Concepts.base` — cross-domain methodology by domain / author / status
@@ -106,7 +112,7 @@ Math correctness verdicts (`#status/proven`, `#status/replicated`, `#status/conj
 
 ## Terminology reminder
 
-- **mixer Agent** = algorithm subprocess (the `mixer_core.Agent` ABC).
-- **AI agent** = LLM on this canvas (six roles above).
+- **AI agent** = LLM on this canvas (seven roles above).
+- **Component / algorithm process** = a program under test. Projects may define their own term in their profile (e.g. "mixer Agent" in the Mixer project).
 
 Don't conflate them.

@@ -50,7 +50,7 @@ Inside `obsidian/`:
 - **`Experiments/`** — pre-registered experiments
 - **`People/`** — contributor index (one page per handle)
 - **`Agents/<handle>/`** — per-user working dirs (private to each user)
-- **`Architecture/`** — Mixer code docs + Bases dashboards
+- **`Architecture/`** — code docs per project (currently Mixer) + Bases dashboards
 - **`_meta/`** — the doctrine: tag taxonomy (`tags.md`), conventions, agent
   prompts, and the research skill itself (`_meta/skills/research/`)
 - **`_templates/`** — paper-summary, concept-note, synthesis, …

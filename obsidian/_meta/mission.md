@@ -8,89 +8,79 @@ tags: [meta, mission]
 
 ## What this vault is
 
-**A multi-domain research wiki** for the algorithmic-mixing research circle. Contributors come from different fields (group theory, biology, SAT, Gröbner bases, AI, more) and share:
+**A multi-domain research wiki** for a computational-mathematics research circle that grew out of various computational experiments. Contributors come from different fields (group theory, biology, SAT, Gröbner bases, AI, more) and share:
 
-1. **The `algo_mixing` codebase** — the Mixer framework + per-domain experiments.
-2. **This Obsidian vault** — durable knowledge across all those domains, organized for both humans and AI agents.
+1. **Code**: several repos and libraries. These include our experiments/algorithms repo(s), a tools repo (reusable experimental tools, including MCP compute services for heavy runs), and external libraries and tools. Each is registered in `_meta/dependencies/`.
+2. **This Obsidian vault**: durable knowledge across all those domains, organized for both humans and AI agents.
 
-Repo: `/Users/maumayma/Desktop/reps/algo_mixing`
-Stack: **Python 3.14+** (orchestration, agent subprocesses) + **Rust** (mixer-core engine, pyo3 bindings, maturin build). `uv` for Python.
+The AI roles are **architecture-neutral**. A workstream's repos, commands, protected interfaces and provenance fields live in its **project profile** (`_meta/projects/`), not in the role prompts. See [[projects-and-dependencies-convention]].
 
-## The Mixer research program — three layers
+## The research program
 
-### Layer 1 — General Mixer framework
-The **Algo Mixer** runs multiple algorithms on the same problem and shares intermediate results between them. Generalizes the TimSort insight (merge sort + insertion sort cooperate) to **arbitrary algorithm combinations with configurable sharing policies**.
+The circle attacks hard problems in mathematics (currently mostly combinatorial group theory, especially Burnside groups) and methodology questions in computational mathematics. It does this through **pre-registered computational experiments** and **independently verified results**.
 
-Research questions at the framework layer:
-- Does mixing accelerate convergence in general?
-- What scheduling policies (threshold vs periodic vs adaptive) help most, for which algorithm pairs?
-- Can mixing produce qualitative behavior no single algorithm exhibits (basin-hopping, escape from local optima)?
-- What's the cost model? When does coordination overhead exceed cooperation benefit?
+**No algorithm, architecture, language or tool is privileged.** Each workstream is a **project** with its own profile (`_meta/projects/project-<name>.md`), and the approach is chosen for that project on evidence. It might be a CAS computation, a rewriting system, search, learning, a portfolio of cooperating algorithms, or something nobody here has used yet. Tools that one project built can be reused standalone by any other project, through the dependency registry (`_meta/dependencies/`).
 
-### Layer 2 — B(2,5) flagship hard problem
-**B(2,5)** — the free Burnside group on 2 generators of exponent 5 — is our hardest open problem and the workload that drives framework evolution. A dedicated **`Experimenter-B25`** agent obsesses over it: knows the literature deeply, runs modified Mixer code with B(2,5)-specific tweaks (custom schedulers, custom transforms tuned for word-problem search), tracks progress in a standing note.
+### Active projects
+Profiles hold the details. The `#project/*` tags are listed in [[tags]] § Axis 6.
+- **B(2,5)**, the free Burnside group on two generators of exponent 5. It is the hardest open problem here and has a dedicated specialist, **Experimenter-B25**. Profile: [[project-b25]].
+- **Mixer framework**: cooperating algorithm processes that share intermediate results. Profile: [[project-mixer-core]].
+- **Other Burnside instances** (B(4,3), B(5,3), B(2,9)). They don't have profiles yet; Lead writes each one when the project is next tasked.
+- **New projects** start by Lead writing a profile. They don't have to use any existing project's code.
 
-If a feature exists in the Mixer that helps B(2,5), B(2,5) usually finds it first.
-
-### Layer 3 — Cross-domain Mixer applications
-The Mixer's value scales with the number of domains it fits. **Researcher** scans literature across many domains looking for Mixer-shaped problems. When a candidate looks viable, a per-domain **Experimenter** spawns to stress-test the framework on that domain. Confirmed candidates so far: Gröbner bases, SAT solvers, biology (protein folding sampling, sequence analysis).
-
-Cross-domain work both validates the framework and exposes gaps in it.
+### Cross-domain work
+**Researcher** scans literature across domains (group theory, Gröbner bases, SAT, biology, AI, …) for problems and techniques worth testing. When a candidate looks viable, Lead opens a project for it with its own profile, and a per-domain **Experimenter** runs it. Cross-domain work both validates techniques and exposes their limits.
 
 ## Terminology disambiguation
 
 The word **"agent"** is overloaded:
 
-- **`algo_mixer.Agent`** — a *subprocess* implementing the mixer protocol (an algorithm instance: a sorter, a KB engine, a SAT solver). Code-level concept.
-- **AI agent** — an LLM on the Maestri canvas (Lead, Researcher, Developer, Experimenter, Experimenter-B25, Validator). Six roles.
+- **AI agent**: an LLM on the Maestri canvas (Lead, Researcher, Developer, Experimenter, Experimenter-B25, Validator, Math Expert). Seven roles.
+- **Algorithm process / component**: a program under test (a solver, a rewriting engine, a search process, a model). Projects may define their own term in their profile.
 
-Throughout this vault, **"agent" with no qualifier means the AI agent on the canvas**. When referring to the code-level concept, write **`mixer Agent`** or **algorithm subprocess**.
+Throughout this vault, **"agent" with no qualifier means the AI agent on the canvas**. When referring to the code-level concept, write **component**, **algorithm process**, or the project's qualified term.
 
 ## Engineering invariants
 
-- **`uv sync` must succeed** on a clean clone. If a change breaks `uv sync`, that's a regression.
-- **`uv run python examples/sorting/run.py` must pass** as the smoke test.
-- **mixer-core Rust ABI**: don't break the pyo3 bindings without a Lead-approved migration plan.
-- **JSON-lines protocol** between mixer and `mixer Agents` (subprocesses): backwards-compatible additions OK, breaking changes are userspace breaks.
+- **Every repo builds from a clean clone** with its documented build command, and its **smoke test passes**. Both are listed in the project profile. Breaking either is a regression.
+- **Protected interfaces** listed in a project profile or dependency note (protocols, ABIs, public APIs, on-disk formats): backwards-compatible additions are OK; breaking changes are userspace breaks and need a Lead-approved migration plan plus the human's approval.
+- **Dependencies are pinned in code** (lockfiles/manifests) and registered in the vault. External code is never edited in place.
 
 ## What "good" looks like
 
 Across all three layers:
 
 - **Pre-registered** experiments with falsifiable hypotheses and termination criteria, *before* runs.
-- **Provenance triple** on every `runs/` output (git SHA + `uv.lock` hash + experiment script version).
-- **Single-algorithm baselines** for every cooperation-gain claim. No baseline → no claim.
-- **n ≥ 5 seeds** for any quantitative claim about cooperation gain.
-- **Independent verification** of math results: GAP/Sage for symbolic, kbmag_v1 standalone for KBMag comparisons, property tests for code that implements math, hand proofs where rigor is needed. **Validator owns this layer.**
+- **Provenance record** on every `runs/` output: code SHA(s), lock hash(es), versions of every dependency and tool exercised, and where it ran. See [[projects-and-dependencies-convention]].
+- **Baselines** for every improvement claim (each component alone, or the reference method). No baseline, no claim.
+- **n ≥ 5 seeds** for any quantitative claim.
+- **Independent verification** of math results, via a tool path different from the one that produced the result: established tools chosen from the dependency registry, property tests for code that implements math, and hand proofs where rigor is needed. **Validator owns this layer.**
 
-## Hot paths
+## Hot paths and compute
 
-CPU-bound, latency-sensitive parts of mixer-core:
-- `mixer-core/src/` Rust engine (Knuth-Bendix runners can run for hours; constant factors matter)
-- Transport layer (stdin/stdout JSON-lines + file I/O for KBMAG)
-- Scheduler tick loop (`mixer-core/src/scheduler/`)
-
-Not hot (clean readable code wins): Python orchestration, experiment harnesses, analytics, one-shot scripts.
+- Each project profile lists its hot paths: solver inner loops that run for hours, per-tick orchestration, serialization on every transfer, GPU kernels. On those, constant factors matter. Not hot (clean readable code wins): orchestration, experiment harnesses, analytics, one-shot scripts.
+- **Compute is shared and finite.** Heavy runs obey the global cap in [[_common]] § Compute budget. The direction of travel is to move long, memory-hungry or GPU runs behind **MCP compute services** (local or cloud) that enforce the cap and stamp provenance, and to keep the shell for small runs and development.
 
 ## Roles on the canvas
 
-Six AI agents. [[lead|Lead]] is your interface and the only agent that commits code. See `_meta/agents/` for each role's prompt and `_meta/canvas-setup.md` for canvas assembly.
+Seven AI agents. [[lead|Lead]] is your interface and the only agent that commits code. See `_meta/agents/` for each role's prompt and `_meta/canvas-setup.md` for canvas assembly.
 
 - **[[lead|Lead Dev]]** — orchestrator, validator (code quality), only agent that commits code.
 - **[[researcher|Researcher]]** — literature scan across domains, paper summaries, OCR of old papers (via `nuextract-cli` when image-only), restructure-authority over `Research/` and `Concepts/`.
-- **[[developer|Developer]]** — Python + Rust + frameworks. Knows pyo3, async, performance tools. Ships mixer-core changes, mixer Agents, schedulers, transforms.
+- **[[developer|Developer]]**: implementation in whatever stack a project uses, with framework and performance expertise. Ships algorithms, harnesses, library integrations and reusable experimental tools (including MCP compute services) in whatever repo the project profile names.
 - **[[experimenter|Experimenter]]** — general experimenter for non-B(2,5) work and cross-domain explorations. Owns autoresearch.
 - **[[experimenter-b25|Experimenter-B25]]** — B(2,5) specialist. Standing focus. Owns `Experiments/Group Theory/Burnside Group/B25/**`.
+- **[[math-expert|Math Expert]]**: idea-generator and advisor. It proposes mathematically grounded ideas and never certifies them.
 - **[[validator|Validator]]** — independent math oracle. Proves theorems, catches math bugs (like the abelianization bug), writes property tests and proof sketches. Verdict on math correctness overrides everyone except the human.
 
 ## Decision-making
 
 The **human** is the final authority on:
 - Research direction
-- Algorithm choices (which mixer Agents to combine)
+- Algorithm / approach choices
 - Commits to `main`
 - Dependency additions
-- Public API / mixer protocol / on-disk-format changes
+- Changes to public APIs, protected interfaces or on-disk formats
 
 **Lead Dev** is the final authority on:
 - Code quality (`MERGE` / `NEEDS WORK` / `REJECT`)
@@ -105,7 +95,7 @@ The **human** is the final authority on:
 This vault is shared. Norms:
 
 - **Every note carries `#user/<handle>` + `author: <handle>`** (the human who owns it, even if AI-written). See [[tags]].
-- **`#domain/*` and `#project/*` are orthogonal**: a single note can be `#domain/group-theory + #project/b25` (group-theory note about B(2,5) Mixer work) or `#domain/group-theory + #project/none` (general group-theory knowledge unrelated to any Mixer subproject).
-- **Cross-domain shared knowledge lives in `Concepts/`**: methodology, scheduler theory, reusable patterns. Don't duplicate it into each domain.
+- **`#domain/*` and `#project/*` are orthogonal**: a single note can be `#domain/group-theory + #project/b25` (group-theory note about B(2,5) project work), or `#domain/group-theory` with no project tag (general group-theory knowledge unrelated to any project).
+- **Cross-domain shared knowledge lives in `Concepts/`**: methodology, cooperation/scheduling theory, reusable patterns. Don't duplicate it into each domain.
 - **People** get a `People/<handle>.md` note: who they are, what they work on, key contributions. The wiki has a human index.
 - **Researcher may retag/move any note in `Research/` or `Concepts/`** when a better organization emerges. Logs every restructure. This authority is unique to Researcher; other agents only touch their own home dirs.

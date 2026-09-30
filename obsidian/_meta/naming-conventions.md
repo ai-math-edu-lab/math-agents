@@ -73,6 +73,13 @@ These words are generic and ambiguous alone. Always prefix with a subject:
 
 ---
 
+## Project profiles and dependency notes
+
+- Project profiles: `_meta/projects/project-<project-tag>.md` (e.g. `project-b25.md`), with the name matching the `#project/*` value.
+- Dependency notes: `_meta/dependencies/dep-<name>.md` (e.g. `dep-kbmag.md`).
+
+The prefixes keep the names unique vault-wide, so `[[project-b25]]` never collides with a `b25` topic note. Details: [[projects-and-dependencies-convention]].
+
 ## Paper note filenames
 
 For paper summaries in `Research/`, use:

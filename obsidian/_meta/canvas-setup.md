@@ -2,33 +2,35 @@
 tags: [meta, canvas-setup]
 ---
 
-# Canvas Setup — Math (algo_mixing)
+# Canvas Setup — Math
 
-How to assemble the Maestri canvas for the Math / algo_mixing project. **Six persistent agents + on-demand spawns** for cross-domain experiments.
+How to assemble the Maestri canvas for the Math vault's research program. **Seven persistent agents + on-demand spawns** for cross-domain experiments. The roles are architecture-neutral: per-project repos, commands and conventions come from project profiles (`_meta/projects/`) and the dependency registry (`_meta/dependencies/`) — see [[projects-and-dependencies-convention]].
 
 ## Prerequisites (one-time)
 
 Plus this vault adds:
 - The `nuextract-cli` tool is **not yet installed**. Researcher knows to flag image-only PDFs to Lead until it exists. See [[ocr-tooling]].
-- GAP (`/opt/homebrew/bin/gap` 4.15.1) and the `kbmag` GAP package are installed. Sage is **NOT** installed; if Validator needs Sage-specific tooling beyond what GAP provides, file the install through Lead → human.
+- Tool state per machine is recorded in the dependency notes (e.g. [[dep-gap]]: GAP 4.15.1 + `kbmag` package on maumayma's machine; [[dep-sage]]: Sage **NOT** installed there); if Validator needs Sage-specific tooling beyond what GAP provides, file the install through Lead → human.
+- Each human records their local checkouts (vault, code repos) under `## Math vault — local checkouts` in their own `~/.claude/CLAUDE.md` / `~/.codex/AGENTS.md` — see [[projects-and-dependencies-convention]] § Local checkouts.
 - Note: agents must probe tool availability with `which <tool>` or equivalent before assuming a tool is missing. This vault's setup docs can drift.
 
 ## Step 1 — Create the canvas
 
 1. Open Maestri.
-2. New canvas → name it **`Math`** (or **`algo_mixing`** if you prefer the project name).
+2. New canvas → name it **`Math`**.
 3. Save.
 
-## Step 2 — Spawn six persistent agent terminals
+## Step 2 — Spawn seven persistent agent terminals
 
 For each:
 1. Name and assign role (matching the role prompt at `<vault>/_meta/agents/<role>.md`).
-2. Working directory: `/Users/maumayma/Desktop/reps/algo_mixing`.
+2. Working directory: the code workspace you use most (e.g. your checkout of the experiments repo). Agents switch repos per the project profile named in each brief.
 3. Start `claude` in the terminal.
 4. Model assignment:
    - **Lead** → Opus (reviewing across math + code + people needs the bigger model).
    - **Validator** → Sonnet (math claims require careful work but not opus-scale; upgrade if you see verdict quality slipping).
    - **Developer, Researcher, Experimenter, Experimenter-B25** → Sonnet.
+   - **Math Expert** → per its role file's `model:` (read-only tools, no Bash).
 
 Terminals:
 
@@ -36,10 +38,11 @@ Terminals:
 |---|---|---|
 | **Lead** | `math-lead` | Orchestrator + code-quality gate + commit ritual. Primary human interface. |
 | **Researcher** | `math-researcher` | Multi-domain literature. Restructure authority over `Research/` and `Concepts/`. |
-| **Developer** | `math-developer` | Rust + Python + framework/perf expertise. |
-| **Experimenter** | `math-experimenter` | General + cross-domain Mixer applications (everything except B(2,5)). |
+| **Developer** | `math-developer` | Implementation in each project's stack + framework/perf expertise. |
+| **Experimenter** | `math-experimenter` | General + cross-domain experiments (everything except B(2,5)). |
 | **Experimenter-B25** | `math-experimenter-b25` | B(2,5) specialist. Always on. Owns `Experiments/Group Theory/Burnside Group/B25/**`. |
 | **Validator** | `math-validator` | Independent math oracle. Math verdicts override all peers. |
+| **Math Expert** | `math-expert` | Idea-generator / advisor. Proposes, never certifies. |
 
 ## Step 3 — Load role prompts
 
@@ -51,47 +54,53 @@ For each role, create a Maestri Agent Role:
 - `math-experimenter` ← `<vault>/_meta/agents/experimenter.md`
 - `math-experimenter-b25` ← `<vault>/_meta/agents/experimenter-b25.md`
 - `math-validator` ← `<vault>/_meta/agents/validator.md`
+- `math-expert` ← `<vault>/_meta/agents/math-expert.md`
 
 Assign each role to the matching terminal.
 
 ### Approach B — Per-session paste
 On session start, tell each terminal:
 ```
-Read the role definition at /Users/maumayma/Documents/Obsidian/Math/_meta/agents/<role>.md. This is your operating doctrine — adhere to it strictly.
+Read the role definition at <vault>/_meta/agents/<role>.md. This is your operating doctrine — adhere to it strictly.
 ```
 
 ## Step 4 — Sticky note: project context
 
-Create a sticky note named **`math-context`** connected to **all six** terminals. Paste:
+Create a sticky note named **`math-context`** connected to **all seven** terminals. Paste:
 
 ```
-# Math (algo_mixing) canvas context
+# Math canvas context
 
-Vault: /Users/maumayma/Documents/Obsidian/Math
-Repo:  /Users/maumayma/Desktop/reps/algo_mixing
+Vault: <your vault path>
+Local checkouts: see `## Math vault — local checkouts` in your ~/.claude/CLAUDE.md
 Branch: main (working: feat/* fix/* chore/*)
 
 Read on session start (your role + shared):
-- Role: /Users/maumayma/Documents/Obsidian/Math/_meta/agents/<role>.md
-- Shared: /Users/maumayma/Documents/Obsidian/Math/_meta/agents/_common.md
-- Mission: /Users/maumayma/Documents/Obsidian/Math/_meta/mission.md
-- Tags: /Users/maumayma/Documents/Obsidian/Math/_meta/tags.md (6-axis taxonomy)
-- Experiment convention: /Users/maumayma/Documents/Obsidian/Math/_meta/experiment-folder-convention.md
-- Repo README: /Users/maumayma/Desktop/reps/algo_mixing/README.md  ← extensive, read it
+- Role: <vault>/_meta/agents/<role>.md
+- Shared: <vault>/_meta/agents/_common.md
+- Mission: <vault>/_meta/mission.md
+- Tags: <vault>/_meta/tags.md (6-axis taxonomy)
+- Experiment convention: <vault>/_meta/experiment-folder-convention.md
+- Projects & dependencies: <vault>/_meta/projects-and-dependencies-convention.md
 
-Terminology: "agent" without qualifier = AI agent (you, one of six). "mixer Agent" = algorithm subprocess. Don't conflate.
+Per task: Lead's brief names a project profile (<vault>/_meta/projects/project-<name>.md). Read it + the
+dependency notes it lists + that repo's README before touching code.
 
-Six AI agents on canvas:
+Terminology: "agent" without qualifier = AI agent (you, one of seven). Algorithm processes are "components"
+(or the project's qualified term, from its profile). Don't conflate.
+
+Seven AI agents on canvas:
 - Lead (orchestrator + code review + commit)
 - Researcher (multi-domain literature + restructure authority)
-- Developer (Rust + Python + framework + perf)
+- Developer (implementation in the project's stack + framework + perf)
 - Experimenter (everything except B(2,5))
 - Experimenter-B25 (B(2,5) specialist, exclusive owner of that subtree)
 - Validator (math oracle; verdicts override all peers except human)
+- Math Expert (idea-generator / advisor; proposes, never certifies)
 
 Topology: hub-and-spoke through Lead. Exception: Validator's #status/disproven verdict overrides immediately without Lead routing.
 
-Commit policy: ONLY Lead commits, ONLY after explicit per-action human approval (commit, push, dep add, mixer protocol change, on-disk format change, math-touching code requires Validator verdict too).
+Commit policy: ONLY Lead commits, ONLY after explicit per-action human approval (commit, push, dep add, protected-interface change, on-disk format change, math-touching code requires Validator verdict too).
 
 Maestri CLI:
 - maestri list
@@ -104,7 +113,8 @@ Maestri CLI:
 
 Multi-Experimenter and Validator-as-oracle benefit from direct lines. Wire as a full mesh:
 
-- Lead ↔ each of the other five
+- Lead ↔ each of the other six
+- Math Expert ↔ Researcher, Validator (literature grounding; soundness checks of proposed ideas)
 - Researcher ↔ each Experimenter (Researcher feeds them syntheses)
 - Researcher ↔ Validator (literature checks during verification)
 - Researcher ↔ Developer (read-only Q&A on framework grounding)
@@ -118,7 +128,7 @@ Behavioral rules (in prompts) keep work-changing requests through Lead. Direct l
 
 ## Step 6 — On-demand terminals
 
-When Researcher identifies a viable new cross-domain Mixer application, spawn a per-domain Experimenter:
+When Researcher identifies a viable new cross-domain application, spawn a per-domain Experimenter (Lead writes a project profile for the new domain first):
 
 - Name: `Experimenter-<domain>` (e.g. `Experimenter-Grobner`, `Experimenter-Biology`).
 - Role: use `math-experimenter` (the general role) — the per-domain focus comes from the brief Lead gives them.
@@ -126,15 +136,15 @@ When Researcher identifies a viable new cross-domain Mixer application, spawn a 
 - Connect to Lead, Researcher, Validator (mesh).
 - Shut down when the cross-domain exploration concludes (validated / rejected / paused).
 
-These are temporary terminals. The persistent six handle the long-lived workflows.
+These are temporary terminals. The persistent seven handle the long-lived workflows.
 
 ## Step 7 — Per-user Agents dir
 
-The `Agents/` tree is **per-user** to keep colleagues from colliding on log files. Before first canvas use, ensure `Agents/<your-handle>/` exists with the six role subdirs:
+The `Agents/` tree is **per-user** to keep colleagues from colliding on log files. Before first canvas use, ensure `Agents/<your-handle>/` exists with the seven role subdirs:
 
 ```bash
-cd /Users/maumayma/Documents/Obsidian/Math/Agents
-mkdir -p <your-handle>/{Lead,Researcher,Developer,Experimenter,Experimenter-B25,Validator}
+cd <vault>/Agents
+mkdir -p <your-handle>/{Lead,Researcher,Developer,Experimenter,Experimenter-B25,Validator,MathExpert}
 # Each role dir gets its own log.md, scratch/, etc. as the agent uses them.
 ```
 
@@ -142,7 +152,7 @@ Maria's tree is at `Agents/maumayma/`. Each colleague gets their own subtree whe
 
 ## Step 8 — Verify
 
-In each terminal: `maestri list` should show 5 peers + the `math-context` note (plus on-demand terminals when present).
+In each terminal: `maestri list` should show 6 peers + the `math-context` note (plus on-demand terminals when present).
 
 Then: *"Cold-start handshake."* Each terminal should respond with a single short message naming its role, listing peers, and saying it's standing by. **No other action.** If it tries to write logs, do experiments, or send unsolicited messages, the role prompt didn't load — re-paste.
 
@@ -150,10 +160,11 @@ Then: *"Cold-start handshake."* Each terminal should respond with a single short
 
 Your primary terminal is **Lead**. Talk to Lead in natural language:
 
-- *"Ask Researcher to scan recent literature on Buchberger's algorithm with cooperation — looking for a Mixer fit in Gröbner."*
-- *"Developer should add a `ShortlexAgent` mixer Agent for Burnside KB. Tests required, Validator will review the math layer."*
+- *"Ask Researcher to scan recent literature on Buchberger's algorithm with cooperation — looking for an approach that fits Gröbner."*
+- *"Start a new project for <problem>; have Researcher survey candidate approaches and tools first, then write the profile."*
+- *"Developer should implement <component> for project <name>. Tests required, Validator will review the math layer."*
 - *"Experimenter-B25, what's in `_progress.md` right now? Next experiment shortlist?"*
-- *"Ask Validator to verify claim X from yesterday's experiment with GAP."*
+- *"Ask Validator to verify claim X from yesterday's experiment with an independent oracle."*
 
 Lead delegates, gates, and pings you when a decision is needed.
 
@@ -161,8 +172,8 @@ Lead delegates, gates, and pings you when a decision is needed.
 
 Both vaults' Write/Edit allow rules in `~/.claude/settings.json`:
 ```
-"Write(/Users/maumayma/Documents/Obsidian/Math/**)"
-"Edit(/Users/maumayma/Documents/Obsidian/Math/**)"
+"Write(<vault>/**)"
+"Edit(<vault>/**)"
 ```
 Plus `additionalDirectories` includes the Math vault. Restart any active Claude Code session if you change settings.
 
