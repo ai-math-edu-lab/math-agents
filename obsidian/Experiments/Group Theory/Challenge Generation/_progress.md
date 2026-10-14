@@ -91,6 +91,11 @@ The non-empty file turned out **not** to be 2.5-reduced; the reduced file is the
 
 Datasets are now registered per [[datasets-convention]] (template `dataset-note`, tag `#dataset`, notes in `Datasets/`, files in the repo's `data/`).
 
+### 2026-10-14: T-001 hardness harness and baselines (local runs)
+Harness (L0 re-expansion, loop-erased F*, ρ screen/certify, level classification) built on b25 branch `12-hardness-harness`; results in [[hardness-baselines-results]]. Random standard-relator factor words (7,000, L = 2, 3, 3–60 factors): all 7,000 reduce to the empty word under 2.5 reduction (L1 = 0; 95% upper bound 0.043%), D ≤ 0.21. The 820 words: 818 are fixed points, 2 reduce to empty (ρ is not invariant under letter relabelling or inversion). Commutator-product control survives (ρ ≈ 0.89). No remote runs needed. Math statements pending Validator.
+
+Decision (owner, 2026-10-14, T-001): any hardness claim uses ρ_min16, the minimum of |R₂.₅| over the 16 letter-relabel/inversion images; screening may use the generated word only, all 16 on finalists. See [[challenge-gen-success-metrics]] § Owner decision 2026-10-14 and the `--min16` option of the harness. Also T-001: D computed by the harness equals the C++ `DehnFunctionScorer` on 7,000/7,000 random words (raw and on F\*).
+
 ## Related material
 - [[ds-b25-trivial-2-5reduced-aut8-20261007]]: first registered challenge-gen dataset
 - [[project-challenge-gen]]: project profile

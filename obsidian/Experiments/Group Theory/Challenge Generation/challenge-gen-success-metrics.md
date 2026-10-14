@@ -71,6 +71,12 @@ Guidance for using it sparingly:
 - **Good challenge:** D(w) ≥ 1 on F*, i.e. at least as many factors as letters.
 - **Great success:** quadratic growth, |F*| ≍ c·n². This is a property of a **family** across lengths n, not of a single word. Fit the exponent α in |F*| ∝ n^α over Metric-1-passing words at several n; α ≈ 2 is the target. A single word only has a ratio.
 
+## Owner decision 2026-10-14: representative convention for ρ (T-001)
+
+Source: the T-001 baselines ([[hardness-baselines-results]]). The heuristic reducer is rotation-invariant but **not invariant under letter relabelling or inversion**: for 2 of the 820 words of [[ds-b25-trivial-2-5reduced-aut8-20261007]], 13 of 16 and 15 of 16 images (8 letter automorphisms × inversion) reduce to the empty word, while the stored strings were fixed points of the parent form. Validator: the words are trivial in free B(2,5) (proven).
+
+**Decision.** Any hardness claim uses ρ_min16 = min over the 16 images of |R₂.₅(image)| / |w̄|. Screening may use the generated word only; all 16 images are computed on finalists. The definitions above are unchanged; this fixes which representative a reported ρ refers to. Implementation: `--min16` in `experiments/challenge_gen/hardness/run_baselines.py` (b25 branch `12-hardness-harness`), record fields `min16_lens`, `min16_len`, `rho_min16`; the level classification uses ρ_min16 when the flag is set.
+
 ## Success levels
 
 | Level | Criterion | Meaning |

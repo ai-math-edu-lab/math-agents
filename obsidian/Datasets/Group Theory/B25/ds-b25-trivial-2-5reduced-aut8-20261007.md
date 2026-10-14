@@ -57,11 +57,11 @@ vetting:
 stats: {min_len: 32, max_len: 123, mean_len: 71.2, median_len: 67}
 used_by: []
 supersedes: ""
-superseded_by: ""
+superseded_by: "ds-b25-trivial-2-5reduced-aut8-20261014"
 author: asetlearning
-status: validated
+status: superseded
 validated_by: "asetlearning (owner), 2026-10-07"
-tags: [agent/exp, user/asetlearning, domain/group-theory, topic/burnside, topic/b25, topic/trivial-words, topic/word-problem, project/challenge-gen, project/b25, status/validated, dataset]
+tags: [agent/exp, user/asetlearning, domain/group-theory, topic/burnside, topic/b25, topic/trivial-words, topic/word-problem, project/challenge-gen, project/b25, status/superseded, dataset]
 ---
 
 # B(2,5) trivial words — 2.5-reduced, unique (820)
@@ -69,7 +69,7 @@ tags: [agent/exp, user/asetlearning, domain/group-theory, topic/burnside, topic/
 > [!info] Plain English
 > 820 words in a, b and their inverses, each **proved to equal the identity in the free Burnside group B(2,5)**. None can be shortened by the standard 2.5-power rewriting, and no two are the same word up to rotation, inversion, or swapping/inverting the letters. Use them as hard target words for B(2,5) challenge generation and benchmarking. The proof is a Knuth–Bendix rewriting run that takes seconds to reproduce; no per-word derivation is stored.
 
-**Status: validated by the owner (asetlearning), 2026-10-07.**
+**Status: superseded 2026-10-14 by [[ds-b25-trivial-2-5reduced-aut8-20261014]]** (T-012): the claim "fixed point of the reducer" is false for lines 14 and 15 as stored. The file and its sha256 are unchanged. Originally validated by the owner (asetlearning), 2026-10-07.
 
 ## What it is
 - **Data file:** one cyclic word per line, lengths 32–123 (mean 71.2, median 67), sorted by length and then lexicographically. Each line is the canonical representative of its class. Example (line 1): `AABAABabaabAAbaabaBAABAABabaabaB`.
