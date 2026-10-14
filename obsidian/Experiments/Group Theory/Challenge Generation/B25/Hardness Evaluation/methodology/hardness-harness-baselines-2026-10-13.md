@@ -13,6 +13,8 @@ tags: [agent/exp, user/asetlearning, domain/group-theory, topic/burnside, topic/
 
 # Hardness harness and baselines — pre-registration (T-001)
 
+> **Terms.** Project terms are defined once in [[challenge-gen-glossary]] (ρ_min16, screen/certify, aut8 / 16 images, loop erasure, fixed point, pre-check, relator table, controls, cell names, G1/G2 and others); this note links rather than restates them.
+
 > **Phase 1 only.** Written 2026-10-13, before any run beyond reading code. No harness code exists yet. Nothing longer than a smoke test runs until Lead approves this note. TODO item: **T-001** ([[todo-challenge-gen]]). Profile: [[project-challenge-gen]]. Metric definitions: [[challenge-gen-success-metrics]] (not repeated here). Generator context: [[patternboost-generation-methodology]], [[patternboost-generation-results]].
 
 ## What this experiment type is

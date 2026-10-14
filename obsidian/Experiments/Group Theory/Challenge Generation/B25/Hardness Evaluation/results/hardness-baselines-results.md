@@ -13,6 +13,8 @@ tags: [agent/exp, user/asetlearning, domain/group-theory, topic/burnside, topic/
 
 # Hardness harness and baselines — results (T-001)
 
+> **Terms.** Project terms are defined once in [[challenge-gen-glossary]] (ρ_min16, screen/certify, aut8 / 16 images, loop erasure, fixed point, pre-check, relator table, controls, cell names, G1/G2 and others); this note links rather than restates them.
+
 Pre-registration: [[hardness-harness-baselines-2026-10-13]]. Project: [[project-challenge-gen]]. Metric definitions: [[challenge-gen-success-metrics]]. Run directory: `~/Research/challenge-gen/runs/hardness-t001-20261013-r2/` (all local, no rjob job). Status: **validated for the engineering claims**; the math statements below are routed to Validator and stay `#status/conjectured` until a verdict. Group: **free B(2,5)** unless stated.
 
 ## Provenance

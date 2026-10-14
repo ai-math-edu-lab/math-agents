@@ -26,11 +26,20 @@ For each:
 1. Name and assign role (matching the role prompt at `<vault>/_meta/agents/<role>.md`).
 2. Working directory: the code workspace you use most (e.g. your checkout of the experiments repo). Agents switch repos per the project profile named in each brief.
 3. Start `claude` in the terminal.
-4. Model assignment:
-   - **Lead** → Opus (reviewing across math + code + people needs the bigger model).
-   - **Validator** → Sonnet (math claims require careful work but not opus-scale; upgrade if you see verdict quality slipping).
-   - **Developer, Researcher, Experimenter, Experimenter-B25** → Sonnet.
-   - **Math Expert** → per its role file's `model:` (read-only tools, no Bash).
+4. Model assignment (owner, 2026-10-15). The advisor is Claude Code's `advisorModel` setting, a stronger reviewer the agent consults before and after substantive work.
+
+   | Terminal | Model | Advisor |
+   |---|---|---|
+   | **Lead** | Opus 5.5 (`claude-opus-5-5`) | Fable |
+   | **Experimenter**, **Experimenter-B25** | Opus 5.5 | Fable |
+   | **Validator** | Opus 5.5 | Fable |
+   | **Developer** | Sonnet 5.5 (`claude-sonnet-5-5`) | Fable |
+   | **Researcher** | Sonnet 5.5 | none |
+   | **Math Expert** | Fable (`fable`) | default |
+
+   **How to apply.** Claude Code reads project settings from the **git root**, not from the folder a terminal starts in, so a settings file in a role folder is ignored unless passed explicitly. Maestri starts each role's terminal in its role folder `<repo>/.maestri/roles/<role-id>/` (gitignored; `role.json` there names the role). Put the role's settings in `.claude/settings.local.json` in that folder, e.g. `{ "model": "claude-opus-5-5", "advisorModel": "fable" }` (no advisor: `"advisorModel": ""`; `null` is rejected), and start the agent with `claude --settings .claude/settings.local.json`. Lead's file is `<repo>/.maestri/lead/settings.json` (`claude --settings .maestri/lead/settings.json` from the repo root). **Do not** put a `settings.local.json` in `<repo>/.claude/`: every agent inherits it.
+   - **Restart** (to apply): `/exit`, then `claude --settings <file>` for a fresh session; the agent re-orients from the vault. `claude --continue` keeps the conversation but also keeps the old session's **model** (the advisor does follow the file).
+   - **Don't** fix a running agent's model with `/model`: it also overwrites `"model"` in the user-wide `~/.claude/settings.json`. Likewise `/advisor off` changes the user-wide advisor. Check with `/status`.
 
 Terminals:
 
@@ -133,7 +142,7 @@ When Researcher identifies a viable new cross-domain application, spawn a per-do
 
 - Name: `Experimenter-<domain>` (e.g. `Experimenter-Grobner`, `Experimenter-Biology`, `Experimenter-ChallengeGen` for [[project-challenge-gen]]).
 - Role: use `math-experimenter` (the general role) — the per-domain focus comes from the brief Lead gives them.
-- Working dir + model: same as the general Experimenter.
+- Working dir + model + advisor: same as the general Experimenter (Opus 5.5, Fable advisor).
 - Connect to Lead, Researcher, Validator (mesh).
 - Shut down when the cross-domain exploration concludes (validated / rejected / paused).
 
