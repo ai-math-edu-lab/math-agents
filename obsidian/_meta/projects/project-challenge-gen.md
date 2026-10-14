@@ -31,8 +31,8 @@ hot_paths:
   - "edit-distance scorer — O(|w|·|c|) per challenge"
 vault_docs:
   components: TBD
-  code_reviews: TBD
-  math_validation: Architecture/Mixer/Documentation/Math Validation/   # shared location until the project has its own
+  code_reviews: Experiments/Group Theory/Challenge Generation/Code Review/
+  math_validation: Experiments/Group Theory/Challenge Generation/Math Validation/   # own folder since 2026-10-14 (was the shared Mixer folder)
   experiments: Experiments/Group Theory/Challenge Generation/
   progress: Experiments/Group Theory/Challenge Generation/_progress.md
   todo: Agents/<handle>/Lead/todo/todo-challenge-gen.md   # private, gitignored — [[project-todo-convention]]

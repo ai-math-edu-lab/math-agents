@@ -55,3 +55,11 @@ Suppose B(2,5) is finite of order K. Any K+1 consecutive prefixes of a word cont
 | extra: loop erasure in fixpoint | needed (witness) |
 | 2d incremental g update | validated |
 | 3 Dehn argument | validated, wording refined |
+
+## Sign-off review — PR #9 @ 728b350 (2026-10-14)
+Reviewed `hardness/minimise.py` (`_prefix_coordinates`, `peiffer_reduce`, `reduce_certificate`) and `t003/padding.py` against S1, S2, S4 and S5 (S3 deferred by the owner; TODO present).
+- **Math:** the g-form pair test (g_j = g_i⁻¹), the order (smallest i with a partner, its smallest j), the incremental update g_k ← g_i⁻¹ g_k g_i for i < k < j, and the loop erasure ↔ pair fixpoint all match the spec and the proofs above. Deleting gs[j] before gs[i] is correct.
+- **Tests:** `test_peiffer.py` and `test_hardness.py` give 28 passed (Python 3.12, from a `git archive` snapshot of 728b350). They include the S1 witness (8 → 6 → 3), T-001 case 132 (stays 9), and the S3 triple as a documented limit (stays 5).
+- **Independent fuzz (mine):** 1,000 inputs (planted pairs; pairs and proper-power triples scrambled by Peiffer moves) through the 728b350 code. w changed 0, N grew 0, pair left at the end 0, loop-erasable block left 0. The pair order differed from my reference 0 times, and the result was never worse than my reference fixpoint.
+- **Non-blocking:** `median_pairs_removed = (F_star − F_star_P)//2` mislabels removals once loop erasure inside the fixpoint can drop an odd number of factors (e.g. a contiguous triple). Rename it to factors removed, or report the raw difference.
+- **Verdict:** sign-off **yes** for the math.
