@@ -39,6 +39,7 @@ domain: group-theory
 - [[Research/Group theory/Tools/KBMAG/file-formats]] — The .kbprog format, ordering options, and kbprog flag reference.
 - [[Research/Group theory/Tools/GAP/examples/05-kbmag-package]] — Using KB via the GAP kbmag package (`KnuthBendix`, `IsConfluent`, `EnumerateReducedWords`). Useful when you want KB integrated with GAP's algebra tools.
 - [[package-kbmag]] — Full GAP kbmag package documentation: setup, all key functions, relationship to standalone kbprog.
+- [[_synthesis-proof-recording-kb-tools-2026-10-14]] — T-017 survey (2026-10-14): which tools record Knuth–Bendix proofs (logged rewriting, GAP `idrel`, KBCV, provers), why none fits B(2,5) scale, and the recommended `kbprog` fork patch.
 
 ---
 

@@ -54,6 +54,7 @@ This note is a brief overview. Full treatment (van Kampen diagrams, NP-hardness 
 
 ## Related material
 - [[myasnikov-ushakov-2011-random-van-kampen]]: depth, a filling function contrasted with area; random diagrams are hyperbolic
+- [[_synthesis-proof-recording-kb-tools-2026-10-14]]: area over infinite relator sets, finite groups have linear Dehn function (pigeonhole), and the Osin–Rybak Dehn spectrum of free Burnside groups
 
 - [[word-problem-overview]] — parent directory map for Word Problem subtree
 - [[_moc-word-problem]] — the word-problem MOC that surfaces this technique

@@ -169,6 +169,7 @@ Grow the list organically. Don't pre-register topics that don't exist yet.
 - `#topic/trivial-words` — words representing the identity in a finitely presented group, studied as objects: random sampling of trivial words, generating trivial words with controlled difficulty, criteria detecting triviality, learning to reduce trivial words (Dehn-function / area hardness). Distinct from `#topic/word-problem` (decision procedures in general).
 - `#topic/curriculum-learning` — training-distribution design for learners: curricula, unsupervised environment design, teacher/adversary-generated tasks at the frontier of the learner's ability. Tag when the generated task distribution is a primary contribution.
 - `#topic/proof-certificates` — machine-checkable evidence that accompanies a computed answer (explicit move sequences, derivations, witnesses) so that the claim can be verified cheaply and independently of the search that found it. Tag when producing or checking certificates is a substantive part of the paper.
+- `#topic/dehn-function` — Dehn (isoperimetric) functions and area: the minimum number of relator faces (van Kampen diagram cells) needed to show a word is trivial, as a function of word length; includes area over infinite relator sets and area-based filling invariants (Dehn spectrum). Substance test: the note states or uses a bound or computation of area/Dehn function, not just the word problem in general. Added 2026-10-14 by Researcher (T-017).
 
 ## Axis 5 — `#status/*` (lifecycle)
 

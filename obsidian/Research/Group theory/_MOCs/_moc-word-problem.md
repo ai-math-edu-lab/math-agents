@@ -98,6 +98,7 @@ domain: group-theory
 ## Syntheses
 
 - [[_synthesis-b25-beat-beam-search]] — focused synthesis (2026-07-21): KB ordering/rule levers plus NN-guided detour search for beating beam-search B(2,5) reduction; SILO-style self-imitation identified as the lowest-risk neural recipe.
+- [[_synthesis-proof-recording-kb-tools-2026-10-14]] — T-017 survey (2026-10-14): tools that record Knuth–Bendix proofs (factor words), recommendation to patch our kbprog fork; Dehn function of Burnside groups (Osin–Rybak linear Dehn spectrum; nothing for n = 5).
 
 ## Related MOCs
 
