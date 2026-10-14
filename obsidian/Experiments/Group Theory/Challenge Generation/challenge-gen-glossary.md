@@ -5,13 +5,13 @@ project: challenge-gen
 instance: B(2,5)
 status: draft
 author: asetlearning
-date: 2026-10-15
+date: 2026-10-14
 tags: [agent/exp, user/asetlearning, domain/group-theory, topic/burnside, topic/b25, topic/trivial-words, topic/hard-instance-generation, topic/proof-certificates, topic/word-problem, project/challenge-gen, status/draft, convention]
 ---
 
 # Challenge generation: glossary (B(2,5))
 
-> **One place for every project term** (profile rule 9, [[project-challenge-gen]]). Owner-defined metric terms get a one-line summary and a link only; the definition stays in [[challenge-gen-success-metrics]] and is not restated or changed here. Terms without another home are defined in full in Part B, precisely enough to implement. Group: **free B(2,5)** (letters a, A = a⁻¹, b, B = b⁻¹; in code 1, −1, 2, −2) unless a line says B₀(2,5). Written 2026-10-15 by the Experimenter from the T-001 and T-002 notes ([[hardness-baselines-results]], [[t002-dataset-relator-products-results]]).
+> **One place for every project term** (profile rule 9, [[project-challenge-gen]]). Owner-defined metric terms get a one-line summary and a link only; the definition stays in [[challenge-gen-success-metrics]] and is not restated or changed here. Terms without another home are defined in full in Part B, precisely enough to implement. Group: **free B(2,5)** (letters a, A = a⁻¹, b, B = b⁻¹; in code 1, −1, 2, −2) unless a line says B₀(2,5). Written 2026-10-14 by the Experimenter from the T-001 and T-002 notes ([[hardness-baselines-results]], [[t002-dataset-relator-products-results]]).
 
 Notation used in the definitions: |u| is word length, w̄ the freely reduced expansion of a certificate, n = |w̄|, R₂.₅(w) the 2.5-reduction of w. Dates are ISO.
 
@@ -21,9 +21,10 @@ Notation used in the definitions: |u| is word length, w̄ the freely reduced exp
 |---|---|---|---|
 | 2.5-power | A subword uᵠ of exponent q = (window length)/(period \|u\|) ≥ 2.5; the only thing the reducer rewrites | owner 2026-10-05; made exact in T-001 | [[#2.5-power and the reducer rewrite]] |
 | aut8 / 16 images | The 8 letter automorphisms of F(a,b) (generator swap × sign of each generator), times word inversion = 16 images of a word | owner decision 2026-10-14 (T-001); dataset name from 2026-10-07 | [[#aut8 and the 16 images]] |
-| canon | Shortlex-least string over the 16 images and all rotations of a cyclic word | T-002, 2026-10-15 | [[#canon (canonical class)]] |
-| cell | One (sampler setting × seed) group of words in a sampling grid; T-001: S1–S7, T-002: P·K·subset names | T-001 2026-10-13, T-002 2026-10-15 | [[#cell and cell names]] |
+| canon | Shortlex-least string over the 16 images and all rotations of a cyclic word | T-002, 2026-10-14 | [[#canon (canonical class)]] |
+| cell | One (sampler setting × seed) group of words in a sampling grid; T-001: S1–S7, T-002: P·K·subset names | T-001 2026-10-13, T-002 2026-10-14 | [[#cell and cell names]] |
 | certificate | Factor word F = list of (relator index, conjugator) pairs whose expansion is w̄ | owner 2026-10-05 | [[challenge-gen-success-metrics#Notation]] |
+| certified L1 finalist | A search output that the independent harness certifies as L0 and L1 under ρ_min16 (certify mode), as opposed to passing the search's own screen gate | T-003 prereg 2026-10-14 | [[#T-003 search terms]] |
 | certify mode | 2.5-reduction with all cyclic shifts; used for reported ρ and level | owner 2026-10-05 | [[#screen mode and certify mode]] |
 | conjugator | The word c in the factor c⁻¹ R c | PatternBoost design, 2026 | [[#factor, conjugator and relator index]] |
 | control (positive / negative) | A set whose metric value is known in advance, used to check the harness | T-001 2026-10-13 | [[#positive and negative control]] |
@@ -35,14 +36,17 @@ Notation used in the definitions: |u| is word length, w̄ the freely reduced exp
 | F* | Minimised certificate (loop-erased F) | owner 2026-10-05 | [[challenge-gen-success-metrics#Metric 2: Dehn-function proxy (theoretical difficulty)]] |
 | factor word | See certificate | owner 2026-10-05 | [[challenge-gen-success-metrics#Notation]] |
 | fixed point (of the reducer) | A word on which R₂.₅ returns the word itself up to rotation | T-001 2026-10-13 | [[#fixed point of the reducer]] |
-| G1, G2 | Novelty guards for L1 words; G2 is THE definition of novel (owner decision 2026-10-15); G1 (registered in T-002) is superseded, historical only | T-002 2026-10-15; adopted by owner decision 2026-10-15 | [[#novel L1 and the guards G1 and G2]] |
+| G1, G2 | Novelty guards for L1 words; G2 is THE definition of novel (owner decision 2026-10-14); G1 (registered in T-002) is superseded, historical only | T-002 2026-10-14; adopted by owner decision 2026-10-14 | [[#novel L1 and the guards G1 and G2]] |
+| gated D, objective variants A/B/C | Search scores on F*-based D: A = D if the L1 gate passes else 0; B = A × ρ_screen; C = A plus a hard floor on \|w\| | T-003 prereg 2026-10-14 | [[#T-003 search terms]] |
 | L0, L0-ext, L1, L2, L3 | Success levels | owner 2026-10-05 | [[challenge-gen-success-metrics#Success levels]]; L0-ext in [[#L0-ext]] |
-| L1 gate | The constraint every search candidate must pass: R₂.₅(w) ≠ 1 and ρ_min16(w) ≥ 0.5 (screen ρ on the pool, ρ_min16 on finalists) | owner 2026-10-15 | [[project-challenge-gen#The search problem (owner, 2026-10-15) — the crucial part]] |
+| L1 gate | The constraint every search candidate must pass: R₂.₅(w) ≠ 1 and ρ_min16(w) ≥ 0.5 (screen ρ on the pool, ρ_min16 on finalists) | owner 2026-10-14 | [[project-challenge-gen#The search problem (owner, 2026-10-14) — the crucial part]] |
+| L1 prefilter | Per-neighbour exact check inside the scorer, no reducer call: fails only if \|cyc(w)\|/\|w\| < min_rho; otherwise passes to the pool gate | T-003 prereg 2026-10-14 | [[#T-003 search terms]] |
 | loop erasure | Chronological deletion of freely cancelling blocks of F; gives F* | owner 2026-10-05, made exact in T-001 | [[#loop erasure]] |
-| move set | Local-search moves on F: replace a relator rᵢ, mutate a conjugator cᵢ, insert or delete a factor, reorder (swap adjacent factors) | owner 2026-10-15 | [[project-challenge-gen#The search problem (owner, 2026-10-15) — the crucial part]] |
+| move set | Local-search moves on F: replace a relator rᵢ, mutate a conjugator cᵢ, insert or delete a factor, reorder (swap adjacent factors) | owner 2026-10-14 | [[project-challenge-gen#The search problem (owner, 2026-10-14) — the crucial part]] |
 | n | \|w̄\|, length of the freely reduced expansion | owner 2026-10-05 | [[challenge-gen-success-metrics#Notation]] |
-| novel L1 | An L1 word whose reduced form is not just a relator (or a reduction of a single factor) | T-002 2026-10-15 | [[#novel L1 and the guards G1 and G2]] |
-| p (dataset share), n_dataset | Probability that a sampled factor is a dataset relator; the realised count is stored per word | T-002 2026-10-15 | [[#cell and cell names]] |
+| novel L1 | An L1 word whose reduced form is not just a relator (or a reduction of a single factor) | T-002 2026-10-14 | [[#novel L1 and the guards G1 and G2]] |
+| p (dataset share), n_dataset | Probability that a sampled factor is a dataset relator; the realised count is stored per word | T-002 2026-10-14 | [[#cell and cell names]] |
+| pool gate (workflow.l1_gate) | Screen-mode L1 gate applied to pool / top_k candidates after local search; failing words get gated_score | T-003 prereg 2026-10-14 | [[#T-003 search terms]] |
 | positive / negative control | See control | T-001 2026-10-13 | [[#positive and negative control]] |
 | power-free shortcut | Exact test: no power ≥ 2.5 in w̄ (linear) and in cyc(w̄) (cyclic) implies the reducer is a no-op | T-001 (no-square form), T-002 (exact form) | [[#pre-check: no square and power-free]] |
 | pre-check (no square) | No square in the cyclic word implies R₂.₅ = cyc(w̄) up to rotation | T-001 2026-10-13 | [[#pre-check: no square and power-free]] |
@@ -50,14 +54,15 @@ Notation used in the definitions: |u| is word length, w̄ the freely reduced exp
 | rotation-invariant | The reducer's result does not depend on the cyclic rotation of its input (but does on relabelling and inversion) | T-001 2026-10-14 | [[#aut8 and the 16 images]] |
 | R₂.₅ | `greedyReduceCyclicExhaustive(greedyReduce(w̄))` | owner 2026-10-05 | [[challenge-gen-success-metrics#Notation]] |
 | screen mode | 2.5-reduction with cyclic shifts {0, 0.5} only; cheap, may miss reductions | owner 2026-10-05 | [[#screen mode and certify mode]] |
-| search objective | Maximise D = N*/\|w\| (factors of the minimised certificate over freely reduced length) subject to the L1 gate | owner 2026-10-15 | [[project-challenge-gen#The search problem (owner, 2026-10-15) — the crucial part]] |
-| search parameters | What every search run must record: relator set R, N range, conjugator bound, word-length bounds, move set, search strategy, objective and gate | owner 2026-10-15 | [[project-challenge-gen#The search problem (owner, 2026-10-15) — the crucial part]] |
-| search space | Ordered sequences F = ((r₁,c₁),…,(r_N,c_N)), rᵢ a relator or its inverse, cᵢ a freely reduced conjugator, N variable; order matters (factors do not commute) | owner 2026-10-15 | [[project-challenge-gen#The search problem (owner, 2026-10-15) — the crucial part]] |
+| search objective | Maximise D = N*/\|w\| (factors of the minimised certificate over freely reduced length) subject to the L1 gate | owner 2026-10-14 | [[project-challenge-gen#The search problem (owner, 2026-10-14) — the crucial part]] |
+| search parameters | What every search run must record: relator set R, N range, conjugator bound, word-length bounds, move set, search strategy, objective and gate | owner 2026-10-14 | [[project-challenge-gen#The search problem (owner, 2026-10-14) — the crucial part]] |
+| search space | Ordered sequences F = ((r₁,c₁),…,(r_N,c_N)), rᵢ a relator or its inverse, cᵢ a freely reduced conjugator, N variable; order matters (factors do not commute) | owner 2026-10-14 | [[project-challenge-gen#The search problem (owner, 2026-10-14) — the crucial part]] |
+| seed pool | File of factor words (relator words + conjugators) placed in the initial PatternBoost pool; in T-003 the best T-002 L1 words by D | T-003 prereg 2026-10-14 | [[#T-003 search terms]] |
 | seeds, calibration seed | Sampler seeds reported per task, plus one unreported seed for timing | T-001, T-002 | [[#seeds and calibration seed]] |
 | short100, S1–S4 (T-002 strata), S1–S7 (T-001 cells) | Dataset subsets by length rank in T-002; the unrelated T-001 sampling cells | T-001, T-002 | [[#cell and cell names]] |
 | standard relators | All cyclically reduced v⁵ with \|v\| ≤ L, trivial in free B(2,5) by construction | PatternBoost design 2026 | [[#standard relators and dataset relators]] |
 | timeout | A reducer call exceeding the per-call wall-clock cap; recorded, never counted as pass or fail | T-001 2026-10-13 | [[#undecided, timeout]] |
-| undecided (`L0?`) | A word the harness did not classify (size limit or timeout) | T-002 2026-10-15 | [[#undecided, timeout]] |
+| undecided (`L0?`) | A word the harness did not classify (size limit or timeout) | T-002 2026-10-14 | [[#undecided, timeout]] |
 | w̄ | Freely reduced expansion of F | owner 2026-10-05 | [[challenge-gen-success-metrics#Notation]] |
 | ρ | \|R₂.₅(w)\|/\|w̄\| | owner 2026-10-05 | [[challenge-gen-success-metrics#Metric 1: resistance to 2.5 reduction (heuristic difficulty)]] |
 | ρ_cyc | \|R₂.₅(w)\|/\|cyc(w̄)\|, the rewrite effect alone | T-001 2026-10-13 | [[#rho_cyc and the cyclic reduction]] |
@@ -80,7 +85,7 @@ canon(w) = the lexicographically smallest string (shortest first, then alphabeti
 ### cell and cell names
 A **cell** is one sampler setting. Two unrelated naming schemes exist, so always cite the task:
 - **T-001 cells S1–S7** ([[hardness-harness-baselines-2026-10-13]]): random factor words over standard relators; S1–S3 use L = 2 (16 relators) with 3–8, 10–20, 30–60 factors; S4–S6 use L = 3 (44 relators) with the same factor ranges; S7 is L = 3, 10–20 factors, conjugator length up to 8. Conjugators are uniform in length 0..4 otherwise.
-- **T-002 cells** ([[t002-dataset-relator-products-2026-10-15]]): `P<pct>-K<k>-<subset>[-L2]`.
+- **T-002 cells** ([[t002-dataset-relator-products-2026-10-14]]): `P<pct>-K<k>-<subset>[-L2]`.
   - `P<pct>`: the **dataset share p** in percent; each factor is independently a dataset relator with probability p (a uniform word of the subset, word or inverse equally likely), otherwise a uniform standard relator. The realised number of dataset factors is stored per word as `n_dataset`.
   - `K<k>`: the number of factors (`K1`, `K2`, `K3-5`, `K6-10`, `K11-30`; a range means uniform in that range).
   - `<subset>`: `short100` = the 100 shortest dataset words (ranks 1–100 of the length-sorted file; lengths 32 to 55). **Strata S1–S4** (T-002) = dataset ranks 1–205, 206–410, 411–615, 616–820 (length quartiles).
@@ -105,9 +110,9 @@ The method used to compute F* from F. Track the freely reduced prefix words P_j 
 
 ### novel L1 and the guards G1 and G2
 A word that passes L1 only because a single relator survives is not an interesting challenge. A **novel** L1 word is an L1 word whose reduced form is not explained by one input relator.
-- **G1 (registered in T-002; superseded by G2 on 2026-10-15, kept only as a historical number).** Let R = the certify result of w. R is **non-novel** if canon(R) equals canon(r) for some relator r used in F (word or inverse); otherwise novel. **Flaw:** the reducer applies length-neutral rewrites (q = 2.5) and a greedy-first step on a non-cyclically-reduced word, so R of a one-factor word is often a different cyclic class than r. In the one-factor cell G1 called 91 of 285 L1 words novel.
-- **G2 (refined post hoc in T-002; ADOPTED by owner decision 2026-10-15 as the definition of "novel L1").** R is **non-novel** if canon(R) equals canon(r) for a used relator r, **or** canon(R) equals canon(R₂.₅(c⁻¹ r c)) for one of the single factors of F (the reducer's own output on one factor); otherwise novel. G2 gives 0 novel for one-factor words, as it must. Also recorded in the data: whether canon(R) matches *any* of the 820 words.
-- Both are in [[t002-dataset-relator-products-results]]; T-002 headline: 4,012 novel by G2, 4,335 by G1, of 5,221 L1 words. **Decision (owner, 2026-10-15): G2 is the definition of "novel L1" from now on.** Quote G1 only when comparing with the T-002 registered numbers.
+- **G1 (registered in T-002; superseded by G2 on 2026-10-14, kept only as a historical number).** Let R = the certify result of w. R is **non-novel** if canon(R) equals canon(r) for some relator r used in F (word or inverse); otherwise novel. **Flaw:** the reducer applies length-neutral rewrites (q = 2.5) and a greedy-first step on a non-cyclically-reduced word, so R of a one-factor word is often a different cyclic class than r. In the one-factor cell G1 called 91 of 285 L1 words novel.
+- **G2 (refined post hoc in T-002; ADOPTED by owner decision 2026-10-14 as the definition of "novel L1").** R is **non-novel** if canon(R) equals canon(r) for a used relator r, **or** canon(R) equals canon(R₂.₅(c⁻¹ r c)) for one of the single factors of F (the reducer's own output on one factor); otherwise novel. G2 gives 0 novel for one-factor words, as it must. Also recorded in the data: whether canon(R) matches *any* of the 820 words.
+- Both are in [[t002-dataset-relator-products-results]]; T-002 headline: 4,012 novel by G2, 4,335 by G1, of 5,221 L1 words. **Decision (owner, 2026-10-14): G2 is the definition of "novel L1" from now on.** Quote G1 only when comparing with the T-002 registered numbers.
 
 ### positive and negative control
 - **Positive control** for a metric: a set where the metric must come out at its extreme in the *passing* direction, so that a harness that never passes would show. T-001: the 820 dataset words (ρ ≈ 1, fixed points). T-002: the one-factor cell P100-K1-short100 (L1 rate ≥ 0.93).
@@ -151,11 +156,20 @@ Every task lists its sampler seeds up front: T-001 uses 1000001–1000005, T-002
 ### undecided, timeout
 A word is **undecided** (recorded `L0?`) if the harness did not classify it, e.g. n exceeds a configured limit (T-002: certify only if n ≤ 2000, ρ_min16 only if n ≤ 800 locally) or a reducer call exceeds its timeout (120 s). **Timeout**: the child reducer process is killed and restarted, the word is recorded as timed out. Undecided and timed-out words are listed in every table and never counted as L1 or as failures.
 
+### T-003 search terms
+Defined in [[t003-gated-dehn-search-2026-10-14]] (pre-registration, 2026-10-14); config names agreed with Developer 2026-10-14, final when the PRs land.
+- **Gated D.** For a candidate F with expansion w: score = D(F) = N*/|w| (`scoring.type: dehn_minimised`, F* by [[#loop erasure]]) if w passes the L1 gate, else `gated_score` (0). **Variant A** = gated D. **Variant B** = gated D × ρ_screen(w) (`workflow.l1_gate.multiply_rho: true`). **Variant C** = variant A, and words with |w| below a floor (100 in T-003) score 0 (`local_search.min_expanded_len`, `scoring.params.min_len`).
+- **L1 prefilter** (`scoring.params.l1_prefilter`). Per local-search neighbour, no reducer call. Since R₂.₅ only shortens and returns a cyclically reduced word, ρ ≤ |cyc(w)|/|w|; if that ratio is below `min_rho` the word fails exactly. Otherwise the result is undetermined and the word keeps its base score (if it is power-free it passes exactly, [[#pre-check: no square and power-free]]). Words containing a power ≥ 2.5 must not be counted as failing: 92% of T-002 L1 words contain one.
+- **Pool gate** (`workflow.l1_gate`). After each local search, and when the initial pool is truncated, candidates are screened in score order (screen mode on the generated word only, n ≤ `max_len`): R₂.₅(w) = empty or ρ_screen < `min_rho` gives `gated_score`. The search's own L1 is therefore a screen-mode, single-representative L1, weaker than the owner's ρ_min16.
+- **Certified L1 finalist.** A word from a run's final pool (or a logged gate-passed high-D word) that the independent harness certifies: L0 (re-expansion against the run's dumped relator table), L1 with [[#rho_min16]] in certify mode. Only certified finalists count in results.
+- **Seed pool.** A JSONL file of factor words, each factor given as (relator word, conjugator word) so it maps to any relator table that contains the words. Loaded into the initial pool next to `n_initial` sampler words, then truncated by gated score. T-003 uses the top T-002 L1 words by D.
+
 ## Related material
 - [[challenge-gen-success-metrics]]: owner definitions (certificate, ρ, D, levels) and the ρ_min16 decision
 - [[project-challenge-gen]]: project profile, rule 9
 - [[Challenge Generation/_progress]]: progress note
 - [[B25/Hardness Evaluation/_type|Hardness Evaluation]]: experiment type; type-local terms
 - [[B25/PatternBoost Generation/_type|PatternBoost Generation]]: experiment type; type-local terms
-- [[hardness-harness-baselines-2026-10-13]] · [[hardness-baselines-results]] · [[t002-dataset-relator-products-2026-10-15]] · [[t002-dataset-relator-products-results]]
+- [[hardness-harness-baselines-2026-10-13]] · [[hardness-baselines-results]] · [[t002-dataset-relator-products-2026-10-14]] · [[t002-dataset-relator-products-results]]
 - [[ds-b25-trivial-2-5reduced-aut8-20261014]]
+- [[t003-gated-dehn-search-2026-10-14]]

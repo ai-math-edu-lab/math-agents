@@ -16,7 +16,7 @@ Project profile: [[project-challenge-gen]]. Goal: generate **hard** problem inst
 
 ## Current question
 
-**Updated 2026-10-15 (owner):** the core task is now the search problem in [[project-challenge-gen#The search problem (owner, 2026-10-15) — the crucial part]]: maximise D = N*/|w| over ordered factor sequences (rᵢ, cᵢ) subject to the L1 gate (terms in [[challenge-gen-glossary]]).
+**Updated 2026-10-14 (owner):** the core task is now the search problem in [[project-challenge-gen#The search problem (owner, 2026-10-14) — the crucial part]]: maximise D = N*/|w| over ordered factor sequences (rᵢ, cᵢ) subject to the L1 gate (terms in [[challenge-gen-glossary]]).
 
 **Updated 2026-10-05:** Can we generate certified trivial words that pass L1 (2.5-reduction resistant), and then L2 (Dehn proxy ≥ 1)? The original question follows.
 
@@ -96,12 +96,15 @@ Datasets are now registered per [[datasets-convention]] (template `dataset-note`
 ### 2026-10-14: T-001 hardness harness and baselines (local runs)
 Harness (L0 re-expansion, loop-erased F*, ρ screen/certify, level classification) built on b25 branch `12-hardness-harness`; results in [[hardness-baselines-results]]. Random standard-relator factor words (7,000, L = 2, 3, 3–60 factors): all 7,000 reduce to the empty word under 2.5 reduction (L1 = 0; 95% upper bound 0.043%), D ≤ 0.21. The 820 words: 818 are fixed points, 2 reduce to empty (ρ is not invariant under letter relabelling or inversion). Commutator-product control survives (ρ ≈ 0.89). No remote runs needed. Math statements pending Validator.
 
-### 2026-10-15: T-002 products over the 820 relators (local runs)
+### 2026-10-14: T-002 products over the 820 relators (local runs)
 Random products of conjugates of the dataset words ([[ds-b25-trivial-2-5reduced-aut8-20261014]]), 7,550 words in 35 cells: 5,221 are L1 (free B(2,5), ρ_min16 ≥ 0.5), 4,012 novel by the refined guard, 0 are L2. Pure-dataset products with 3 or more factors are L1 in 99.7–100% of cases; D stays near 0.02 (max 0.20), so L2 is out of reach for random products. The registered novelty guard misclassified one-factor words (reducer length-neutral rewrites). Results: [[t002-dataset-relator-products-results]].
 
 Decision (owner, 2026-10-14, T-001): any hardness claim uses ρ_min16, the minimum of |R₂.₅| over the 16 letter-relabel/inversion images; screening may use the generated word only, all 16 on finalists. See [[challenge-gen-success-metrics]] § Owner decision 2026-10-14 and the `--min16` option of the harness. Also T-001: D computed by the harness equals the C++ `DehnFunctionScorer` on 7,000/7,000 random words (raw and on F\*).
 
-Decision (owner, 2026-10-15, T-002): novelty guard G2 is the definition of "novel L1" (R is not a conjugate class of a used relator, nor the reducer's output on a single factor c⁻¹rc). G1 is superseded and kept as a historical number. See [[t002-dataset-relator-products-results]] and [[challenge-gen-glossary#novel L1 and the guards G1 and G2]].
+Decision (owner, 2026-10-14, T-002): novelty guard G2 is the definition of "novel L1" (R is not a conjugate class of a used relator, nor the reducer's output on a single factor c⁻¹rc). G1 is superseded and kept as a historical number. See [[t002-dataset-relator-products-results]] and [[challenge-gen-glossary#novel L1 and the guards G1 and G2]].
+
+### 2026-10-14: T-003 pre-registered (not run)
+PatternBoost search over ordered (rᵢ, cᵢ) maximising D on F* under the L1 gate; relator sets R-D (820 dataset words) and R-M (plus 44 standard v⁵); objective variants A (gated D), B (× ρ_screen), C (+ length floor); seeded with T-002 L1 words; 21 remote runs in two stages, awaiting approval. [[t003-gated-dehn-search-2026-10-14]]
 
 ## Related material
 - [[ds-b25-trivial-2-5reduced-aut8-20261007]]: first registered challenge-gen dataset

@@ -1,9 +1,9 @@
 ---
-title: t002-dataset-relator-products-2026-10-15
+title: t002-dataset-relator-products-2026-10-14
 hypothesis: "Random products of conjugates of the 820 proved-trivial 2.5-reduced words (alone or mixed with standard 5th-power relators) are mostly L1: at least 90% of words in every pure-dataset cell with 2 to 30 factors survive 2.5 reduction with rho_min16 >= 0.5 and are novel (not a conjugate class of a single input relator), while D stays far below 1, so no word reaches L2."
 status: validated
 author: asetlearning
-date: 2026-10-15
+date: 2026-10-14
 todo: T-002
 project: challenge-gen
 instance: B(2,5)
@@ -15,7 +15,7 @@ tags: [agent/exp, user/asetlearning, domain/group-theory, topic/burnside, topic/
 
 > **Terms.** Project terms are defined once in [[challenge-gen-glossary]] (ρ_min16, screen/certify, aut8 / 16 images, loop erasure, fixed point, pre-check, relator table, controls, cell names, G1/G2 and others); this note links rather than restates them.
 
-> **Phase 1.** Written 2026-10-15 before the registered run. A calibration run on a separate seed (2000000, 8 words per cell, no reported numbers) was used for timing only; it fixed the size limits and per-cell counts below. TODO item **T-002** ([[todo-challenge-gen]]). Harness: [[hardness-baselines-results]] (T-001). Metric definitions and the min-16 convention: [[challenge-gen-success-metrics]]. Relators: [[ds-b25-trivial-2-5reduced-aut8-20261014]] (the corrected dataset, not the 20261007 one).
+> **Phase 1.** Written 2026-10-14 before the registered run. A calibration run on a separate seed (2000000, 8 words per cell, no reported numbers) was used for timing only; it fixed the size limits and per-cell counts below. TODO item **T-002** ([[todo-challenge-gen]]). Harness: [[hardness-baselines-results]] (T-001). Metric definitions and the min-16 convention: [[challenge-gen-success-metrics]]. Relators: [[ds-b25-trivial-2-5reduced-aut8-20261014]] (the corrected dataset, not the 20261007 one).
 
 ## Question
 

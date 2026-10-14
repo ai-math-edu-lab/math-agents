@@ -15,7 +15,7 @@ tags: [agent/human, user/asetlearning, domain/group-theory, topic/burnside, topi
 
 This is the **generation** use of PatternBoost. Do not confuse it with the `#project/b25` PatternBoost line in `Experiments/Group Theory/Burnside Group/B25/PatternBoost/` (maumayma), which uses PatternBoost to *reduce* challenge words.
 
-- Methodology: [[patternboost-generation-methodology]]
+- Methodology: [[patternboost-generation-methodology]] · T-003 pre-registration: [[t003-gated-dehn-search-2026-10-14]]
 - Data and constants: [[patternboost-generation-data]], [[patternboost-generation-constants]]
 - Results: [[patternboost-generation-results]]
 - Project: [[project-challenge-gen]] · Progress: [[Challenge Generation/_progress]]

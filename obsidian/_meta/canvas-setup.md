@@ -26,7 +26,7 @@ For each:
 1. Name and assign role (matching the role prompt at `<vault>/_meta/agents/<role>.md`).
 2. Working directory: the code workspace you use most (e.g. your checkout of the experiments repo). Agents switch repos per the project profile named in each brief.
 3. Start `claude` in the terminal.
-4. Model assignment (owner, 2026-10-15). The advisor is Claude Code's `advisorModel` setting, a stronger reviewer the agent consults before and after substantive work.
+4. Model assignment (owner, 2026-10-14). The advisor is Claude Code's `advisorModel` setting, a stronger reviewer the agent consults before and after substantive work.
 
    | Terminal | Model | Advisor |
    |---|---|---|

@@ -55,7 +55,7 @@ Full definitions are in [[challenge-gen-success-metrics]]. In short, generate wo
 - **Success levels:** L0 valid (certified), L1 hard (Metric 1), L2 L1 + D ≥ 1, L3 quadratic family.
 - **Similarity** to the 150 challenge words is now secondary and optional.
 
-## The search problem (owner, 2026-10-15) — the crucial part
+## The search problem (owner, 2026-10-14) — the crucial part
 
 Every generator in this project is a **search over factor words**, and the goal of the search is to **maximise D** while keeping the word hard to reduce.
 

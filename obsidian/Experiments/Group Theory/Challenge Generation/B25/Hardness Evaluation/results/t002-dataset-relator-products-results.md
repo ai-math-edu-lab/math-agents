@@ -6,7 +6,7 @@ instance: B(2,5)
 experiment_type: hardness-evaluation
 status: validated
 author: asetlearning
-date: 2026-10-15
+date: 2026-10-14
 todo: T-002
 tags: [agent/exp, user/asetlearning, domain/group-theory, topic/burnside, topic/b25, topic/trivial-words, topic/hard-instance-generation, topic/proof-certificates, project/challenge-gen, status/validated, results]
 ---
@@ -15,7 +15,7 @@ tags: [agent/exp, user/asetlearning, domain/group-theory, topic/burnside, topic/
 
 > **Terms.** Project terms are defined once in [[challenge-gen-glossary]] (ρ_min16, screen/certify, aut8 / 16 images, loop erasure, fixed point, pre-check, relator table, controls, cell names, G1/G2 and others); this note links rather than restates them.
 
-Pre-registration: [[t002-dataset-relator-products-2026-10-15]]. Harness: [[hardness-baselines-results]]. Relators: [[ds-b25-trivial-2-5reduced-aut8-20261014]]. Metrics: [[challenge-gen-success-metrics]]. Status: **validated for the engineering claims**. Group: **free B(2,5)**, with the triviality of the dataset words resting on the dataset's Knuth–Bendix proof. All 7,550 words were decided locally (no rjob job, 0 undecided at the end). No new math claim needed Validator (a product of conjugates of words trivial in the group is trivial there).
+Pre-registration: [[t002-dataset-relator-products-2026-10-14]]. Harness: [[hardness-baselines-results]]. Relators: [[ds-b25-trivial-2-5reduced-aut8-20261014]]. Metrics: [[challenge-gen-success-metrics]]. Status: **validated for the engineering claims**. Group: **free B(2,5)**, with the triviality of the dataset words resting on the dataset's Knuth–Bendix proof. All 7,550 words were decided locally (no rjob job, 0 undecided at the end). No new math claim needed Validator (a product of conjugates of words trivial in the group is trivial there).
 
 ## Provenance
 - Code: `b25_pyproject_agentic` branch `14-t002-dataset-relator-products` (off `12-hardness-harness`, merged with main incl. T-011), local commits, not pushed. Registered run at `d7aa636`; analysis scripts added afterwards (`t002_analyze.py`, `t002_post.py`, flag `--only-ids`).
@@ -82,7 +82,7 @@ Cell naming: P<percent of factors from the dataset>-K<number of factors>-<datase
 | H7 | 10% of screen-empty words: certify also empty | 176/176 agree | held |
 | H8 | independent L0 passes everywhere | 7,550/7,550 | held |
 
-> **2026-10-15 (owner decision):** guard G2 is the adopted definition of "novel L1"; G1 is superseded and kept here only as a historical number ([[challenge-gen-glossary#novel L1 and the guards G1 and G2]]).
+> **2026-10-14 (owner decision):** guard G2 is the adopted definition of "novel L1"; G1 is superseded and kept here only as a historical number ([[challenge-gen-glossary#novel L1 and the guards G1 and G2]]).
 
 ## Findings
 1. **Products of the dataset words survive the 2.5 reducer, standard-relator products do not.** With one dataset factor and k−1 standard factors the standard parts are removed and the dataset conjugate remains (that is why p matters through ρ, not through survival): L1 rises with p because ρ_min16 ≈ (letters from dataset factors)/(all letters) crosses the 0.5 threshold near p = 0.25, as predicted. Pure-dataset products with k ≥ 3 are L1 in 99.7–100% of cases.
