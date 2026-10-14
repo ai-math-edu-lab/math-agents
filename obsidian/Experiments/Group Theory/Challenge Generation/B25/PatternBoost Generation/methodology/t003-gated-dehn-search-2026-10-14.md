@@ -139,5 +139,39 @@ One job per run (21 jobs, sequential), each: build b25 at the T-003 experiment b
 3. Sampled relator swap (`num_relator_samples`, 20 per factor): acceptable, and in Developer's PR?
 4. Is R-M with the 44 standard relators (\|v\| ≤ 3) acceptable, or does the owner want \|v\| ≤ 2 (16) to match the T-002 cell where D reached 0.200?
 
+## Approval and deviations (2026-10-14)
+
+Owner approval (relayed by Lead, 2026-10-14): (1) the 7 stage-1 configurations as pre-registered, seed 3000001; (2) R-M with the 44 standard relators, \|v\| ≤ 3; (3) per-neighbour filter `l1_prefilter` with the default margin 2 (`l1_prefilter_margin: 2`: fails only if (\|cyc(w)\| + 2)/\|w\| < 0.5), strict off; (4) **reduced stage 2**, recorded here as a deviation:
+- **Deviation (stage 2).** After stage 1, only the 2–3 most promising configurations (plus the unseeded control only if H7 is still open) run with seeds 3000002 and 3000003, about 4–6 runs, proposed by me with reasons and approved by the owner. Stage 2 is skipped if no stage-1 run beats D = 0.200. Consequently, the "all three seeds" clauses of H1 and H2 apply only to the configurations that reach stage 2; for the others, stage-1 results are reported for one seed.
+- **Code as merged** (b25 main `d21691a`, pins tcgraph `dd24bae`; tcgraph main `2be028d`): every item of "Needed and not yet agreed" was implemented: `relators.file_order`, `relators.include_standard`, `initial_sampling.seed_pool_file` + `mix`, `local_search.num_relator_samples`, `relator_table.json`. Experiment branch `16-t003-gated-dehn-search` (off main, with branch 14 merged for the harness), commit `4ce9704`: `experiments/challenge_gen/t003/` (inputs, configs, smoke, `eval_pb`, job script).
+- **Seed pool `mix` 0.9:** 2,000 of the 20,000 initial words come from the seed pool, 18,000 from the sampler.
+
+- **Deviation (owner decision 2026-10-14, option 1, after the smoke): length floor on every R-M configuration.** Evidence: in the smoke (table below), local search on R-M without a floor collapsed words to a median of 10 letters, and the pool gate passed **0 of 40** of them (R-M with the floor: 22 of 40). Change: every R-M configuration uses `local_search.min_expanded_len: 100` and `scoring.params.min_len: 100`. R-M × A is dropped (with the floor it equals R-M × C); R-M × B runs with the floor; the unseeded control is R-M × C instead of R-M × A. **Stage 1 = 6 runs:** R-D × {A, B, C}, R-M × {B + floor, C}, unseeded R-M × C. H7 now compares seeded and unseeded R-M × C; H6 compares R-D and R-M on B and C only (R-M × A no longer exists). Configs: branch `16-t003-gated-dehn-search` @ `c86014e`.
+- **Baseline correction (2026-10-14).** The best D among T-002 **L1** words is 0.066 (0.031 for pure-dataset words); the 0.200 maximum came from a non-L1 word. The H1 success bar stays at **0.200** (owner); every report also gives the number of certified L1 finalists (and novel ones) with D > 0.066 (`eval_pb` fields `L1_D_gt_L1_baseline`, `novel_L1_D_gt_L1_baseline`).
+
+- **Deviation (2026-10-14, owner-approved): pool merge by score.** Job 1 (`20261014-110539-4e4d92`, R-M × C) showed that `_merge_pool` (b25 `algorithms/pattern_boost/workflow.py`) keeps the *newest* `max_pool_size` words, not the best: with `top_k` = `max_pool_size` = 2,000, each iteration's outputs replace the whole pool, including words the gate scored 0. Gate passers: initial pool 2,000/2,000; iteration 0 outputs 737/2,180; iteration 1 61/2,178; iteration 2 18/2,185. The model then trains on rejected words. Jobs 2–6 were cancelled before starting. Developer is adding `workflow.pool_merge: newest|score` (score = keep the top by stored gated score, ties newer first); all six stage-1 configurations will be rerun with the score merge (new job ids recorded here). Job 1 runs to completion and is reported separately as the **newest-merge run**, not as a stage-1 result. Fix: b25 PR #6 (main `5e900ee`), `workflow.pool_merge: score`; all six configurations set it (branch `16-t003-gated-dehn-search` @ `86b1672`, main merged in). `eval_pb` now takes finalists from the kept pool (`pool.json`). Local smoke (`smoke_pool_merge`, R-M × C, pool 200, 220 candidates per iteration from local search on pool words as a stand-in for the model, real merge, scorer and gate), pool passers over 5 iterations: **newest** 86 → 99, 104, 72, 65, 51 (output pass 99, 81, 45, 32, 26 of 220); **score** 86 → 185, 200, 200, 200, 200 (output pass 99, 108, 138, 161, 167 of 220); best gated score retained (0.09). Resubmitted stage-1 jobs (seed 3000001): RM-C `20261014-122140-506aac`, RD-C `20261014-122142-4b625c`, RD-A `20261014-122144-8d760b`, RD-B `20261014-122146-d1994d`, RM-B `20261014-122148-7248a7`, RM-C unseeded `20261014-122150-080af8`.
+
+- **Deviation (owner decision 2026-10-14, padding loophole, option 1).** D stays as defined. Every certified finalist and every run additionally reports n_dataset_fstar, n_standard_fstar, padding fraction (1 − ρ_min16), D_dataset and dataset core (definitions: [[challenge-gen-glossary#Padding breakdown (T-003)]]). Code: `experiments/challenge_gen/t003/padding.py`, called by `eval_pb` from `b98c938`; the stage-1 jobs run `86b1672`, so the breakdown is computed locally on their fetched outputs (no resubmission). Whether to tighten the metric (ρ ≥ 0.9 on R-M, or D on dataset factors only) is decided by the owner after stage 1.
+
+## Smoke (local VM, 2026-10-14, seed 3000000)
+
+`smoke_components` (no torch on the VM, so model training and sampling are timed on the first remote job instead):
+- Relator tables: R-D = the first 1,640 entries and R-M = all 1,684 entries of the T-002 table, entry for entry. All 2,000 seed words of each pool load and expand identically to the independent expansion. `dehn_minimised` equals the harness D on 300 of 300 seed words.
+- Local search (T-003 settings, 40 calls per cell on seed words):
+
+| Set | Variant | s per call (median / max) | neighbours per step | median \|w\| after search | pool gate pass |
+|---|---|---|---|---|---|
+| R-D | A | 0.002 / 0.43 | 129 | 53 | 37/40 |
+| R-D | C | 0.004 / 0.03 | 108 | 103 | 34/40 |
+| R-M | A | 0.003 / 0.41 | 145 | 10 | **0/40** |
+| R-M | C | 0.005 / 0.40 | 216 | 101 | 22/40 |
+
+- Pool gate: 0.1–1.7 ms per screened word.
+- **Finding.** Without the length floor, local search on R-M replaces the dataset factors by short standard relators and collapses words to about 10 letters (D up to 0.23), all of which the gate rejects. The per-neighbour filter cannot see 2.5-reducibility, so in R-M variants A and B (and the unseeded control) the local-search outputs are almost all gated, and the pool can only improve through words the model proposes. This is the drift of H5 in its strongest form; the runs go ahead as approved, queued last.
+- **Baseline detail.** Among T-002 L1 words the largest D is 0.066 (R-M seed pool) and 0.031 (R-D); the 0.200 maximum was reached by a word that is not L1. The H1 bar of 0.200 is therefore about 3× the best L1 random product.
+- `eval_pb` tested end to end on a synthetic run directory (47 finalists, 47 L0, 47 L1, G2 computed).
+
 ## Results
-Not run yet.
+Stage 1 (score merge): running (job ids above).
+
+**Newest-merge run (job 1, `20261014-110539-4e4d92`, R-M × C, seed 3000001; not a stage-1 result).** PatternBoost 82 min (15 iterations), evaluation seconds. Search outputs passing the gate per iteration: 737, 61, 18, 18, 5, 2, 3, 8, 8, 5, 5, 6, 3, 5, 1 (of about 2,200); best gated D 0.08 → 0.17 (iteration 11) → 0.15; mean \|w\| about 150. The final pool held one gate passer: certified L0 and L1 (ρ_min16 = 0.50), D = 0.15, **not novel** (G2). It is one 50-letter dataset factor (inverse of line 35) plus 14 standard v⁵ factors (conjugators of length 0–2) at exactly \|w\| = 100: the reducer removes the standard parts and keeps the relator's 50 letters, so ρ_min16 = 0.5 while all 15 factors count in N*. On R-M, D can therefore be raised by padding one dataset relator with standard factors up to the ρ ≥ 0.5 limit; G2 identifies such words as non-novel.

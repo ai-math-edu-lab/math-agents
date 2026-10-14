@@ -169,6 +169,14 @@ Every `maestri ask` is logged to `Agents/<your-handle>/_shared/message-log-YYYY-
 
 Append these entries to any existing lists for the same events. The script does nothing outside Maestri terminals and always exits 0, so it never blocks an agent. Restart running Claude Code sessions after installing.
 
+**Lead ↔ human transcript (optional).** `claude/hooks/lead_human_transcript.py` keeps a readable record of the human's conversation with Lead in `Agents/<your-handle>/Lead/transcripts/lead-human-YYYY-MM.md` (private, gitignored): one heading per day, every human message and Lead reply in full, agent messages as collapsed callouts, no tool output. Put it in Lead's own settings file (`<repo>/.maestri/lead/settings.json`, see Step 2) so only Lead runs it, and start Lead with `claude --settings .maestri/lead/settings.json`:
+
+```json
+"Stop": [{"hooks": [{"type": "command", "timeout": 15, "command": "python3 \"<repo>/claude/hooks/lead_human_transcript.py\" stop --vault \"<vault>\" --handle <your-handle>"}]}]
+```
+
+`... lead_human_transcript.py backfill <session>.jsonl --handle <your-handle>` fills it from an earlier session transcript (`~/.claude/projects/<project>/<session>.jsonl`). Agent messages are recognised by their `TYPE:`/`FROM:` header, so agents must always send it. Limitation: a short text Lead writes just before a tool call is sometimes not stored by Claude Code and then missing from the transcript; turn-final replies are always captured.
+
 Maria's tree is at `Agents/maumayma/`. Each colleague gets their own subtree when they join the canvas. The role prompts in `_meta/agents/*.md` use `Agents/<your-user>/<role>/` paths — they auto-resolve to the correct subtree based on which user's session is active.
 
 ## Step 8 — Verify

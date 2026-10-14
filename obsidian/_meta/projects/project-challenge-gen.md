@@ -196,7 +196,7 @@ The agents' VM is restricted: 2 CPUs, about 3 GB RAM, no GPU. Experiments are th
 - **Submodule.** b25's `.gitmodules` points `cpp/tcgraph` at `gt-computations/tcgraph`, not `asetlearning/tcgraph_agentic`. Pin fixed 2026-10-14: b25 main now pins `1b52b4d` (was `c09327705a`, which predated the scorers b25 binds). The URL still needs the local override; see [[dep-b25-pyproject-agentic]].
 - **tcgraph_agentic main** fails to build `test_pb_local_search`, which uses the removed `scoreWord`; see [[dep-tcgraph-agentic]].
 - **No provenance or seeds** are logged: no SHAs or data hashes, and model init and training are unseeded. The C++ factor-word sampler is seeded since 2026-10-14 (T-011; reproducible per standard library, Linux vs macOS may differ). Data files are not in git.
-- **Pool merge** keeps the newest entries, not the best. Sweep-level logs land in trial logs.
+- **Pool merge** keeps the newest entries, not the best, by default. Fixed opt-in 2026-10-14 (b25 PR #6, merge 5e900ee): set `workflow.pool_merge: score` to keep the top entries by their entry-time (gated) score; required for any gated objective (T-003 job 1 lost all but 18 of 2,000 L1 passers in 3 iterations with the default). Sweep-level logs land in trial logs.
 - **Which group.** "Match" means exact cyclic equality with a target and says nothing about hardness. The challenge words are known trivial only in B₀(2,5).
 
 ## Core requirement — certificates

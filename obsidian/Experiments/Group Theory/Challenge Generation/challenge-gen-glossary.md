@@ -30,7 +30,9 @@ Notation used in the definitions: |u| is word length, w̄ the freely reduced exp
 | control (positive / negative) | A set whose metric value is known in advance, used to check the harness | T-001 2026-10-13 | [[#positive and negative control]] |
 | cyc(w̄), n_cyc | Cyclic reduction of w̄ and its length | T-001 2026-10-13 | [[#rho_cyc and the cyclic reduction]] |
 | D | \|F*\|/\|w̄\|, Dehn-function proxy on the minimised certificate | owner 2026-10-05 | [[challenge-gen-success-metrics#Metric 2: Dehn-function proxy (theoretical difficulty)]] |
+| D_dataset | Dataset factors of F* divided by \|w\|; the 'D on dataset factors only' alternative, reported next to D | owner decision 2026-10-14 (T-003) | [[#Padding breakdown (T-003)]] |
 | D_raw | \|F\|/\|w̄\| on the unminimised certificate | T-001 2026-10-13 | [[#D_raw]] |
+| dataset core (dataset_core) | True if R₂.₅(w) has the same canonical class as the reduction of w_D, the expansion of F* without its standard factors | owner decision 2026-10-14 (T-003) | [[#Padding breakdown (T-003)]] |
 | dataset relators (820) | The 820 proved-trivial, 2.5-reduced words used as relators in T-002 | dataset 2026-10-14 (T-012) | [[#standard relators and dataset relators]] |
 | empty-word (R = 1) | R₂.₅(w) is the empty word; the word is not L1 | owner 2026-10-05 | [[#screen mode and certify mode]] |
 | F* | Minimised certificate (loop-erased F) | owner 2026-10-05 | [[challenge-gen-success-metrics#Metric 2: Dehn-function proxy (theoretical difficulty)]] |
@@ -44,8 +46,10 @@ Notation used in the definitions: |u| is word length, w̄ the freely reduced exp
 | loop erasure | Chronological deletion of freely cancelling blocks of F; gives F* | owner 2026-10-05, made exact in T-001 | [[#loop erasure]] |
 | move set | Local-search moves on F: replace a relator rᵢ, mutate a conjugator cᵢ, insert or delete a factor, reorder (swap adjacent factors) | owner 2026-10-14 | [[project-challenge-gen#The search problem (owner, 2026-10-14) — the crucial part]] |
 | n | \|w̄\|, length of the freely reduced expansion | owner 2026-10-05 | [[challenge-gen-success-metrics#Notation]] |
+| n_dataset_fstar, n_standard_fstar | Numbers of dataset-relator and standard-v⁵ factors in the minimised certificate F* | owner decision 2026-10-14 (T-003) | [[#Padding breakdown (T-003)]] |
 | novel L1 | An L1 word whose reduced form is not just a relator (or a reduction of a single factor) | T-002 2026-10-14 | [[#novel L1 and the guards G1 and G2]] |
 | p (dataset share), n_dataset | Probability that a sampled factor is a dataset relator; the realised count is stored per word | T-002 2026-10-14 | [[#cell and cell names]] |
+| padding fraction | 1 − ρ_min16: the share of \|w\| removed by 2.5-reduction (minimising image) | owner decision 2026-10-14 (T-003) | [[#Padding breakdown (T-003)]] |
 | pool gate (workflow.l1_gate) | Screen-mode L1 gate applied to pool / top_k candidates after local search; failing words get gated_score | T-003 prereg 2026-10-14 | [[#T-003 search terms]] |
 | positive / negative control | See control | T-001 2026-10-13 | [[#positive and negative control]] |
 | power-free shortcut | Exact test: no power ≥ 2.5 in w̄ (linear) and in cyc(w̄) (cyclic) implies the reducer is a no-op | T-001 (no-square form), T-002 (exact form) | [[#pre-check: no square and power-free]] |
@@ -163,6 +167,14 @@ Defined in [[t003-gated-dehn-search-2026-10-14]] (pre-registration, 2026-10-14);
 - **Pool gate** (`workflow.l1_gate`). After each local search, and when the initial pool is truncated, candidates are screened in score order (screen mode on the generated word only, n ≤ `max_len`): R₂.₅(w) = empty or ρ_screen < `min_rho` gives `gated_score`. The search's own L1 is therefore a screen-mode, single-representative L1, weaker than the owner's ρ_min16.
 - **Certified L1 finalist.** A word from a run's final pool (or a logged gate-passed high-D word) that the independent harness certifies: L0 (re-expansion against the run's dumped relator table), L1 with [[#rho_min16]] in certify mode. Only certified finalists count in results.
 - **Seed pool.** A JSONL file of factor words, each factor given as (relator word, conjugator word) so it maps to any relator table that contains the words. Loaded into the initial pool next to `n_initial` sampler words, then truncated by gated score. T-003 uses the top T-002 L1 words by D.
+
+### Padding breakdown (T-003)
+Owner decision 2026-10-14: D stays as defined; these fields are reported next to it for every certified L1 finalist and per run (`experiments/challenge_gen/t003/padding.py`). Motivation: on the mixed relator set R-M, D can be raised by padding one dataset relator with standard v⁵ factors that the reducer removes, up to the ρ ≥ 0.5 limit (T-003 newest-merge run: 1 dataset + 14 standard factors, \|w\| = 100, ρ_min16 = 0.50, D = 0.15).
+- **n_dataset_fstar / n_standard_fstar.** Factors of F* (after [[#loop erasure]]) whose relator is a dataset word or its inverse (table indices 1–1640) / a standard v⁵ (indices 1641–1684).
+- **Padding fraction** = 1 − ρ_min16 ([[#rho_min16]]): the share of \|w\| that 2.5-reduction removes in the minimising image.
+- **D_dataset** = n_dataset_fstar / \|w\|.
+- **Dataset core** (`dataset_core`). Let w_D be the freely reduced expansion of F* with every standard factor deleted (dataset factors keep their conjugators and order). The word has a dataset core if canon(R₂.₅(w)) equals canon(R₂.₅(w_D)) (certify mode) or canon(cyc(w_D)), with canon as in [[#canon (canonical class)]]. Then the standard factors left no trace in the reduced word: they are pure padding. This is my operational reading of "R₂.₅(w) is, up to G2, a product of dataset relators only"; a word with no standard factors has a dataset core by definition.
+- Per-run figures for the owner's decision on tightening the metric (ρ ≥ 0.9 on R-M, or D on dataset factors only): counts with standard factors and with a dataset core, median padding fraction, best D and D_dataset (all / novel / with ρ_min16 ≥ 0.9), counts above 0.066 and 0.200.
 
 ## Related material
 - [[challenge-gen-success-metrics]]: owner definitions (certificate, ρ, D, levels) and the ρ_min16 decision
